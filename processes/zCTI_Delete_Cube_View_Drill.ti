@@ -1,0 +1,51 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+sSub = 'processo.DRILL_01*' ;
+sSub2 = 'DFS_Drill_Pré_Fechamento*';
+sSub3 = 'DFS_Drill_Correlacao_Fechamento*';
+
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Cube.View.Delete'
+  , 'pCubes'                              , 'STG.0500.Transacoes_Custos'
+  , 'pViews'                      , sSub
+  , 'pDelimiter'                   , '&'
+  , 'pDebug'                         , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Cube.View.Delete'
+  , 'pCubes'                              , 'DFS.0815.Correlacao_Detalhe'
+  , 'pViews'                      , sSub3
+  , 'pDelimiter'                   , '&'
+  , 'pDebug'                         , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Cube.View.Delete'
+  , 'pCubes'                              , 'DFS.0800.Pre_Fechamento'
+  , 'pViews'                      , sSub2
+  , 'pDelimiter'                   , '&'
+  , 'pDebug'                         , 0
+  );
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

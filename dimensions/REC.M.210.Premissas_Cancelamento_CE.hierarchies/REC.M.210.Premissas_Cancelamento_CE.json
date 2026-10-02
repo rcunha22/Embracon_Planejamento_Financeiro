@@ -1,0 +1,16 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.210.Premissas_Cancelamento_CE",
+	"Elements":
+	[
+		{
+			"Name":"% de Cancelamento",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Curva de Cancelamento",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

@@ -1,0 +1,159 @@
+# --------------------------------------------------------------------------------------------
+# Name: Flag Aux
+# Desc: Identifica o nascimento da safra. A primeira safra nasce na combinação
+#       Safra 001 / Período 001. As demais safras são propagadas utilizando a
+#       Safra Anterior e o Período Anterior.
+# Date: 25/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['SYS.M.Safra_Control':'Flag Aux','REC.D.Safra_CN':'001','ALL.D.Periodo_Projecao_2':'001'] = N: 1;
+
+['SYS.M.Safra_Control':'Flag Aux'] = N:
+
+IF(
+
+DB(
+   'SYS.310.Safra_Control'
+   , !ALL.D.Versao
+   , ATTRS(
+       'REC.D.Safra_CN'
+       , !REC.D.Safra_CN
+       , 'Safra Anterior'
+     )
+   , !ALL.D.Prazo
+   , ATTRS(
+       'ALL.D.Periodo_Projecao_2'
+       , !ALL.D.Periodo_Projecao_2
+       , 'Período Anterior'
+     )
+   , 'Flag Aux'
+) = 1
+
+, 1
+
+, CONTINUE
+
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Flag
+# Desc: Controla o ciclo de vida da safra ao longo dos períodos projetados.
+#       No nascimento da safra (Flag Aux = 1), inicia com Prazo + 1.
+#       Nos períodos subsequentes, reduz uma unidade por período até chegar a zero.
+# Date: 25/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['SYS.M.Safra_Control':'Flag'] = N:
+
+IF(
+   ['SYS.M.Safra_Control':'Flag Aux'] = 1
+,
+   NUMBR(!ALL.D.Prazo) + 1
+,
+IF(
+
+DB(
+   'SYS.310.Safra_Control'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Prazo
+   , ATTRS(
+       'ALL.D.Periodo_Projecao_2'
+       , !ALL.D.Periodo_Projecao_2
+       , 'Período Anterior'
+     )
+   , 'Flag'
+) <> 0
+
+,
+
+DB(
+   'SYS.310.Safra_Control'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Prazo
+   , ATTRS(
+       'ALL.D.Periodo_Projecao_2'
+       , !ALL.D.Periodo_Projecao_2
+       , 'Período Anterior'
+     )
+   , 'Flag'
+) - 1
+
+,
+
+0
+
+)
+
+);
+# --------------------------------------------------------------------------------------------
+# Name: MOB
+# Desc: Calcula a idade da safra (Months on Book) a partir da Flag.
+# Date: 25/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['SYS.M.Safra_Control':'MOB'] = N:
+
+IF(
+   ['SYS.M.Safra_Control':'Flag'] > 0
+,
+   NUMBR(!ALL.D.Prazo)
+   -
+   ['SYS.M.Safra_Control':'Flag']
+   +
+   2
+,
+   0
+);
+
+FEEDERS;
+
+['SYS.M.Safra_Control':'Flag Aux', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+  DB( 'REC.400.CPC47_CN'
+    , !ALL.D.Versao
+    , !REC.D.Safra_CN
+    , !ALL.D.Periodo_Projecao_2
+    , 'ALL.D.Canal':'Canais'
+    , 'ALL.D.Especie':'Especies'
+    , 'ALL.D.Tabela':'Tabelas'
+    , !ALL.D.Prazo
+    , 'ALL.D.Plano':'Planos'
+    , 'Estoque Inicial de Taxa' )
+  ,
+  DB( 'REC.400.CPC47_CN'
+    , !ALL.D.Versao
+    , !REC.D.Safra_CN
+    , !ALL.D.Periodo_Projecao_2
+    , 'ALL.D.Canal':'Canais'
+    , 'ALL.D.Especie':'Especies'
+    , 'ALL.D.Tabela':'Tabelas'
+    , !ALL.D.Prazo
+    , 'ALL.D.Plano':'Planos'
+    , 'Comissao Paga' );
+
+['SYS.M.Safra_Control':'Flag', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+  DB( 'REC.400.CPC47_CN'
+    , !ALL.D.Versao
+    , !REC.D.Safra_CN
+    , !ALL.D.Periodo_Projecao_2
+    , 'ALL.D.Canal':'Canais'
+    , 'ALL.D.Especie':'Especies'
+    , 'ALL.D.Tabela':'Tabelas'
+    , !ALL.D.Prazo
+    , 'ALL.D.Plano':'Planos'
+    , 'Estoque Inicial de Taxa' )
+  ,
+  DB( 'REC.400.CPC47_CN'
+    , !ALL.D.Versao
+    , !REC.D.Safra_CN
+    , !ALL.D.Periodo_Projecao_2
+    , 'ALL.D.Canal':'Canais'
+    , 'ALL.D.Especie':'Especies'
+    , 'ALL.D.Tabela':'Tabelas'
+    , !ALL.D.Prazo
+    , 'ALL.D.Plano':'Planos'
+    , 'Comissao Linear' );

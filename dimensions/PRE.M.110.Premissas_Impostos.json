@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"PRE.M.110.Premissas_Impostos",
+	"Hierarchies@Code.links":
+	[
+		"PRE.M.110.Premissas_Impostos.hierarchies/PRE.M.110.Premissas_Impostos.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('PRE.M.110.Premissas_Impostos')/Hierarchies('PRE.M.110.Premissas_Impostos')"
+	}
+}

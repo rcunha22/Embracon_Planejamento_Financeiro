@@ -1,0 +1,21 @@
+{
+	"@type":"Process",
+	"Name":"zCTI.Version.Copy.000.Start.Copy",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"zCTI.Version.Copy.000.Start.Copy.ti",
+	"UIData":"CubeAction=1511\fDataAction=1503\fCubeLogChanges=0\f_ParameterConstraints=e30=\f",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pStart",
+			"Prompt":"Tem certeza que deseja iniciar a cópia de versão?",
+			"Value":"S",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

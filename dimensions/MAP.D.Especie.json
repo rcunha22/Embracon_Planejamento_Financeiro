@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"MAP.D.Especie",
+	"Hierarchies@Code.links":
+	[
+		"MAP.D.Especie.hierarchies/MAP.D.Especie.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('MAP.D.Especie')/Hierarchies('MAP.D.Especie')"
+	}
+}

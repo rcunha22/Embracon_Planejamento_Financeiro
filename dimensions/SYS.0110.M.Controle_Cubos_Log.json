@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"SYS.0110.M.Controle_Cubos_Log",
+	"Hierarchies@Code.links":
+	[
+		"SYS.0110.M.Controle_Cubos_Log.hierarchies/SYS.0110.M.Controle_Cubos_Log.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('SYS.0110.M.Controle_Cubos_Log')/Hierarchies('SYS.0110.M.Controle_Cubos_Log')"
+	}
+}

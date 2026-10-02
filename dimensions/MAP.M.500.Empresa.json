@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"MAP.M.500.Empresa",
+	"Hierarchies@Code.links":
+	[
+		"MAP.M.500.Empresa.hierarchies/MAP.M.500.Empresa.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('MAP.M.500.Empresa')/Hierarchies('MAP.M.500.Empresa')"
+	}
+}

@@ -1,0 +1,28 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.M.170.Log_Controle_Cargas",
+	"Elements":
+	[
+		{
+			"Name":"DataHora Inicio",
+			"Type":"String"
+		},
+		{
+			"Name":"DataHora Fim",
+			"Type":"String"
+		},
+		{
+			"Name":"Mensagem de Log",
+			"Type":"String"
+		},
+		{
+			"Name":"Registros Processados",
+			"Type":"String"
+		},
+		{
+			"Name":"Tempo de Execução",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

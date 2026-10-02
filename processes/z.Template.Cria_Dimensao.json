@@ -1,0 +1,21 @@
+{
+	"@type":"Process",
+	"Name":"z.Template.Cria_Dimensao",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"z.Template.Cria_Dimensao.ti",
+	"UIData":"_ParameterConstraints=e30=\f",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pDim",
+			"Prompt":"Insira o nome da dimensão a ser criada:",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

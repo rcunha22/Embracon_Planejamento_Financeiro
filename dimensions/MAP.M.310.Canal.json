@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"MAP.M.310.Canal",
+	"Hierarchies@Code.links":
+	[
+		"MAP.M.310.Canal.hierarchies/MAP.M.310.Canal.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('MAP.M.310.Canal')/Hierarchies('MAP.M.310.Canal')"
+	}
+}

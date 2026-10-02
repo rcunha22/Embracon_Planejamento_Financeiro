@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.D.Situacao_Contemplacao",
+	"Hierarchies@Code.links":
+	[
+		"REC.D.Situacao_Contemplacao.hierarchies/REC.D.Situacao_Contemplacao.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.D.Situacao_Contemplacao')/Hierarchies('REC.D.Situacao_Contemplacao')"
+	}
+}

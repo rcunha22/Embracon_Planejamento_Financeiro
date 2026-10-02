@@ -1,0 +1,29 @@
+{
+	"@type":"Process",
+	"Name":"DIM.0420.Atualiza_ALL.D.Plano_MAP.420.Plano",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"DIM.0420.Atualiza_ALL.D.Plano_MAP.420.Plano.ti",
+	"UIData":"CubeAction=1511\fDataAction=1503\fCubeLogChanges=0\f_ParameterConstraints=e30=\f",
+	"VariablesUIData":
+	[
+		"VarType=32\fColType=827\f"
+	],
+	"DataSource":
+	{
+		"Type":"TM1DimensionSubset",
+		"dataSourceNameForClient":"MAP.D.Plano:MAP.D.Plano",
+		"dataSourceNameForServer":"MAP.D.Plano:MAP.D.Plano",
+		"subset":"All"
+	},
+	"Parameters":[],
+	"Variables":
+	[
+		{
+			"Name":"vElement",
+			"Type":"String",
+			"Position":1,
+			"StartByte":0,
+			"EndByte":0
+		}
+	]
+}

@@ -1,0 +1,36 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.140.Vendas_Projecao",
+	"Elements":
+	[
+		{
+			"Name":"Meta do Canal",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% Participação",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Faturamento Difundido",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Faturamento Ajustado",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Faturamento Projetado",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Vendidas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Check",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

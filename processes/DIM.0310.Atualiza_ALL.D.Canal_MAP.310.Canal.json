@@ -1,0 +1,29 @@
+{
+	"@type":"Process",
+	"Name":"DIM.0310.Atualiza_ALL.D.Canal_MAP.310.Canal",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"DIM.0310.Atualiza_ALL.D.Canal_MAP.310.Canal.ti",
+	"UIData":"CubeAction=1511\fDataAction=1503\fCubeLogChanges=0\f_ParameterConstraints=e30=\f",
+	"VariablesUIData":
+	[
+		"VarType=32\fColType=827\f"
+	],
+	"DataSource":
+	{
+		"Type":"TM1DimensionSubset",
+		"dataSourceNameForClient":"MAP.D.Canal:MAP.D.Canal",
+		"dataSourceNameForServer":"MAP.D.Canal:MAP.D.Canal",
+		"subset":"All"
+	},
+	"Parameters":[],
+	"Variables":
+	[
+		{
+			"Name":"vElement",
+			"Type":"String",
+			"Position":1,
+			"StartByte":0,
+			"EndByte":0
+		}
+	]
+}

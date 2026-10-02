@@ -1,0 +1,45 @@
+{
+	"@type":"Process",
+	"Name":"zCTI_APAGA_Valor_Eliminição",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"zCTI_APAGA_Valor_Eliminição.ti",
+	"UIData":"_ParameterConstraints=e30=\f",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pAno",
+			"Prompt":"Ano Inicial:",
+			"Value":"2024",
+			"Type":"String"
+		},
+		{
+			"Name":"pEmpresa",
+			"Prompt":"Empresa:",
+			"Value":"1400",
+			"Type":"String"
+		},
+		{
+			"Name":"pVersaoOrigem",
+			"Prompt":"Versão Origem:",
+			"Value":"T2",
+			"Type":"String"
+		},
+		{
+			"Name":"pVersaoDestino",
+			"Prompt":"Versão Destino:",
+			"Value":"T2",
+			"Type":"String"
+		},
+		{
+			"Name":"pAnoFinal",
+			"Prompt":"Ano Final PO:",
+			"Value":"2028",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

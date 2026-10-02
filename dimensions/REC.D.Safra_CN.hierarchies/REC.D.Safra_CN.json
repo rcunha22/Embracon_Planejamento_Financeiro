@@ -1,0 +1,609 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.D.Safra_CN",
+	"Elements":
+	[
+		{
+			"Name":"Total Safra",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"001",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"002",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"003",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"004",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"005",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"006",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"007",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"008",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"009",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"010",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"011",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"012",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"013",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"014",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"015",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"016",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"017",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"018",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"019",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"020",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"021",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"022",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"023",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"024",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"025",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"026",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"027",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"028",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"029",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"030",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"031",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"032",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"033",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"034",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"035",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"036",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"037",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"038",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"039",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"040",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"041",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"042",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"043",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"044",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"045",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"046",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"047",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"048",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"049",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"050",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"051",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"052",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"053",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"054",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"055",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"056",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"057",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"058",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"059",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"060",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"061",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"062",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"063",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"064",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"065",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"066",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"001",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"002",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"003",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"004",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"005",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"006",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"007",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"008",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"009",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"010",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"011",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"012",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"013",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"014",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"015",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"016",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"017",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"018",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"019",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"020",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"021",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"022",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"023",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"024",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"025",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"026",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"027",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"028",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"029",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"030",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"031",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"032",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"033",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"034",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"035",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"036",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"037",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"038",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"039",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"040",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"041",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"042",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"043",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"044",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"045",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"046",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"047",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"048",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"049",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"050",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"051",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"052",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"053",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"054",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"055",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"056",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"057",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"058",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"059",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"060",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"061",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"062",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"063",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"064",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"065",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Safra",
+			"ComponentName":"066",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

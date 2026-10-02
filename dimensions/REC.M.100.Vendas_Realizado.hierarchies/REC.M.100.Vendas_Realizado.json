@@ -1,0 +1,32 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.100.Vendas_Realizado",
+	"Elements":
+	[
+		{
+			"Name":"Faturamento",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Vendidas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Comissão",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa Media",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Comissao Media",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

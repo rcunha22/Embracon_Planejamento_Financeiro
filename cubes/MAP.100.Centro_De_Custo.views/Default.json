@@ -1,0 +1,25 @@
+{
+	"@type":"MDXView",
+	"Name":"Default",
+	"MDX@Code.link":"Default.mdx",
+	"IsAutocalculate" : true,
+	"IsDeferComputeOnLeafDataEntry" : false,
+	"IsSuppressComputeOnOpen" : false,
+	"Meta" : 
+	{
+		"Aliases" : {},
+		"ContextSets" : 
+		{
+			"[ALL.D.Versao].[ALL.D.Versao]" : 
+			{
+				"Expression" : "{[ALL.D.Versao].[ALL.D.Versao].MEMBERS}"
+			}
+		},
+		"ExpandAboves" : 
+		{
+			"[ALL.D.Versao].[ALL.D.Versao]" : false,
+			"[MAP.D.Centro_De_Custo].[MAP.D.Centro_De_Custo]" : false,
+			"[MAP.M.100.Centro_De_Custo].[MAP.M.100.Centro_De_Custo]" : false
+		}
+	}
+}

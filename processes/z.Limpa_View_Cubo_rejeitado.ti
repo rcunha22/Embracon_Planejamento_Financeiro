@@ -1,0 +1,78 @@
+#region Prolog
+# =================================================================================
+# Variáveis do padrão CTI não devem ser alteradas
+# =================================================================================
+
+# Recupera o usuário que executou o processo
+# ========================================
+cUsuario = pUsuario;
+  
+
+  
+# Variáveis de controle do processo
+# ========================================
+cCuboParGlobal			= 'SYS.140.Parametros_Globais';
+cCuboParametro			= 'SYS.150.Controle_Cargas';
+cCuboRejeitado          = 'SYS.160.Rejeitados_Cargas';
+cCuboLogs                 = 'SYS.170.Log_Controle_Cargas';
+cHorarioInicio			= Now();
+cProcesso			= pProcesso;
+cMensagemProcesso 		= '';
+cContadorRegistro 			= 0;
+cExisteRegistroRejeitado = 0;
+cQtdRegistroRejeitadoCubo  = 1;
+ cExisteCabecalhoRejeitado = 0;
+
+# =================================================================================
+# Definição View de Limpeza do Cudo de Rejeitados
+# =================================================================================
+
+# Define as propriedades da view de limpeza
+# ======================================================
+cSuprimirConsolidado	= 'S';
+cSuprimirZero		= 'S'; 
+cSuprimirCamposCalculados	= 'S';
+cViewTemporaria	 	= 'S';
+nViewTemporaria		= If( cViewTemporaria @= 'S', 1, 0);
+
+# Define os nomes da view e subset de limpeza
+# ======================================================
+cViewRejeitado	= 'processo.reject' | cProcesso | '.' | 'Limpeza' | '.' | TimSt( cHorarioInicio, '\Y-\m-\d \hh\im\ss' );
+cSubsetRejeitado	= cViewRejeitado;
+
+# Cria a view que será utilizada para a limpeza 
+# ======================================================
+ViewCreate( cCuboRejeitado , cViewRejeitado , nViewTemporaria );
+
+
+# Cria os subsets que serão utilizados para filtrar a view de limpeza
+# ======================================================
+
+cDimensao	= '}Processes';
+cElemento	= cProcesso;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetRejeitado , nViewTemporaria );  
+  ViewSubsetAssign( cCuboRejeitado , cViewRejeitado, cDimensao , cSubsetRejeitado );  
+  SubsetElementInsert( cDimensao, cSubsetRejeitado, cElemento	, 1 );
+EndIf;
+
+cDimensao	= '}Clients';
+cElemento	= cUsuario;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetRejeitado , nViewTemporaria );  
+  ViewSubsetAssign( cCuboRejeitado , cViewRejeitado, cDimensao , cSubsetRejeitado );  
+  SubsetElementInsert( cDimensao, cSubsetRejeitado, cElemento	, 1 );
+EndIf;
+
+
+# Configuração da View
+# ======================================================
+ViewExtractSkipCalcsSet( cCuboRejeitado, cViewRejeitado, If( cSuprimirConsolidado @= 'S', 1, 0) );
+ViewExtractSkipZeroesSet( cCuboRejeitado, cViewRejeitado, If( cSuprimirZero @= 'S', 1, 0)  );
+ViewExtractSkipRuleValuesSet( cCuboRejeitado, cViewRejeitado, If( cSuprimirCamposCalculados @= 'S', 1, 0) );
+
+
+# Apaga os valores da View criada
+# ======================================================
+ViewZeroOut( cCuboRejeitado , cViewRejeitado );
+#endregion

@@ -1,0 +1,12 @@
+{
+	"@type":"Process",
+	"Name":"zProcess_Feeders",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"zProcess_Feeders.ti",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

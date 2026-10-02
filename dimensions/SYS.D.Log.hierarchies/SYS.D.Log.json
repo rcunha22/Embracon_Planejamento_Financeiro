@@ -1,0 +1,28 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.D.Log",
+	"Elements":
+	[
+		{
+			"Name":"Log_1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Log_2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Log_3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Log_4",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Log_5",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

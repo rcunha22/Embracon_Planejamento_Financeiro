@@ -1,0 +1,11 @@
+# SKIPCHECK;
+
+# ['REC.D.Safra_CN':'REC.D.Safra_CN':'1'] = STET;
+
+# ['PRE.M.100.Premissas_Gerais':'PRE.M.100.Premissas_Gerais':'Periodo Inicial da Projecao'] = N:
+#   DB( 'PRE.101.Premissas_Gerais_teste'
+#       , !ALL.D.Ano
+#       , ATTRS( 'ALL.D.Mes', !ALL.D.Mes, 'Mês Anterior' )
+#       , !ALL.D.Versao
+#       , !REC.D.Safra_CN
+#       , !PRE.M.100.Premissas_Gerais );

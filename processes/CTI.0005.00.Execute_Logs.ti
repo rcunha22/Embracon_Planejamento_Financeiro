@@ -1,0 +1,61 @@
+#region Prolog
+# ===============================================================================================================
+#GENERALCOMMENT             Descrição:           		Leitura de um arquivo de log, gravando as informações de interações do usuário
+#GENERALCOMMENT             Responsável:      		Hugo Venceslau
+#GENERALCOMMENT             Data Criação:      		Abril/2020
+#LASTCHANGE                        Alterações:
+#LASTCHANGE                        Responsavel Alterações:
+# ===============================================================================================================
+
+# =================================================================================
+# Descobre qual usuário executou o processo
+# =================================================================================
+pUser = IF( DimIx( '}Clients' , TM1User() ) = 0, 'Executed by Chore' , ATTRS('}Clients', TM1User(), '}TM1_DefaultDisplayValue') );
+
+
+cCubParam	= 'SYS.150.Controle_Cargas';
+cCubLog		= '}CubeProperties';
+
+cHorarioInicio			= Now();
+cTimeStamp	= TimSt( Now, '\Y-\m-\d \hh\im\ss' );
+cProcesso	= GetProcessName();
+
+sMensagemR	= '';
+sMensagemP	= '';
+nItemReject 	= 0;
+nRejectHeader 	= 0;
+nRejectCount	= 0;
+nErrors 		= 0;
+nCount 		= 0;
+nContador = 0;
+
+
+# =================================================================================
+# Define o Log inicial da carga como falha
+# Registra esse log logo no inicio para garantir que tenha algum log de falha registrado
+# Caso o processo não consiga chegar no próximo registro de log por alguma falha inesperada
+# =================================================================================
+sMensagemP = 'Processo com falha, contate o administrador para verificar os logs de erro do sistema' ;
+
+s01 = cTimeStamp ;
+s02 = pUser ;
+s03 = sMensagemP ;
+s04 = '0' ;
+
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraInicio' );
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraFim' );
+CellPutS( s02 , cCubParam, cProcesso, 'Usuário' );
+CellPutS( s03 , cCubParam, cProcesso, 'Mensagem' );
+CellPutS( s04 , cCubParam, cProcesso, 'Registros Processados' );
+
+
+
+
+# =================================================================================
+# Executa os processos de log
+# =================================================================================
+
+ExecuteProcess( 'CTI.0005.01.Last_Modification_By_Transaction_Log', 'pNomeLog', pNomeLog );
+ExecuteProcess( 'CTI.0005.02.Last_Modification_By_Transaction_Log', 'pNomeLog', pNomeLog );
+
+#endregion

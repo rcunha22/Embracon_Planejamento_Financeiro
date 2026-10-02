@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.010.Premissas_Inadimplencia",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.010.Premissas_Inadimplencia.hierarchies/REC.M.010.Premissas_Inadimplencia.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.010.Premissas_Inadimplencia')/Hierarchies('REC.M.010.Premissas_Inadimplencia')"
+	}
+}

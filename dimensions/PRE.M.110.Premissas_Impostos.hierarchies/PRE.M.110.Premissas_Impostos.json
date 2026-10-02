@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"PRE.M.110.Premissas_Impostos",
+	"Elements":
+	[
+		{
+			"Name":"% ISS",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% PIS / COFINS",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% IRPJ / CSLL",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% Imposto Sobre Receita",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

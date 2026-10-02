@@ -1,0 +1,13 @@
+{
+	"@type":"Process",
+	"Name":"zCTI_Delete_Subset_View_Drill",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"zCTI_Delete_Subset_View_Drill.ti",
+	"UIData":"CubeAction=1511\fDataAction=1503\fCubeLogChanges=0\f",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":[],
+	"Variables":[]
+}

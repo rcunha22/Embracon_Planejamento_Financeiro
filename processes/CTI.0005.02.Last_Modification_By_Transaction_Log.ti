@@ -1,0 +1,450 @@
+#region Prolog
+
+# ===============================================================================================================
+#GENERALCOMMENT             Descrição:           		Leitura de um arquivo de log, gravando as informações de interações do usuário
+#GENERALCOMMENT             Responsável:      		Hugo Venceslau
+#GENERALCOMMENT             Data Criação:      		Abril/2020
+#LASTCHANGE                        Alterações:
+#LASTCHANGE                        Responsavel Alterações:
+# ===============================================================================================================
+
+# ===============================================================================================================
+#PROLOGCOMMENT               Descrição:           		Carrega cubo SYS.0120.Controle_Acesso_Usuario
+# ===============================================================================================================
+
+
+# =================================================================================
+# Descobre qual usuário executou o processo
+# =================================================================================
+pUser = IF( DimIx( '}Clients' , TM1User() ) = 0, 'Executed by Chore' , ATTRS('}Clients', TM1User(), '}TM1_DefaultDisplayValue') );
+
+# =================================================================================
+# Variáveis
+# =================================================================================
+cCuboDes	= 'SYS.0130.Controle_Transações_Usuario';
+
+
+cCubParam	= 'SYS.150.Controle_Cargas';
+cCubLog		= '}CubeProperties';
+
+cHorarioInicio			= Now();
+cTimeStamp	= TimSt( Now, '\Y-\m-\d \hh\im\ss' );
+cProcesso	= GetProcessName();
+
+sMensagemR	= '';
+sMensagemP	= '';
+nItemReject 	= 0;
+nRejectHeader 	= 0;
+nRejectCount	= 0;
+nErrors 		= 0;
+nCount 		= 0;
+nContador = 0;
+
+
+# =================================================================================
+# Define variáveis locais de arquivo
+# =================================================================================
+DataSourceASCIIDelimiter = ',';
+DataSourceASCIIThousandSeparator = '.';
+DataSourceASCIIDecimalSeparator = ',';
+DataSourceQuoteCharacter = '';
+
+
+
+# =================================================================================
+# Define o Log inicial da carga como falha
+# Registra esse log logo no inicio para garantir que tenha algum log de falha registrado
+# Caso o processo não consiga chegar no próximo registro de log por alguma falha inesperada
+# =================================================================================
+sMensagemP = 'Processo com falha, contate o administrador para verificar os logs de erro do sistema' ;
+
+s01 = cTimeStamp ;
+s02 = pUser ;
+s03 = sMensagemP ;
+s04 = '0' ;
+
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraInicio' );
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraFim' );
+CellPutS( s02 , cCubParam, cProcesso, 'Usuário' );
+CellPutS( s03 , cCubParam, cProcesso, 'Mensagem' );
+CellPutS( s04 , cCubParam, cProcesso, 'Registros Processados' );
+
+
+
+
+
+
+# =================================================================================
+# Monta o caminho completo do arquivo fonte e do arquivo de registros rejeitados
+# =================================================================================
+
+
+# Define o nome dos arquivos
+# ============================
+sPrefixo		= pNomeLog;
+sSourceFile	= sPrefixo ;
+sRejectFile	= sPrefixo | '_Erro.log';
+
+
+
+
+
+
+# Aborta o processo se o nome do arquivo fonte não foi informado
+# ======================================================
+IF( sPrefixo @= '' );
+   nErrors = 1;
+   sMensagemP = 'O nome do arquivo fonte não foi informado, informe no cubo:   "' | cCubParam | '"' ;
+   DataSourceType = 'NULL';
+   ItemReject( sMensagemP );
+ENDIF;
+
+
+
+
+
+# Busca o caminho onde ficam os arquivos 
+# ========================================
+sSourceFolder = CellGetS( cCubParam , cProcesso , 'Caminho do Arquivo Fonte' );
+sRejectFolder  = CellGetS( cCubParam , cProcesso , 'Caminho do Arquivo de Rejeitado' );
+
+
+
+# Aborta o processo se o caminho do arquivo fonte não foi informado
+# ======================================================
+IF( sSourceFolder @= '' );
+   nErrors = 1;
+   sMensagemP = 'O caminho onde esta o arquivo fonte não foi informado, informe no cubo:   "' | cCubParam | '"' ;
+   DataSourceType = 'NULL';
+   ItemReject( sMensagemP );
+ENDIF;
+
+
+
+# Aborta o processo se o caminho do arquivo reject não foi informado
+# ======================================================
+IF( sRejectFolder  @= '' );
+   nErrors = 1;
+   sMensagemP = 'O caminho onde deverá ser salvo o arquivo com registros rejeitados não foi informado, informe no cubo:   "' | cCubParam | '"' ;
+   DataSourceType = 'NULL';
+   ItemReject( sMensagemP );
+ENDIF;
+
+
+
+# Insere o caractere "\" no final do caminho caso ainda não tenha
+# =======================================================
+sSourceFolder = IF( SUBST( sSourceFolder , LONG( sSourceFolder ) , 1 ) @<> '\' , sSourceFolder | '\' , sSourceFolder ); 
+sRejectFolder  = IF( SUBST( sRejectFolder  , LONG( sRejectFolder  ) , 1 ) @<> '\' , sRejectFolder  | '\' , sRejectFolder  );
+
+
+
+
+# =================================================================================
+# Aborta o processo se o diretorio do arquivo fonte não existir
+# =================================================================================
+IF( FileExists( sSourceFolder ) = 0 );
+   nErrors = 1;
+   sMensagemP = 'O diretório especificado para o arquivo fonte  "' | sSourceFolder | '"   não existe, informe no cubo:   "' | cCubParam | '"' ;
+   DataSourceType = 'NULL';
+   ItemReject( sMensagemP );
+ENDIF;
+
+
+
+
+
+# =================================================================================
+# Aborta o processo se o diretorio dos arquivos rejeitados não existir
+# =================================================================================
+IF( FileExists( sRejectFolder) = 0 );
+   nErrors = 1;
+   sMensagemP = 'O diretório especificado para o arquivo com registros rejeitados  "' | sRejectFolder | '"   não existe, informe no cubo:   "' | cCubParam | '"' ;
+   DataSourceType = 'NULL';
+   ItemReject( sMensagemP );
+ENDIF;
+
+
+
+
+# Monta o caminho completo 
+# ==========================
+sSourceFolderFile = sSourceFolder | sSourceFile;
+sRejectFolderFile  = sRejectFolder | sRejectFile;
+
+
+
+
+# =================================================================================
+# Aborta o processo se o arquivo fonte não existir na pasta de origem
+# =================================================================================
+IF( FileExists( sSourceFolderFile ) = 0 );
+   nErrors = 1;
+   sMensagemP = 'O arquivo   "' | sSourceFile | '"   não existe no diretorio:   "' | sSourceFolder | '"' ;
+   DataSourceType = 'NULL';
+   ItemReject( sMensagemP );
+ENDIF;
+
+
+ 
+
+# =================================================================================
+# Apaga o arquivo de reject caso exista
+# =================================================================================
+IF( FileExists( sRejectFolderFile ) = 1 );
+   ASCIIDelete( sRejectFolderFile );
+ENDIF;
+
+
+# =================================================================================
+#
+# Definição View de Limpeza do Cudo de Destino
+#
+# =================================================================================
+
+cSuprimirConsolidado	= 'S';
+cSuprimirZero		= 'S'; 
+cSuprimirCamposCalculados	= 'S';
+cViewTemporaria	 	= 'S';
+nViewTemporaria		= If( cViewTemporaria @= 'S', 1, 0);
+
+
+
+# Busca parametro para ativação de Log do Cubo
+# ======================================================
+#sLog       	= IF ( cGravarLogAlteracao @= 'N', 'NO', 'YES' );
+
+
+
+# Grava no cubo de Log
+# ======================================================
+#CellPutS( sLog, cCubParam, cCuboDes, 'LOGGING' );
+
+ 
+
+# Define nome da view e subset de limpeza
+# ======================================================
+cViewDestino	= 'processo.' | cProcesso | '.' | 'Limpeza' | '.' | TimSt( cHorarioInicio, '\Y-\m-\d \hh\im\ss' );
+cSubsetDestino	= cViewDestino;
+
+ 
+
+# Cria a view que será utilizada para a limpeza
+# ======================================================
+ViewCreate( cCuboDes , cViewDestino , nViewTemporaria );
+
+
+
+# Cria os subsets que serão utilizados para filtrar a view de limpeza
+# ======================================================
+
+cDimensao	= 'SYS.0130.M.Controle_Transações_Usuario';
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetDestino , nViewTemporaria );  
+  ViewSubsetAssign( cCuboDes , cViewDestino, cDimensao , cSubsetDestino );  
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'DataAcesso'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'OldValue'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'NewValue'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim1'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim2'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim3'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim4'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim5'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim6'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim7'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim8'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim9'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim10'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim11'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim12'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim13'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim14'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim15'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim16'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim17'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim18'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim19'	, 1 );
+  SubsetElementInsert( cDimensao, cSubsetDestino, 'Dim20'	, 1 );
+EndIf;
+
+# Configuração da View
+# ======================================================
+ViewExtractSkipCalcsSet( cCuboDes, cViewDestino, If( cSuprimirConsolidado @= 'S', 1, 0) );
+ViewExtractSkipZeroesSet( cCuboDes, cViewDestino, If( cSuprimirZero @= 'S', 1, 0)  );
+ViewExtractSkipRuleValuesSet( cCuboDes, cViewDestino, If( cSuprimirCamposCalculados @= 'S', 1, 0) );
+
+
+
+# Apaga os valores da View criada
+# ======================================================
+ViewZeroOut(  cCuboDes, cViewDestino );
+
+
+
+# =================================================================================
+# Define o arquivo fonte como a nova fonte de dados deste processo
+# =================================================================================
+DatasourceNameForServer = sSourceFolderFile ;
+DatasourceNameForClient   = sSourceFolderFile ;
+
+
+
+
+
+# =================================================================================
+# Busca parametro para ativação de Log do Cubo
+# =================================================================================
+sLogParam = CellGetS( cCubParam , cProcesso , 'Gerar Log de Alteração (S/N)' );
+sLog           = IF ( sLogParam @= 'N', 'NO', 'YES' );
+
+# Grava no cubo de Log
+# =========================
+#CellPutS ( sLog, cCubLog, cCuboDes, 'LOGGING' );
+
+#endregion
+#region Metadata
+If(vUsuario @= '');
+  ItemSkip;
+EndIf;
+
+
+
+# =================================================================================
+# Atualiza dimensão de cubos 
+# =================================================================================
+sElm = vCubo;
+sDim = 'ALL.D.Cubes';
+
+# ===================================================================================
+# Pula o registro se o elemento não for preenchido ou se já existir na dimensão
+# ===================================================================================
+IF ( sElm @<> '' & DimIx( sDim, sElm ) = 0 );
+  DimensionElementInsert( sDim, '', sElm,  'n' );
+EndIf;
+
+
+# =================================================================================
+# Atualiza dimensão de cubos 
+# =================================================================================
+sElm = vCubo;
+sDim = '}Cubes';
+
+# ===================================================================================
+# Pula o registro se o elemento não for preenchido ou se já existir na dimensão
+# ===================================================================================
+IF ( sElm @<> '' & DimIx( sDim, sElm ) = 0 );
+  DimensionElementInsert( sDim, '', sElm,  'n' );
+EndIf;
+
+
+
+# =================================================================================
+# Atualiza dimensão de cubos 
+# =================================================================================
+sElm = vUsuario;
+sDim = 'ALL.D.Clients';
+
+# ===================================================================================
+# Pula o registro se o elemento não for preenchido ou se já existir na dimensão
+# ===================================================================================
+IF ( sElm @<> '' & DimIx( sDim, sElm ) = 0 );
+  DimensionElementInsert( sDim, '', sElm,  'n' );
+EndIf;
+
+#endregion
+#region Data
+If(vUsuario @= '');
+  ItemSkip;
+EndIf;
+
+# ===============================================================================================================
+#DATACOMMENT        Descrição:  Grava dados no cubo sem acumular valores.
+# ===============================================================================================================
+
+# ===================================================================================
+# Gera contador para o arquivo de debug ou registros rejeitados o e quantid. total de registros processados
+# ===================================================================================
+# nCount = nCount + 1;
+# sCount = NumberToString( nCount );
+
+# IF( DIMIX( '}Cubes' , vCubo ) > 0);
+#     cCuboLog = CellGetS( 'SYS.0110.Controle_Cubos_Log', vCubo, 'Gravar Log');
+# Endif;
+
+# IF(vUsuario @<> '' & cCuboLog @= 'Sim');
+#     nContador = nContador + 1;
+# Endif;
+
+nCount = nCount + 1;
+sCount = NumberToString( nCount );
+
+IF( DIMIX( '}Cubes' , vCubo ) > 0);
+    cCuboLog = CellGetS( 'SYS.0110.Controle_Cubos_Log', vCubo, 'Gravar Log');
+Endif;
+
+IF( cCuboLog @= '');
+    ItemSkip;
+    elseif( cCuboLog @= 'Sim');
+        nContador = nContador + 1;
+Endif;
+
+sContador = NumbertoString(nContador);
+
+# ===================================================================================
+# Insere os dados no cubo
+# ===================================================================================
+vDia = Subst(vData, 7, 2);
+vAno = Subst(vData, 1, 4);
+vMes = Subst(vData, 5, 2);
+
+sHora = Subst(vData, 9, 2);
+sMinuto = Subst(vData, 11, 2);
+sSegundos = Subst(vData, 13, 2);
+sHorario = sHora|'h'|sMinuto|'m'|sSegundos|'s';
+sData = vDia | '-' | vMes | '-' | vAno | ' ' | '-' | ' ' | sHorario;
+
+
+
+s01 = vAno ;
+s02 = vMes;
+s03 = vDia;
+s04 = sContador;
+s05 = vCubo ;
+s06 = vUsuario ;
+
+IF( nContador > DIMSIZ( 'ALL.D.Linhas') );
+    DimensionElementInsertDirect( 'ALL.D.Linhas', '', sContador, 'N' );
+Endif;
+
+
+IF(cCuboLog @= 'Sim' );
+CellPutS( sData , cCuboDes, s01, s02, s03, s04, s05, s06, 'DataAcesso' );
+CellPutS( vOldValue, cCuboDes, s01, s02, s03, s04, s05, s06, 'OldValue');
+CellPutS( vNewValue, cCuboDes, s01, s02, s03, s04, s05, s06, 'NewValue');
+
+CellPutS( vDim1, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim1');
+CellPutS( vDim2, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim2');
+CellPutS( vDim3, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim3');
+CellPutS( vDim4, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim4');
+CellPutS( vDim5, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim5');
+CellPutS( vDim6, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim6');
+CellPutS( vDim7, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim7');
+CellPutS( vDim8, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim8');
+CellPutS( vDim9, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim9');
+CellPutS( vDim10, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim10');
+CellPutS( vDim11, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim11');
+CellPutS( vDim12, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim12');
+CellPutS( vDim13, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim13');
+CellPutS( vDim14, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim14');
+CellPutS( vDim15, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim15');
+CellPutS( vDim16, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim16');
+CellPutS( vDim17, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim17');
+CellPutS( vDim18, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim18');
+CellPutS( vDim19, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim19');
+CellPutS( vDim20, cCuboDes, s01, s02, s03, s04, s05, s06, 'Dim20');
+Endif;
+
+#( OPCIONAL )
+#Caso o arquivo possa ter registros duplicados 
+#CellIncrementN( n01, cCuboDes, s01, s02, s03, s04, s05, s06 );
+#endregion

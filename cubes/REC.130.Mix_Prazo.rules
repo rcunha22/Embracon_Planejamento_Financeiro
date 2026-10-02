@@ -1,0 +1,15 @@
+FEEDERS;
+
+['REC.M.130.Mix_Prazo':'Distribuicao por Prazo'] =>
+
+DB( 'REC.170.Estoque_Cotas_CN_v2'
+      , !ALL.D.Versao
+      , 'REC.D.Safra_CN':'Total Safra'
+      ,  ATTRS( 'ALL.D.Mes',  !ALL.D.Mes, 'Mês Abreviado' ) | ' ' | !ALL.D.Ano | '_' | !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , 'ALL.D.Regional':'Total Regional'
+      , 'Cotas Valor' );

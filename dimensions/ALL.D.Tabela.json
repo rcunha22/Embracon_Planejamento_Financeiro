@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Tabela",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Tabela.hierarchies/ALL.D.Tabela.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Tabela')/Hierarchies('ALL.D.Tabela')"
+	}
+}

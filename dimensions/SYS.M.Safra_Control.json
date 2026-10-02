@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"SYS.M.Safra_Control",
+	"Hierarchies@Code.links":
+	[
+		"SYS.M.Safra_Control.hierarchies/SYS.M.Safra_Control.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('SYS.M.Safra_Control')/Hierarchies('SYS.M.Safra_Control')"
+	}
+}

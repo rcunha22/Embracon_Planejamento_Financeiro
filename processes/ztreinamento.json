@@ -1,0 +1,26 @@
+{
+	"@type":"Process",
+	"Name":"ztreinamento",
+	"HasSecurityAccess":false,
+	"VariablesUIData":
+	[
+		"IgnoredInputVarName=vAno\fVarType=32\fColType=1165\f"
+	],
+	"DataSource":
+	{
+		"Type":"TM1CubeView",
+		"dataSourceNameForClient":"OPX.100.Despesas",
+		"dataSourceNameForServer":"OPX.100.Despesas",
+		"view":"View_Origem"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pMes",
+			"Prompt":"Qual o Mês",
+			"Value":"",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

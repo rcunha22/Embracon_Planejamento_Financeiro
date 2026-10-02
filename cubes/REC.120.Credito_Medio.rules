@@ -1,0 +1,25 @@
+SKIPCHECK;
+
+# --------------------------------------------------------------------------------------------
+# Name: Crédito Médio Inflacionado
+# Desc: Calcula o Crédito Médio Inflacionado aplicando a inflação mensal
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.120.Credito_Medio':'Credito Medio Inflacionado'] = N:
+
+    ['REC.M.120.Credito_Medio':'Credito Medio Base']
+    *
+    (
+        1 +
+        DB(
+            'PRE.100.Premissas_Gerais',
+            !ALL.D.Ano,
+            !ALL.D.Mes,
+            !ALL.D.Versao,
+            'Inflacao'
+        )
+    )
+    ^
+    (NUMBR(!ALL.D.Mes) - 1);

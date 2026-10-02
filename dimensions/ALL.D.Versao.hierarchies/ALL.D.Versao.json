@@ -1,0 +1,37 @@
+{
+	"@type":"Hierarchy",
+	"Name":"ALL.D.Versao",
+	"Elements":
+	[
+		{
+			"Name":"T1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"T2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"RE",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Dynamic Versions",
+			"Type":"Consolidated"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Dynamic Versions",
+			"ComponentName":"T1",
+			"Weight":1
+		},
+		{
+			"ParentName":"Dynamic Versions",
+			"ComponentName":"T2",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

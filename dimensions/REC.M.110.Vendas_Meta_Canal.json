@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.110.Vendas_Meta_Canal",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.110.Vendas_Meta_Canal.hierarchies/REC.M.110.Vendas_Meta_Canal.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.110.Vendas_Meta_Canal')/Hierarchies('REC.M.110.Vendas_Meta_Canal')"
+	}
+}

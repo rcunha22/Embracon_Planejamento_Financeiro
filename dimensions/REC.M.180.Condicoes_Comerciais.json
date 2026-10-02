@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.180.Condicoes_Comerciais",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.180.Condicoes_Comerciais.hierarchies/REC.M.180.Condicoes_Comerciais.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.180.Condicoes_Comerciais')/Hierarchies('REC.M.180.Condicoes_Comerciais')"
+	}
+}

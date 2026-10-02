@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.150.Premissas_Cancelamento_CN",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.150.Premissas_Cancelamento_CN.hierarchies/REC.M.150.Premissas_Cancelamento_CN.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.150.Premissas_Cancelamento_CN')/Hierarchies('REC.M.150.Premissas_Cancelamento_CN')"
+	}
+}

@@ -1,0 +1,136 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.400.CPC47_CN",
+	"Elements":
+	[
+		{
+			"Name":"Estoque Inicial de Taxa",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa Linear Ideal",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cancelamento do Estoque",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Taxa de Administracao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Taxa Quitada",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Efeito Cancelamento",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Movimentacao para Adequacao de Lance e Antecipacao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Final de Taxa",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Caixa",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Diferimento",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Comissao Linear",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Diferimento de Receita",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Resultado Caixa",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Resultado Competencia",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Comissao Paga",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Métricas Auxiliares",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Aux Faturamento Safra",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux MOB",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Flag",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Comissao Total",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Diferimento",
+			"ComponentName":"Comissao Paga",
+			"Weight":1
+		},
+		{
+			"ParentName":"Diferimento",
+			"ComponentName":"Comissao Linear",
+			"Weight":1
+		},
+		{
+			"ParentName":"Diferimento",
+			"ComponentName":"Diferimento de Receita",
+			"Weight":1
+		},
+		{
+			"ParentName":"Diferimento",
+			"ComponentName":"Resultado Caixa",
+			"Weight":1
+		},
+		{
+			"ParentName":"Diferimento",
+			"ComponentName":"Resultado Competencia",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Faturamento Safra",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux MOB",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Flag",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Comissao Total",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

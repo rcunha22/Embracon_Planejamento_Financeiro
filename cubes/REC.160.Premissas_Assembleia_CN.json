@@ -1,0 +1,32 @@
+{
+	"@type":"Cube",
+	"Name":"REC.160.Premissas_Assembleia_CN",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('ALL.D.Versao')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Canal')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Especie')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Tabela')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Plano')"
+		},
+		{
+			"@id":"Dimensions('REC.D.MOB')"
+		},
+		{
+			"@id":"Dimensions('REC.M.160.Premissas_Assembleia_CN')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"REC.160.Premissas_Assembleia_CN.views/Default.json"
+	]
+}

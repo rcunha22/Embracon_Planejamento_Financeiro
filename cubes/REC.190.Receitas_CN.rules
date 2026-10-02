@@ -1,0 +1,1215 @@
+SKIPCHECK;
+
+
+# --------------------------------------------------------------------------------------------
+# Name: Dynamic Versions
+# Desc: Libera Regras apenas para Versões Dinâmicas
+# Date: 22\09\2026
+# Author: Willian Maeda
+# --------------------------------------------------------------------------------------------
+
+[] = N:
+  IF( ELISANC( 'ALL.D.Versao', 'Dynamic Versions', !ALL.D.Versao ) <> 0
+  , CONTINUE
+  , STET );
+
+#Region - Auxiliares
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux MOB
+# Desc: Armazena a MOB da safra para reutilização nos cálculos.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux MOB'] = N:
+
+DB(
+   'SYS.310.Safra_Control'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Prazo
+   , !ALL.D.Periodo_Projecao_2
+   , 'MOB'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Nascimento
+# Desc: Armazena a Flag Aux de nascimento da safra.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Nascimento'] = N:
+
+DB(
+   'SYS.310.Safra_Control'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Prazo
+   , !ALL.D.Periodo_Projecao_2
+   , 'Flag Aux'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Prazo TE
+# Desc: Armazena o prazo da Taxa Embutida para reutilização nos cálculos.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Prazo TE'] = N:
+
+DB(
+   'REC.180.Condicoes_Comerciais'
+   , !ALL.D.Versao
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , 'Prazo Taxa Embutida'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Prazo TAA
+# Desc: Armazena o prazo da Taxa Antecipada Acrescida para reutilização nos cálculos.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Prazo TAA'] = N:
+
+DB(
+   'REC.180.Condicoes_Comerciais'
+   , !ALL.D.Versao
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , 'Prazo Taxa Antecipada Acrescida'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Ativo TP
+# Desc: Identifica se a MOB está dentro da vigência da Taxa no Prazo.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Ativo TP'] = N:
+
+IF(
+      ['REC.M.190.Receitas_CN':'Aux MOB'] >= 1
+   &  ['REC.M.190.Receitas_CN':'Aux MOB'] <= NUMBR(!ALL.D.Prazo)
+   , 1
+   , 0
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Ativo TE
+# Desc: Identifica se a MOB está dentro da vigência da Taxa Embutida.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Ativo TE'] = N:
+
+IF(
+      ['REC.M.190.Receitas_CN':'Aux MOB'] >= 1
+   &  ['REC.M.190.Receitas_CN':'Aux MOB'] <= ['REC.M.190.Receitas_CN':'Aux Prazo TE']
+   , 1
+   , 0
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Ativo TAA
+# Desc: Identifica se a MOB está dentro da vigência da Taxa Antecipada Acrescida.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Ativo TAA'] = N:
+
+IF(
+      ['REC.M.190.Receitas_CN':'Aux MOB'] >= 1
+   &  ['REC.M.190.Receitas_CN':'Aux MOB'] <= ['REC.M.190.Receitas_CN':'Aux Prazo TAA']
+   , 1
+   , 0
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Faturamento Safra
+# Desc: Armazena o faturamento projetado no nascimento da safra.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Faturamento Safra'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Nascimento'] <> 1
+   , 0
+   ,
+   DB(
+      'REC.140.Vendas_Projecao'
+      , SUBST(
+           ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , !ALL.D.Versao
+           )
+           , 5
+           , 10
+        )
+      , SUBST(
+           ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , !ALL.D.Versao
+           )
+           , 1
+           , 3
+        )
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Regional
+      , 'Faturamento Projetado'
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Inflacao
+# Desc: Armazena a inflação do período para reutilização nos cálculos.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Inflacao'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux MOB'] = 0
+   , 0
+   ,
+   DB(
+      'PRE.100.Premissas_Gerais'
+      , SUBST(
+           ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , !ALL.D.Versao
+           )
+           , 5
+           , 10
+        )
+      , SUBST(
+           ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , !ALL.D.Versao
+           )
+           , 1
+           , 3
+        )
+      , !ALL.D.Versao
+      , 'Inflacao'
+   )
+);
+
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Perc Antecipacao
+# Desc: Armazena o percentual de antecipação da MOB.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Perc Antecipacao'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux MOB'] = 0
+   , 0
+   ,
+   DB(
+      'REC.160.Premissas_Assembleia_CN'
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , STR(
+           ['REC.M.190.Receitas_CN':'Aux MOB']
+           , 2
+           , 0
+        )
+      , 'Antecipacao'
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Fator Lance
+# Desc: Armazena o fator de lance calculado pela MOB.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Fator Lance'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux MOB'] = 0
+   , 0
+   ,
+   DB(
+      'REC.170.Estoque_Cotas_CN_v2'
+      , !ALL.D.Versao
+      , !REC.D.Safra_CN
+      , !ALL.D.Periodo_Projecao_2
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , !ALL.D.Regional
+      , 'Contemplacoes por Lance'
+   )
+   \
+   DB(
+      'REC.170.Estoque_Cotas_CN_v2'
+      , !ALL.D.Versao
+      , !REC.D.Safra_CN
+      , !ALL.D.Periodo_Projecao_2
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , !ALL.D.Regional
+      , 'Saldo Inicial Nao Contempladas'
+   )
+   *
+   DB(
+      'REC.160.Premissas_Assembleia_CN'
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , STR(
+           ['REC.M.190.Receitas_CN':'Aux MOB']
+           , 2
+           , 0
+        )
+      , 'Valor do Lance'
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Cancelamento
+# Desc: Armazena o percentual de cancelamento da safra.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Cancelamento'] = N:
+
+DB(
+   'REC.170.Estoque_Cotas_CN_v2'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Periodo_Projecao_2
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Regional
+   , 'Cotas Canceladas'
+)
+\
+DB(
+   'REC.170.Estoque_Cotas_CN_v2'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Periodo_Projecao_2
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Regional
+   , 'Saldo Inicial Nao Contempladas'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Saldo Final Cotas
+# Desc: Armazena o saldo final de cotas da safra.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Aux Saldo Final Cotas'] = N:
+
+DB(
+   'REC.170.Estoque_Cotas_CN_v2'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Periodo_Projecao_2
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Regional
+   , 'Saldo Final de Cotas'
+);
+
+#EndRegion - Auxiliares
+
+#Region - Estoque de Taxa no Prazo
+
+# --------------------------------------------------------------------------------------------
+# Name: Estoque Inicial Taxa no Prazo
+# Desc: No nascimento da safra utiliza o Faturamento Projetado multiplicado pela
+#       Taxa no Prazo. Nos demais períodos utiliza o Estoque Final do período anterior.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa no Prazo'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Nascimento'] = 1
+   ,
+   ['REC.M.190.Receitas_CN':'Aux Faturamento Safra']
+   *
+   DB(
+      'REC.180.Condicoes_Comerciais'
+      , !ALL.D.Versao
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , 'Taxa no Prazo'
+   )
+   ,
+   IF(
+      ['REC.M.190.Receitas_CN':'Aux Ativo TP'] = 0
+      , 0
+      ,
+      DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , 'Período Anterior'
+           )
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , !ALL.D.Regional
+         , 'Estoque Final Taxa no Prazo'
+      )
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Reajuste Taxa no Prazo
+# Desc: Aplica a inflação do período sobre o Estoque Inicial Taxa no Prazo.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Reajuste Taxa no Prazo'] = N:
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa no Prazo']
+*
+['REC.M.190.Receitas_CN':'Aux Inflacao'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Baixa por Cancelamento Taxa no Prazo
+# Desc: Aplica o percentual de cancelamento sobre o estoque ajustado.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa no Prazo'] = N:
+
+(
+   ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa no Prazo']
+ + ['REC.M.190.Receitas_CN':'Reajuste Taxa no Prazo']
+)
+*
+['REC.M.190.Receitas_CN':'Aux Cancelamento'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Antecipação Cliente Taxa no Prazo
+# Desc: Calcula a antecipação sobre o saldo líquido após reajuste e cancelamento.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa no Prazo'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TP'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa no Prazo']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa no Prazo']
+   )
+   *
+   ['REC.M.190.Receitas_CN':'Aux Perc Antecipacao']
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Taxa no Lance Taxa no Prazo
+# Desc: Calcula a taxa reconhecida pelas contemplações por lance.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Taxa no Lance Taxa no Prazo'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TP'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa no Prazo']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa no Prazo']
+   )
+   *
+   ['REC.M.190.Receitas_CN':'Aux Fator Lance']
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Arrecadação Taxa no Prazo
+# Desc: Distribui o saldo remanescente pelos períodos restantes da safra.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Arrecadação Taxa no Prazo'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TP'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa no Prazo']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa no Prazo']
+   )
+   \
+   (
+      NUMBR(!ALL.D.Prazo)
+      - ['REC.M.190.Receitas_CN':'Aux MOB']
+      + 1
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Estoque Final Taxa no Prazo
+# Desc: Calcula o estoque remanescente após arrecadação, antecipação e lance.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Final Taxa no Prazo'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TP'] = 0
+   , 0
+   ,
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa no Prazo']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa no Prazo']
+    - ['REC.M.190.Receitas_CN':'Arrecadação Taxa no Prazo']
+);
+
+#EndRegion - Estoque de Taxa no Prazo
+
+#Region - Estoque de Taxa Embutida
+
+# --------------------------------------------------------------------------------------------
+# Name: Estoque Inicial Taxa Embutida
+# Desc: No nascimento da safra utiliza o Faturamento Projetado multiplicado pela
+#       Taxa Embutida. Nos demais períodos utiliza o Estoque Final do período anterior.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Embutida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Nascimento'] = 1
+   ,
+   ['REC.M.190.Receitas_CN':'Aux Faturamento Safra']
+   *
+   DB(
+      'REC.180.Condicoes_Comerciais'
+      , !ALL.D.Versao
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , 'Taxa Embutida'
+   )
+   ,
+   IF(
+      ['REC.M.190.Receitas_CN':'Aux Ativo TE'] = 0
+      , 0
+      ,
+      DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , 'Período Anterior'
+           )
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , !ALL.D.Regional
+         , 'Estoque Final Taxa Embutida'
+      )
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Reajuste Taxa Embutida
+# Desc: Aplica a inflação do período sobre o Estoque Inicial Taxa Embutida.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Reajuste Taxa Embutida'] = N:
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Embutida']
+*
+['REC.M.190.Receitas_CN':'Aux Inflacao'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Baixa por Cancelamento Taxa Embutida
+# Desc: Aplica o percentual de cancelamento sobre o estoque ajustado.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Embutida'] = N:
+
+(
+   ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Embutida']
+ + ['REC.M.190.Receitas_CN':'Reajuste Taxa Embutida']
+)
+*
+['REC.M.190.Receitas_CN':'Aux Cancelamento'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Antecipação Cliente Taxa Embutida
+# Desc: Calcula a antecipação sobre o saldo líquido após reajuste e cancelamento.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Embutida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TE'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Embutida']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Embutida']
+   )
+   *
+   ['REC.M.190.Receitas_CN':'Aux Perc Antecipacao']
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Taxa no Lance Taxa Embutida
+# Desc: Calcula a taxa reconhecida pelas contemplações por lance.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Embutida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TE'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Embutida']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Embutida']
+   )
+   *
+   ['REC.M.190.Receitas_CN':'Aux Fator Lance']
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Arrecadação Taxa Embutida
+# Desc: Distribui o saldo remanescente pelos períodos restantes do fluxo.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Arrecadação Taxa Embutida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TE'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Embutida']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Embutida']
+   )
+   \
+   (
+      ['REC.M.190.Receitas_CN':'Aux Prazo TE']
+      - ['REC.M.190.Receitas_CN':'Aux MOB']
+      + 1
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Estoque Final Taxa Embutida
+# Desc: Calcula o estoque remanescente após arrecadação, antecipação e lance.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Final Taxa Embutida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TE'] = 0
+   , 0
+   ,
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Embutida']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Embutida']
+    - ['REC.M.190.Receitas_CN':'Arrecadação Taxa Embutida']
+);
+
+#EndRegion - Estoque de Taxa Embutida
+
+#Region - Estoque de Taxa Antecipada Acrescida
+
+# --------------------------------------------------------------------------------------------
+# Name: Estoque Inicial Taxa Antecipada Acrescida
+# Desc: No nascimento da safra utiliza o Faturamento Projetado multiplicado pela
+#       Taxa Antecipada Acrescida. Nos demais períodos utiliza o Estoque Final
+#       do período anterior.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Antecipada Acrescida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Nascimento'] = 1
+   ,
+   ['REC.M.190.Receitas_CN':'Aux Faturamento Safra']
+   *
+   DB(
+      'REC.180.Condicoes_Comerciais'
+      , !ALL.D.Versao
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , 'Taxa Antecipada Acrescida'
+   )
+   ,
+   IF(
+      ['REC.M.190.Receitas_CN':'Aux Ativo TAA'] = 0
+      , 0
+      ,
+      DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , 'Período Anterior'
+           )
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , !ALL.D.Regional
+         , 'Estoque Final Taxa Antecipada Acrescida'
+      )
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Reajuste Taxa Antecipada Acrescida
+# Desc: Aplica a inflação do período sobre o Estoque Inicial da Taxa
+#       Antecipada Acrescida.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Reajuste Taxa Antecipada Acrescida'] = N:
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Antecipada Acrescida']
+*
+['REC.M.190.Receitas_CN':'Aux Inflacao'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Baixa por Cancelamento Taxa Antecipada Acrescida
+# Desc: Aplica o percentual de cancelamento sobre o estoque ajustado.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Antecipada Acrescida'] = N:
+
+(
+   ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Antecipada Acrescida']
+ + ['REC.M.190.Receitas_CN':'Reajuste Taxa Antecipada Acrescida']
+)
+*
+['REC.M.190.Receitas_CN':'Aux Cancelamento'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Antecipação Cliente Taxa Antecipada Acrescida
+# Desc: Calcula a antecipação sobre o saldo líquido após reajuste e cancelamento.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Antecipada Acrescida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TAA'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Antecipada Acrescida']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Antecipada Acrescida']
+   )
+   *
+   ['REC.M.190.Receitas_CN':'Aux Perc Antecipacao']
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Taxa no Lance Taxa Antecipada Acrescida
+# Desc: Calcula a taxa reconhecida pelas contemplações por lance.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Antecipada Acrescida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TAA'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Antecipada Acrescida']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Antecipada Acrescida']
+   )
+   *
+   ['REC.M.190.Receitas_CN':'Aux Fator Lance']
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Arrecadação Taxa Antecipada Acrescida
+# Desc: Distribui o saldo remanescente pelos períodos restantes do fluxo.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Arrecadação Taxa Antecipada Acrescida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TAA'] = 0
+   , 0
+   ,
+   (
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Antecipada Acrescida']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Antecipada Acrescida']
+   )
+   \
+   (
+      ['REC.M.190.Receitas_CN':'Aux Prazo TAA']
+      - ['REC.M.190.Receitas_CN':'Aux MOB']
+      + 1
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Estoque Final Taxa Antecipada Acrescida
+# Desc: Calcula o estoque remanescente após arrecadação, antecipação e lance.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Final Taxa Antecipada Acrescida'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Ativo TAA'] = 0
+   , 0
+   ,
+      ['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Antecipada Acrescida']
+    + ['REC.M.190.Receitas_CN':'Reajuste Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Antecipada Acrescida']
+    - ['REC.M.190.Receitas_CN':'Arrecadação Taxa Antecipada Acrescida']
+);
+
+#EndRegion - Estoque de Taxa Antecipada Acrescida
+
+#Region - Totais
+
+# --------------------------------------------------------------------------------------------
+# Name: Arrecadação do Período
+# Desc: Consolida as arrecadações dos fluxos de Taxa no Prazo, Embutida e
+#       Antecipada Acrescida.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Arrecadação do Período'] = N:
+
+      ['REC.M.190.Receitas_CN':'Arrecadação Taxa no Prazo']
+    + ['REC.M.190.Receitas_CN':'Arrecadação Taxa Embutida']
+    + ['REC.M.190.Receitas_CN':'Arrecadação Taxa Antecipada Acrescida'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Receita de Antecipação
+# Desc: Consolida as receitas de antecipação dos três fluxos de taxa.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Receita de Antecipação'] = N:
+
+      ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa no Prazo']
+    + ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Embutida']
+    + ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Antecipada Acrescida'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Receita de Lance
+# Desc: Consolida as receitas de lance dos três fluxos de taxa.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Receita de Lance'] = N:
+
+      ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa no Prazo']
+    + ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Embutida']
+    + ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Antecipada Acrescida'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Fundo de Reserva
+# Desc: Calcula a receita de Fundo de Reserva com base no saldo final de cotas,
+#       crédito médio inflacionado e percentual de Fundo de Reserva.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Fundo de Reserva'] = N:
+
+IF(
+   ['REC.M.190.Receitas_CN':'Aux Saldo Final Cotas'] = 0
+   , 0
+   ,
+   ['REC.M.190.Receitas_CN':'Aux Saldo Final Cotas']
+   *
+   DB(
+      'REC.120.Credito_Medio'
+      , SUBST(
+           ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , !ALL.D.Versao
+           )
+           , 5
+           , 10
+        )
+      , SUBST(
+           ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !ALL.D.Periodo_Projecao_2
+              , !ALL.D.Versao
+           )
+           , 1
+           , 3
+        )
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , 'Credito Medio Inflacionado'
+   )
+   *
+   DB(
+      'REC.180.Condicoes_Comerciais'
+      , !ALL.D.Versao
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , 'Fundo de Reserva'
+   )
+   \
+   NUMBR(!ALL.D.Prazo)
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Total de Receitas
+# Desc: Consolida as receitas provenientes de arrecadação, antecipação,
+#       lance, fundo de reserva e taxas acessórias.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Total de Receitas'] = N:
+
+      ['REC.M.190.Receitas_CN':'Arrecadação do Período']
+    + ['REC.M.190.Receitas_CN':'Receita de Antecipação']
+    + ['REC.M.190.Receitas_CN':'Receita de Lance']
+    + ['REC.M.190.Receitas_CN':'Fundo de Reserva']
+    + ['REC.M.190.Receitas_CN':'Taxas Acessórias'];
+
+#EndRegion - Totais
+
+FEEDERS;
+
+# --------------------------------------------------------------------------------------------
+# Name: Feeders Internos REC.190
+# Desc: Feeders internos para propagação dos fluxos de receitas e roll-forward
+#        dos estoques entre períodos.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------------
+# Name: Taxa no Prazo
+# Desc:
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa no Prazo' ,'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+
+   ['REC.M.190.Receitas_CN':'Reajuste Taxa no Prazo']
+ , ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa no Prazo']
+ , ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa no Prazo']
+ , ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa no Prazo']
+ , ['REC.M.190.Receitas_CN':'Arrecadação Taxa no Prazo']
+ , ['REC.M.190.Receitas_CN':'Estoque Final Taxa no Prazo'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Roll Forward Taxa no Prazo
+# Desc: Alimenta o Estoque Inicial do período seguinte.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Final Taxa no Prazo','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+
+DB(
+   'REC.190.Receitas_CN'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , ATTRS(
+        'ALL.D.Periodo_Projecao_2'
+        , !ALL.D.Periodo_Projecao_2
+        , 'Período Posterior'
+     )
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Regional
+   , 'Estoque Inicial Taxa no Prazo'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Taxa Embutida
+# Desc:
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Embutida','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+
+   ['REC.M.190.Receitas_CN':'Reajuste Taxa Embutida']
+ , ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Embutida']
+ , ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Embutida']
+ , ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Embutida']
+ , ['REC.M.190.Receitas_CN':'Arrecadação Taxa Embutida']
+ , ['REC.M.190.Receitas_CN':'Estoque Final Taxa Embutida'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Roll Forward Taxa Embutida
+# Desc: Alimenta o Estoque Inicial do período seguinte.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Final Taxa Embutida'
+ ,'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+
+DB(
+   'REC.190.Receitas_CN'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , ATTRS(
+        'ALL.D.Periodo_Projecao_2'
+        , !ALL.D.Periodo_Projecao_2
+        , 'Período Posterior'
+     )
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Regional
+   , 'Estoque Inicial Taxa Embutida'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Taxa Antecipada Acrescida
+# Desc:
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Inicial Taxa Antecipada Acrescida'
+ ,'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+
+   ['REC.M.190.Receitas_CN':'Reajuste Taxa Antecipada Acrescida']
+ , ['REC.M.190.Receitas_CN':'Baixa por Cancelamento Taxa Antecipada Acrescida']
+ , ['REC.M.190.Receitas_CN':'Antecipação Cliente Taxa Antecipada Acrescida']
+ , ['REC.M.190.Receitas_CN':'Taxa no Lance Taxa Antecipada Acrescida']
+ , ['REC.M.190.Receitas_CN':'Arrecadação Taxa Antecipada Acrescida']
+ , ['REC.M.190.Receitas_CN':'Estoque Final Taxa Antecipada Acrescida'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Roll Forward Taxa Antecipada Acrescida
+# Desc: Alimenta o Estoque Inicial do período seguinte.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.190.Receitas_CN':'Estoque Final Taxa Antecipada Acrescida'
+ ,'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+
+DB(
+   'REC.190.Receitas_CN'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , ATTRS(
+        'ALL.D.Periodo_Projecao_2'
+        , !ALL.D.Periodo_Projecao_2
+        , 'Período Posterior'
+     )
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Regional
+   , 'Estoque Inicial Taxa Antecipada Acrescida'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Arrecadação do Período
+# Desc: Alimenta o consolidado de arrecadação.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+[{'Arrecadação Taxa no Prazo', 'Arrecadação Taxa Embutida', 'Arrecadação Taxa Antecipada Acrescida'},'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+['REC.M.190.Receitas_CN':'Arrecadação do Período'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Receita de Antecipação
+# Desc: Alimenta o consolidado de antecipações.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+[{'Antecipação Cliente Taxa no Prazo', 'Antecipação Cliente Taxa Embutida', 'Antecipação Cliente Taxa Antecipada Acrescida'},'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+['REC.M.190.Receitas_CN':'Receita de Antecipação'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Receita de Lance
+# Desc: Alimenta o consolidado de receitas de lance.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+[{'Taxa no Lance Taxa no Prazo', 'Taxa no Lance Taxa Embutida', 'Taxa no Lance Taxa Antecipada Acrescida'},'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+['REC.M.190.Receitas_CN':'Receita de Lance'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Total de Receitas
+# Desc: Alimenta o consolidado final de receitas.
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+[{'Arrecadação do Período', 'Receita de Antecipação', 'Receita de Lance', 'Fundo de Reserva'},'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+['REC.M.190.Receitas_CN':'Total de Receitas'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Arrecadação, Receita e Lance
+# Desc: Alimenta o 400 CPC47.
+# Date: 01\10\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+[{'Arrecadação do Período', 'Receita de Antecipação', 'Receita de Lance'},'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+   DB(
+      'REC.400.CPC47_CN'
+      , !ALL.D.Versao
+      , !REC.D.Safra_CN
+      , !ALL.D.Periodo_Projecao_2
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , !ALL.D.Tabela
+      , 'Receita de Caixa'
+   );

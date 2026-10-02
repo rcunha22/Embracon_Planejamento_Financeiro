@@ -1,0 +1,271 @@
+{
+	"@type":"Hierarchy",
+	"Name":"ALL.D.Ano",
+	"Elements":
+	[
+		{
+			"Name":"2024",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2025",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2026",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2027",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2028",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2029",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2030",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2031",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2032",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2033",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2034",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2035",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2036",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2037",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2038",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2039",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2040",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2041",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2042",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2043",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2044",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2045",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2046",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2047",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2048",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2049",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2050",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Total Anos",
+			"Type":"Consolidated"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2024",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2025",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2026",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2027",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2028",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2029",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2030",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2031",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2032",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2033",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2034",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2035",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2036",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2037",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2038",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2039",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2040",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2041",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2042",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2043",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2044",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2045",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2046",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2047",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2048",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2049",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Anos",
+			"ComponentName":"2050",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"ALL.D.Ano.subsets/Padrão.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-04 16h10m40s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-04 16h12m27s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-04 16h13m36s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-05 10h24m43s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-05 10h39m46s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-05 10h40m43s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-05 10h41m34s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-05 10h42m03s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-06 09h34m24s.json",
+		"ALL.D.Ano.subsets/SYS_Drill_Logs_2024-09-06 11h26m22s.json"
+	]
+}

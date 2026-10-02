@@ -1,0 +1,63 @@
+{
+	"@type":"MDXView",
+	"Name":"Default",
+	"MDX@Code.link":"Default.mdx",
+	"IsAutocalculate" : true,
+	"IsDeferComputeOnLeafDataEntry" : false,
+	"IsSuppressComputeOnOpen" : false,
+	"Meta" : 
+	{
+		"Aliases" : 
+		{
+			"[ALL.D.Periodo_Projecao_2].[ALL.D.Periodo_Projecao_2]" : "MEMBER_NAME"
+		},
+		"ContextSets" : 
+		{
+			"[ALL.D.Assembleia].[ALL.D.Assembleia]" : 
+			{
+				"Expression" : "{[ALL.D.Assembleia].[ALL.D.Assembleia].MEMBERS}"
+			},
+			"[ALL.D.Canal].[ALL.D.Canal]" : 
+			{
+				"Expression" : "{[ALL.D.Canal].[ALL.D.Canal].MEMBERS}"
+			},
+			"[ALL.D.Especie].[ALL.D.Especie]" : 
+			{
+				"Expression" : "{[ALL.D.Especie].[ALL.D.Especie].MEMBERS}"
+			},
+			"[ALL.D.Plano].[ALL.D.Plano]" : 
+			{
+				"Expression" : "{[ALL.D.Plano].[ALL.D.Plano].MEMBERS}"
+			},
+			"[ALL.D.Revenda].[ALL.D.Revenda]" : 
+			{
+				"Expression" : "{[ALL.D.Revenda].[ALL.D.Revenda].MEMBERS}"
+			},
+			"[ALL.D.Tabela].[ALL.D.Tabela]" : 
+			{
+				"Expression" : "{[ALL.D.Tabela].[ALL.D.Tabela].MEMBERS}"
+			},
+			"[ALL.D.Versao].[ALL.D.Versao]" : 
+			{
+				"Expression" : "{[ALL.D.Versao].[ALL.D.Versao].MEMBERS}"
+			},
+			"[REC.D.Situacao_Contemplacao].[REC.D.Situacao_Contemplacao]" : 
+			{
+				"Expression" : "{[REC.D.Situacao_Contemplacao].[REC.D.Situacao_Contemplacao].MEMBERS}"
+			}
+		},
+		"ExpandAboves" : 
+		{
+			"[ALL.D.Assembleia].[ALL.D.Assembleia]" : false,
+			"[ALL.D.Canal].[ALL.D.Canal]" : false,
+			"[ALL.D.Especie].[ALL.D.Especie]" : false,
+			"[ALL.D.Periodo_Projecao_2].[ALL.D.Periodo_Projecao_2]" : false,
+			"[ALL.D.Plano].[ALL.D.Plano]" : false,
+			"[ALL.D.Revenda].[ALL.D.Revenda]" : false,
+			"[ALL.D.Tabela].[ALL.D.Tabela]" : false,
+			"[ALL.D.Versao].[ALL.D.Versao]" : false,
+			"[REC.D.Situacao_Contemplacao].[REC.D.Situacao_Contemplacao]" : false,
+			"[REC.M.230.Estoque_Receitas_CE].[REC.M.230.Estoque_Receitas_CE]" : false
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.130.Mix_Prazo",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.130.Mix_Prazo.hierarchies/REC.M.130.Mix_Prazo.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.130.Mix_Prazo')/Hierarchies('REC.M.130.Mix_Prazo')"
+	}
+}

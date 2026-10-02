@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.170.Estoque_Cotas_CN",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.170.Estoque_Cotas_CN.hierarchies/REC.M.170.Estoque_Cotas_CN.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.170.Estoque_Cotas_CN')/Hierarchies('REC.M.170.Estoque_Cotas_CN')"
+	}
+}

@@ -1,0 +1,26 @@
+#region Prolog
+MinorErrorLogMax = -1;
+OnMinorErrorDoItemSkip = 1;
+CurrentLogSetting = CubeGetLogChanges('BSE.100.Movimentacao');
+CubeSetLogChanges('BSE.100.Movimentacao', 0);
+NumMetaRowsRead = 0;
+NumMetaRowsProcessed = 0;
+NumRowsRead = 0;
+NumRowsProcessed = 0;
+SetInputCharacterSet('TM1CS_ISO_8859_1');
+CubeClearData('BSE.100.Movimentacao');
+#endregion
+#region Data
+NumRowsRead = NumRowsRead + 1;
+If (vValue1 @<> '');
+CellPutN(StringToNumberEx(vValue1,'.',','),'BSE.100.Movimentacao',vDim1_1,vDim2_1,vDim3_1,vDim4_1,vDim5_1,vDim6_1,vDim7_1);
+NumRowsProcessed = NumRowsProcessed + 1;
+EndIf;
+#endregion
+#region Epilog
+If (pResult @<> '');
+TextOutput(pResult, NumberToString(NumRowsRead), NumberToString(NumRowsProcessed), NumberToString(NumMetaRowsRead), NumberToString(NumMetaRowsProcessed));
+EndIf;
+CubeSaveData('BSE.100.Movimentacao');
+CubeSetLogChanges('BSE.100.Movimentacao', CurrentLogSetting);
+#endregion

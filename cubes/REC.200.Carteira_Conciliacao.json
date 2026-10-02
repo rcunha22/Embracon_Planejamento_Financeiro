@@ -1,0 +1,35 @@
+{
+	"@type":"Cube",
+	"Name":"REC.200.Carteira_Conciliacao",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('ALL.D.Grupo')"
+		},
+		{
+			"@id":"Dimensions('REC.D.Cota')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Especie')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Plano')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Tabela')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Prazo')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Revenda')"
+		},
+		{
+			"@id":"Dimensions('REC.D.Situacao_Contemplacao')"
+		},
+		{
+			"@id":"Dimensions('REC.M.200.Carteira_Conciliacao')"
+		}
+	],
+	"Views@Code.links":[]
+}

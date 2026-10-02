@@ -1,0 +1,265 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+# ===============================================================================================================
+# Copyright ctiglobal.com Ver 3.0  08/2020
+# ===============================================================================================================
+# Este processo inicia a execução da copia de versão via RunProcess com opção de paralelismo 
+# ===============================================================================================================
+
+
+# =================================================================================
+# Descobre qual usuário executou o processo
+# =================================================================================
+pUser = IF( DimIx( '}Clients' , TM1User() ) = 0, 'Executed by Chore' , ATTRS('}Clients', TM1User(), '}TM1_DefaultDisplayValue') );
+
+
+# =================================================================================
+# Variáveis Gerais
+# =================================================================================
+cTimeStamp	= TimSt( Now, '\Y-\m-\d \hh\im\ss' );
+cProcesso 	= GetProcessName();
+
+sMensagemR 	= '';
+sMensagemP 	= '';
+nItemReject 	= 0;
+nRejectHeader 	= 0;
+nStatusHeader 	= 0;
+nRejectCount	= 0;
+nErrors 		= 0;
+nCount 		= 0;
+nStartTime 	= NOW;
+
+
+# =================================================================================
+# Variáveis do processo de cópia
+# =================================================================================
+cCubParamCopia    	= 'SYS.900.Parametros_Copia_Versao';
+cCuboCopiaVersao 	= 'SYS.910.Cubos_Copia_Versao';
+
+# =================================================================================
+# Busca parâmetros para a Copia de Versão
+# =================================================================================
+pSourceElement	= Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Versão Origem' ) );
+pTargetElement	= Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Versão Destino' ) );
+pRules		= Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Considerar Regras' ) );
+
+pPeriodoIni	= Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Período Início' ) );
+pPeriodoFim	= Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Período Fim' ) );
+
+pThreads		= CellGetN( cCubParamCopia, 'Valor' , 'Qtd Threads' ) ;
+pTipoCopia	= Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Tipo Cópia' ) );
+
+pDimVersao	= DimensionElementPrincipalName('SYS.D.Copia_Nome_Dim_Versao', Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Nome Dimensão Versão' )));
+pDimEmpresa	= DimensionElementPrincipalName('SYS.D.Copia_Nome_Dim_Empresas', Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Nome Dimensão Empresa' )));
+
+IF( pDimEmpresa @<> '' );
+   pSourceEmpresa	= Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Empresa Origem' ) );
+   pTargetEmpresa	= Trim ( CellGetS( cCubParamCopia, 'Valor' , 'Empresa Destino' ) );
+ELSE;
+   pSourceEmpresa	= '';
+   pTargetEmpresa	= '';
+ENDIF;
+
+# Iniciar Cópia
+# =========================
+sElm = pStart;
+sParam = 'Iniciar Cópia';
+
+If( sElm @<> 'S' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'Cópia de versão não iniciada. Iniciar Cópia diferente de S.' ;
+   ItemReject( sMensagemP );
+EndIf;
+
+
+# Versão Origem
+# =========================
+sElm = pSourceElement;
+sParam = 'Versão Origem';
+sDimension = pDimVersao;
+
+If( sElm @= '' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O parâmetro    [ ' | sParam | ' ]    não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+ElseIf( DimIx( sDimension , sElm ) = 0 );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O elemento    [ ' | sElm | ' ]    não existe na dimensão    [ ' | sDimension | ' ], informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+ElseIf( DTYPE( pDimVersao , sElm )  @= 'C' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O elemento    [ ' | sElm | ' ]    é um consolidador na dimensão    [ ' | sDimension | ' ], informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+EndIf;
+
+
+# Versão Destino
+# =========================
+sElm = pTargetElement;
+sParam = 'Versão Destino';
+sDimension = pDimVersao;
+
+If( sElm @= '' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O parâmetro    [ ' | sParam | ' ]    não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+ElseIf( DimIx( sDimension , sElm ) = 0 );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O elemento    [ ' | sElm | ' ]    não existe na dimensão    [ ' | sDimension | ' ], informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+ElseIf( DTYPE( pDimVersao , sElm )  @= 'C' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O elemento    [ ' | sElm | ' ]    é um consolidador na dimensão    [ ' | sDimension | ' ], informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+EndIf;
+
+
+# Periodo Início
+# =========================
+sElm = pPeriodoIni;
+sParam = 'Período Início';
+
+If( sElm @= '' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O parâmetro    [ ' | sParam | ' ]    não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+EndIf;
+
+
+# Periodo Fim
+# =========================
+sElm = pPeriodoFim;
+sParam = 'Período Fim';
+
+If( sElm @= '' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O parâmetro    [ ' | sParam | ' ]    não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+EndIf;
+
+# Empresa Origem
+# =========================
+sElm = pSourceEmpresa;
+sParam = 'Empresa Origem';
+sDimension = pDimEmpresa;
+
+If( sElm @<> '' & pDimEmpresa @<> '' );
+   If( DimIx( pDimEmpresa , sElm ) = 0 );
+      nErrors = 1;
+      DataSourceType = 'NULL';
+      sMensagemP = 'O elemento    [ ' | sElm | ' ]    não existe na dimensão    [ ' | sDimension | ' ], informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+      ItemReject( sMensagemP );
+   ElseIf( DTYPE( pDimEmpresa , sElm )  @= 'C' );
+      nErrors = 1;
+      DataSourceType = 'NULL';
+      sMensagemP = 'O elemento    [ ' | sElm | ' ]    é um consolidador na dimensão    [ ' | sDimension | ' ], informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+      ItemReject( sMensagemP );
+   Endif;
+EndIf;
+
+
+# Empresa Destino
+# =========================
+sElm = pTargetEmpresa;
+sParam = 'Empresa Destino';
+sDimension = pDimEmpresa;
+
+If( sElm @<> ''  & pDimEmpresa @<> '' );
+   if( pSourceEmpresa @= '' );
+      nErrors = 1;
+      DataSourceType = 'NULL';
+      sMensagemP = 'A Empresa Origem não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+      ItemReject( sMensagemP );
+   ElseIf( DimIx( sDimension , sElm ) = 0 );
+      nErrors = 1;
+      DataSourceType = 'NULL';
+      sMensagemP = 'O elemento    [ ' | sElm | ' ]    não existe na dimensão    [ ' | sDimension | ' ], informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+      ItemReject( sMensagemP );
+   ElseIf( DTYPE( pDimEmpresa , sElm )  @= 'C' );
+      nErrors = 1;
+      DataSourceType = 'NULL';
+      sMensagemP = 'O elemento    [ ' | sElm | ' ]    é um consolidador na dimensão    [ ' | sDimension | ' ], informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+      ItemReject( sMensagemP );
+   Endif;
+Else;
+   if( pSourceEmpresa @<> '' );
+      nErrors = 1;
+      DataSourceType = 'NULL';
+      sMensagemP = 'O parâmetro    [ ' | sParam | ' ]    não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+      ItemReject( sMensagemP );
+   Endif;
+EndIf;
+
+
+# Cópia com Regras
+# =========================
+sElm = pRules;
+sParam = 'Considerar Regras';
+
+If( sElm @= '' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O parâmetro    [ ' | sParam | ' ]    não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+EndIf;
+
+
+
+# Tipo da Cópia
+# =========================
+sElm = pTipoCopia;
+sParam = 'Tipo Cópia';
+
+If( sElm @= '' );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O parâmetro    [ ' | sParam | ' ]    não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+EndIf;
+
+
+# Threads
+# =========================
+sParam = 'Threads';
+
+If( pThreads <= 1 );
+   nErrors = 1;
+   DataSourceType = 'NULL';
+   sMensagemP = 'O parâmetro    [ ' | sParam | ' ]    não foi Informado, informar corretamente no cubo  [ ' | cCubParamCopia | ' ]' ;
+   ItemReject( sMensagemP );
+EndIf;
+
+# =================================================================================
+# Dispara a execução da cópia de versão em modo Batch
+# =================================================================================
+
+RunProcess ( 'zCTI.Version.Copy.001.Start.Copy', 'pStart', pStart );
+
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

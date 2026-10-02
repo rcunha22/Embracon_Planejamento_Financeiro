@@ -1,0 +1,75 @@
+#region Prolog
+# ===============================================================================================================
+#GENERALCOMMENT             Descrição:           		Roda os processos de Integração do IFS para o actual
+#GENERALCOMMENT             Responsável:      		Sara Souza
+#GENERALCOMMENT             Data Criação:      		11/09/2019
+#LASTCHANGE                        Alterações:
+#LASTCHANGE                        Responsavel Alterações:
+# ===============================================================================================================
+
+# ===============================================================================================================
+#PROLOGCOMMENT               Descrição:            		Roda os processos de Integração do IFS para o actual para os Cubos CPX.0020.Gestor_Projeto e CPX.0030.Gestor_Local
+
+
+# =================================================================================
+# Descobre qual usuário executou o processo
+# =================================================================================
+pUser = IF( DimIx( '}Clients' , TM1User() ) = 0, 'Executed by Chore' , ATTRS('}Clients', TM1User(), '}TM1_DefaultDisplayValue') );
+
+
+
+# =================================================================================
+# Variáveis
+# =================================================================================
+cCubParam	= 'SYS.150.Controle_Cargas';
+cCubLog		= '}CubeProperties';
+
+cTimeStamp	= TimSt( Now, '\Y-\m-\d \hh\im\ss' );
+cProcesso 	= GetProcessName();
+
+sMensagemP 	= '';
+nCount 		= 0;
+
+
+
+
+
+# =================================================================================
+# Define o Log inicial da carga como falha
+# Registra esse log logo no inicio para garantir que tenha algum log de falha registrado
+# Caso o processo não consiga chegar no próximo registro de log por alguma falha inesperada
+# =================================================================================
+sMensagemP = 'Processo com falha, contate o administrador para verificar os logs de erro do sistema' ;
+
+s01 = cTimeStamp ;
+s02 = pUser ;
+s03 = sMensagemP ;
+
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraInicio' );
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraFim' );
+CellPutS( s02 , cCubParam, cProcesso, 'Usuário' );
+CellPutS( s03 , cCubParam, cProcesso, 'Mensagem' );
+#endregion
+#region Data
+# =================================================================================
+# Habilita o Log do cubo
+# =================================================================================
+CellPutS ( 'YES', cCubLog, vCubo, 'LOGGING' );
+#endregion
+#region Epilog
+# =================================================================================
+# Registra o Log de Erro ou Sucesso no Cubo de Controle
+# =================================================================================
+sMensagemP  = ' Processo concluído com sucesso';
+
+
+s01 = TimSt( Now, '\Y-\m-\d \hh\im\ss' ) ;
+s02 = pUser ;
+s03 = sMensagemP ;
+s04 = '0' ;
+
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraFim' );
+CellPutS( s02 , cCubParam, cProcesso, 'Usuário' );
+CellPutS( s03 , cCubParam, cProcesso, 'Mensagem' );
+CellPutS( s04 , cCubParam, cProcesso, 'Registros Processados' );
+#endregion

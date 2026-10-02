@@ -1,0 +1,12 @@
+{
+	"@type":"Hierarchy",
+	"Name":"PRE.M.101.Premissas_Periodo",
+	"Elements":
+	[
+		{
+			"Name":"Periodo Inicial da Projecao",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

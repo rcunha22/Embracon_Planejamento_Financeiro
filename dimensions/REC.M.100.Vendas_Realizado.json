@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.100.Vendas_Realizado",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.100.Vendas_Realizado.hierarchies/REC.M.100.Vendas_Realizado.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.100.Vendas_Realizado')/Hierarchies('REC.M.100.Vendas_Realizado')"
+	}
+}

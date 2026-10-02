@@ -1,0 +1,373 @@
+#region Prolog
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+# ===============================================================================================================
+#GENERALCOMMENT             Descrição:          	Carrega dados do cubo REC.0010.Consolidado para o cubo DFS.1000.Fechamento_Total
+#GENERALCOMMENT             Responsável:   	  Nickolas Lima
+#GENERALCOMMENT             Data Criação:    	Março/2024
+#LASTCHANGE                 Alterações:
+#LASTCHANGE                 Responsavel Alterações:
+# ===============================================================================================================
+
+# ===============================================================================================================
+#PROLOGCOMMENT               Descrição:            	Cria view de leitura utlizando como filtro Parametros de Versão, Ano e Mês.
+# ===============================================================================================================
+
+# =================================================================================
+# 									Glosário 
+# =================================================================================
+# Prefixos de Variáveis 
+#
+# v - Variáveis de entrada		- relacionado a origem de dados do turbo
+# p - Parâmetros de entrada		- relacionado ao input realizado pelo usuário no momento de disparo do processo
+# c - Constantes			- variáveis que receberão um valor fixo (Não serão alteradas durante o processo)
+# n - Numerica
+# s - String (Texto)
+#
+# Variáveis que deverão ser alteradas
+# cCuboOrigem			- Armazena o nome do cubo de origem
+# cCuboDestino			- Armazena o nome do cubo de destino
+# cSuprimirConsolidado		- (S/N) - Suprimir a informação dos elementos consolidados
+# cSuprimirZero			- (S/N) - Suprimir os valores 0 da view
+# cSuprimirCamposCalculados		- (S/N) - Suprimir os campos calculados 
+# cViewTemporaria			- (S/N) - Se a view deve ser temporária 
+#
+#
+# Variáveis configuradas no cubo de controle 
+# cCaminhoArquivoRejeitado 		- Busca o caminho de rejeitado do processo no cubo de controle
+# cUtilizarDebug		 	- Busca no cubo de controle se ao executar o processo, será utilizado o modo Debug (Grava em arquivo texto o que seria gravado no cubo)
+# cGravarLogAlteracao		- Busca no cubo de controle se ao executar o processo, serão gravados as alterações no cubo de destino
+#
+#
+# Variáveis que não precisam ser alteradas
+# cCuboParametro 			- Armazena o nome do cubo de parâmetro utilizado
+# cCuboPropriedade		- Armazena o nome do cubo de sistema onde estão as principais propriedades dos cubos
+# cExisteCabecalhoRejeitado		- Variável que irá controlar o cabeçalho do arquivo de rejeitado sejá criado uma única vez
+# cExisteRegistroRejeitado 		- Variável que irá controlar se o registro possuí algum erro de integridade ou validação dos dados
+# cHorarioInicio			- Armazena o horário de inicio do processo
+# cMensagemRegistro		- Armazena a mensagem de erro/log do registro
+# cMensagemProcesso		- Armazena a mensagem de erro do processo
+# cProcesso			- Armazena o nome do processo
+# cQtdRegistroRejeitado		- Contador de registros rejeitados
+# cTipoErro			- Controla o tipo de erro (Erro 1 - Prologo / Erro 2 - Dados)
+# cUsuario			- Armazena o nome do usuário ou chore que executou o processo
+
+# =================================================================================
+# Variáveis do padrão CTI que devem ser alteradas
+# =================================================================================
+
+
+# Informações dos cubos de Origem e Destino
+# ========================================
+cCuboOrigem		= 'REC.0010.Receita';
+cCuboDestino		= 'DFS.1000.Fechamento_Total';
+cCuboRejeitados		= 'SYS.250.Rejeitados_Cargas';
+
+
+
+# =================================================================================
+# Variáveis do padrão CTI não devem ser alteradas
+# =================================================================================
+
+# Recupera o usuário que executou o processo
+# ========================================
+cUsuario = IF( DimIx( '}Clients' , TM1User() ) = 0, 'Executed by Chore' , ATTRS('}Clients', TM1User(), '}TM1_DefaultDisplayValue') );
+  
+
+  
+# Variáveis de controle do processo
+# ========================================
+cCuboParametro			= 'SYS.150.Controle_Cargas';
+cCuboPropriedade			= '}CubeProperties';
+cHorarioInicio			= Now();
+cProcesso			= GetProcessName();
+cMensagemRegistro	 	= '';
+cMensagemProcesso 		= '';
+cExisteRegistroRejeitado 		= 0;
+cExisteCabecalhoRejeitado 		= 0;
+cQtdRegistroRejeitado		= 0;
+cTipoErro				= 0;
+cContadorRegistro 			= 0;
+cQtdRegistroRejeitadoCubo		= 1;
+
+
+# Variáveis do cubo de controle
+# ========================================
+cCaminhoArquivoRejeitado  		= CellGetS( cCuboParametro , cProcesso , 'Caminho do Arquivo de Rejeitado' );
+
+
+cUtilizarDebug		 	= 'N' ;
+cGravarLogAlteracao		=  'N' ;
+
+
+
+# Tratamento para os campos vindos do cubo de controle que recebem (S/N)
+# ========================================
+cUtilizarDebug		 	= IF( cUtilizarDebug @= 'S' , 'S' , 'N' );
+cGravarLogAlteracao		= IF( cGravarLogAlteracao @= 'S' , 'S' , 'N' );
+
+
+
+# =================================================================================
+# Define o Log inicial da carga como falha
+# Registra esse log logo no inicio para garantir que tenha algum log de falha registrado
+# Caso o processo não consiga chegar no próximo registro de log por alguma falha inesperada
+# =================================================================================
+# cMensagemProcesso	= 'Processo com falha, contate o administrador para verificar os logs de erro do sistema' ;
+# s01			= TimSt( cHorarioInicio , '\Y-\m-\d \hh\im\ss' );
+# s02 			= cUsuario ;
+# s03 			= cMensagemProcesso ;
+# s04 			= '0' ;
+# s05 			= TimSt( cHorarioInicio - Now, '\Y-\m-\d \hh\im\ss' );
+
+# CellPutS( s01 , cCuboParametro, cProcesso, 'DataHora Inicio' );
+# CellPutS( s01 , cCuboParametro, cProcesso, 'DataHora Fim' );
+# CellPutS( s02 , cCuboParametro, cProcesso, 'Usuário' );
+# CellPutS( s03 , cCuboParametro, cProcesso, 'Mensagem de Log' );
+# CellPutS( s04 , cCuboParametro, cProcesso, 'Registros Processados' );
+# CellPutS( s05 , cCuboParametro, cProcesso, 'Tempo de Execução' );
+
+
+
+# =================================================================================
+# Validação dos parâmetros
+# Teste 1 - O parâmetro só será validado caso exista uma dimensão atrelada
+# Teste 2 - Parâmetro não informado
+# Teste 3 - Se o parâmetro informado existe na dimensão de validação
+# =================================================================================
+
+
+
+# Parâmetro 1
+# =========================
+sDim = 'ALL.D.Empresa_Societaria';
+sElm = pEmpresa;
+
+If( Trim( sDim ) @<> '' );
+  If( Trim( sElm ) @= '' );
+    cTipoErro = 1;
+    DataSourceType = 'NULL';
+    cMensagemProcesso = 'O parâmetro    [ ' | sDim | ' ]    não foi Informado' ;
+    ItemReject( cMensagemProcesso );
+  ElseIf( DimIx( sDim , sElm ) = 0 );
+    cTipoErro = 1;
+    DataSourceType = 'NULL';
+    cMensagemProcesso = 'O elemento    [ ' | sElm | ' ]    não existe na dimensão    [ ' | sDim | ' ]';
+    ItemReject( cMensagemProcesso );
+  EndIf;
+EndIf;
+
+
+# Parâmetro 2
+# =========================
+sDim = 'ALL.D.Versao';
+sElm = pVersaoOrigem;
+
+If( Trim( sDim ) @<> '' );
+  If( Trim( sElm ) @= '' );
+    cTipoErro = 1;
+    DataSourceType = 'NULL';
+    cMensagemProcesso = 'O parâmetro    [ ' | sDim | ' ]    não foi Informado' ;
+    ItemReject( cMensagemProcesso );
+  ElseIf( DimIx( sDim , sElm ) = 0 );
+    cTipoErro = 1;
+    DataSourceType = 'NULL';
+    cMensagemProcesso = 'O elemento    [ ' | sElm | ' ]    não existe na dimensão    [ ' | sDim | ' ]';
+    ItemReject( cMensagemProcesso );
+  EndIf;
+EndIf;
+
+
+# Parâmetro 3
+# =========================
+sDim = 'ALL.D.Versao';
+sElm = pVersaoDestino;
+
+If( Trim( sDim ) @<> '' );
+  If( Trim( sElm ) @= '' );
+    cTipoErro = 1;
+    DataSourceType = 'NULL';
+    cMensagemProcesso = 'O parâmetro    [ ' | sDim | ' ]    não foi Informado' ;
+    ItemReject( cMensagemProcesso );
+  ElseIf( DimIx( sDim , sElm ) = 0 );
+    cTipoErro = 1;
+    DataSourceType = 'NULL';
+    cMensagemProcesso = 'O elemento    [ ' | sElm | ' ]    não existe na dimensão    [ ' | sDim | ' ]';
+    ItemReject( cMensagemProcesso );
+  EndIf;
+EndIf;
+
+# =================================================================================
+# Validação do arquivo de rejeitados na pasta
+# Teste 1 - Se o caminho do arquivo rejeitado foi preenchido no cubo de controle
+# Teste 2 - Se o diretório do arquivo de rejeitado/debug existir
+# =================================================================================
+
+
+# Define o nome dos arquivos
+# ======================================================
+cSufixoRejeitado		= IF( cUtilizarDebug @= 'S' , 'Debug' , 'Reject' );
+ 
+cNomeArquivoRejeitado	=  cProcesso 
+  | '_' | pEmpresa
+  | '_' | pVersaoDestino
+  | '_' | cSufixoRejeitado | '.csv';
+
+
+
+# Aborta o processo se o caminho do arquivo reject não foi informado
+# ======================================================
+IF( cCaminhoArquivoRejeitado  @= '' );
+   cTipoErro = 1;
+   cMensagemProcesso = 'O caminho onde deverá ser salvo o arquivo com registros rejeitados não foi informado, informe no cubo:   "' | cCuboParametro | '"' ;
+   DataSourceType = 'NULL';
+   ItemReject( cMensagemProcesso );
+ENDIF;
+
+
+
+# Insere o caractere "\" no final do caminho caso ainda não tenha
+# ======================================================
+cCaminhoArquivoRejeitado  	= IF( SUBST( cCaminhoArquivoRejeitado  , LONG( cCaminhoArquivoRejeitado  ) , 1 ) @<> '\' , cCaminhoArquivoRejeitado  | '\' , cCaminhoArquivoRejeitado  );
+
+
+
+# Aborta o processo se o diretorio dos arquivos rejeitados não existir
+# ======================================================
+IF( FileExists( cCaminhoArquivoRejeitado) = 0 );
+   cTipoErro = 1;
+   cMensagemProcesso = 'O diretório especificado para o arquivo com registros rejeitados  "' | cCaminhoArquivoRejeitado | '"   não existe, informe no cubo:   "' | cCuboParametro | '"' ;
+   DataSourceType = 'NULL';
+   ItemReject( cMensagemProcesso );
+ENDIF;
+
+
+
+# Monta o caminho completo 
+# ======================================================
+cNomeArquivoRejeitadoCompleto	= cCaminhoArquivoRejeitado | cNomeArquivoRejeitado;
+
+
+
+# Apaga o arquivo de reject caso exista
+# ======================================================
+IF( FileExists( cNomeArquivoRejeitadoCompleto ) = 1 );
+   ASCIIDelete( cNomeArquivoRejeitadoCompleto );
+ENDIF;
+
+
+
+# =================================================================================
+#
+# Definição View de Limpeza do Cudo de Destino
+#
+# =================================================================================
+
+cSuprimirConsolidado	= 'S';
+cSuprimirZero		= 'S'; 
+cSuprimirCamposCalculados	= 'S';
+cViewTemporaria	 	= 'S';
+nViewTemporaria		= If( cViewTemporaria @= 'S', 1, 0);
+
+
+
+# Busca parametro para ativação de Log do Cubo
+# ======================================================
+sLog       	= IF ( cGravarLogAlteracao @= 'N', 'NO', 'YES' );
+
+
+
+# Grava no cubo de Log
+# ======================================================
+# CellPutS( sLog, cCuboPropriedade, cCuboDestino, 'LOGGING' );
+
+
+
+# Define nome da view e subset de limpeza
+# ======================================================
+cViewDestino	= 'processo.' | cProcesso | '.' | 'Limpeza' | '.' | TimSt( cHorarioInicio, '\Y-\m-\d \hh\im\ss' );
+cSubsetDestino	= cViewDestino;
+
+
+
+# Cria a view que será utilizada para a limpeza
+# ======================================================
+ViewCreate( cCuboDestino , cViewDestino , nViewTemporaria );
+
+
+
+# Cria os subsets que serão utilizados para filtrar a view de limpeza
+# ======================================================
+
+# cDimensao	= 'ALL.D.Empresa_Societaria';
+# cElemento	= pEmpresa;
+# If( cDimensao @<> '');
+#   SubsetCreate( cDimensao, cSubsetDestino , nViewTemporaria );  
+#   ViewSubsetAssign( cCuboDestino , cViewDestino, cDimensao , cSubsetDestino );  
+#   SubsetElementInsert( cDimensao, cSubsetDestino, cElemento	, 1 );
+# EndIf;
+
+
+
+cDimensao	= 'ALL.D.Versao';
+cElemento	= pVersaoDestino;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetDestino , nViewTemporaria );  
+  ViewSubsetAssign( cCuboDestino , cViewDestino, cDimensao , cSubsetDestino );  
+  SubsetElementInsert( cDimensao, cSubsetDestino, cElemento	, 1 );
+EndIf;
+
+
+
+cDimensao	= 'DFS.1000.M.Fechamento_Total';
+cElemento	= 'Valor Eliminação';
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetDestino , nViewTemporaria );  
+  ViewSubsetAssign( cCuboDestino , cViewDestino, cDimensao , cSubsetDestino );  
+  SubsetElementInsert( cDimensao, cSubsetDestino, cElemento	, 1 );
+EndIf;
+
+
+
+# Cria os subsets a partir de MDX
+# ======================================================
+cDimensao	= '';
+cMDX		= '';
+If( cDimensao @<> '');
+  SubsetCreatebyMDX(cSubsetDestino, cMDX, nViewTemporaria);
+  ViewSubsetAssign( cCuboDestino , cViewDestino, cDimensao , cSubsetDestino );  
+  SubsetMDXSet(cDimensao, cSubsetDestino, '');
+EndIf;
+
+
+
+# Configuração da View
+# ======================================================
+ViewExtractSkipCalcsSet( cCuboDestino, cViewDestino, If( cSuprimirConsolidado @= 'S', 1, 0) );
+ViewExtractSkipZeroesSet( cCuboDestino, cViewDestino, If( cSuprimirZero @= 'S', 1, 0)  );
+ViewExtractSkipRuleValuesSet( cCuboDestino, cViewDestino, If( cSuprimirCamposCalculados @= 'S', 1, 0) );
+
+
+
+# Apaga os valores da View criada
+# ======================================================
+ViewZeroOut( cCuboDestino , cViewDestino );
+
+
+
+
+
+#endregion
+#region Metadata
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+#****Begin: Generated Statements***
+#****End: Generated Statements**** 
+#endregion
+#region Epilog
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

@@ -1,0 +1,17 @@
+{
+	"@type":"Cube",
+	"Name":"REC.020.Premissas_Taxas_Acessorias",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('ALL.D.Versao')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Especie')"
+		},
+		{
+			"@id":"Dimensions('REC.M.020.Premissas_Taxas_Acessorias')"
+		}
+	],
+	"Views@Code.links":[]
+}

@@ -1,0 +1,8 @@
+#region Prolog
+#CubeProcessFeeders( 'REC.190.Receitas_CN' );
+ #CubeProcessFeeders( 'REC.140.Vendas_Projecao' );
+# CubeProcessFeeders( 'REC.180.Condicoes_Comerciais' );
+# CubeProcessFeeders( 'SYS.310.Safra_Control' );
+ #CubeProcessFeeders( 'REC.170.Estoque_Cotas_CN_v2' );
+
+#endregion

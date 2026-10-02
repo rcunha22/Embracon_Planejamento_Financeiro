@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.020.Premissas_Taxas_Acessorias",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.020.Premissas_Taxas_Acessorias.hierarchies/REC.M.020.Premissas_Taxas_Acessorias.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.020.Premissas_Taxas_Acessorias')/Hierarchies('REC.M.020.Premissas_Taxas_Acessorias')"
+	}
+}

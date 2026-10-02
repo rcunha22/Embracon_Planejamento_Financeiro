@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.D.Conceito",
+	"Hierarchies@Code.links":
+	[
+		"REC.D.Conceito.hierarchies/REC.D.Conceito.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.D.Conceito')/Hierarchies('REC.D.Conceito')"
+	}
+}

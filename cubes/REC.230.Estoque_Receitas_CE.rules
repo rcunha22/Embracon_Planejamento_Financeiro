@@ -1,0 +1,86 @@
+# SKIPCHECK;
+
+# --------------------------------------------------------------------------------------------
+# Name: Dynamic Versions
+# Desc: Libera Regras apenas para Versões Dinâmicas
+# Date: 22/09/2026
+# Author: Willian Maeda
+# --------------------------------------------------------------------------------------------
+
+# [] = N:
+#   IF( ELISANC( 'ALL.D.Versao', 'Dynamic Versions', !ALL.D.Versao ) <> 0
+#   , CONTINUE
+#   , STET );
+
+# --------------------------------------------------------------------------------------------
+# Name: Versões Existentes
+# Desc: Libera Regras apenas para Versões Existentes
+# Date: 22/09/2026
+# Author: Willian Maeda
+# --------------------------------------------------------------------------------------------
+
+[] = N:
+  IF( !ALL.D.Versao @= 'RE'
+  , CONTINUE
+  , STET );
+
+# --------------------------------------------------------------------------------------------
+# Name: Assembleia 001 (Apenas para Testes)
+# Desc: Assembleia 001 (Apenas para Testes)
+# Date: 22/09/2026
+# Author: Willian Maeda
+# --------------------------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------------------------
+# Name: Saldo Inicial Cotas Não Contempladas
+# Desc: Pega o Saldo Inicial Cotas Não Contempladas do cubo REC.200.Carteira_Conciliação
+# Date: 30/09/2026
+# Author: Willian Maeda
+# --------------------------------------------------------------------------------------------
+['REC.M.230.Estoque_Receitas_CE':'REC.M.230.Estoque_Receitas_CE':'Saldo Inicial Cotas Não Contempladas'] = N:
+  IF( !ALL.D.Periodo_Projecao_2 @= '001'
+  
+  , DB( 'REC.200.Carteira_Conciliacao'
+    , 'ALL.D.Grupo':'Total Grupo'
+    , 'REC.D.Cota':'Total Cotas'
+    , !ALL.D.Especie
+    , !ALL.D.Plano
+    , !ALL.D.Tabela
+    , 'ALL.D.Prazo':'Prazos'
+    , !ALL.D.Revenda
+    , !REC.D.Situacao_Contemplacao
+    , 'Quantidade Inicial de Cotas' )
+  
+  , DB( 'REC.230.Estoque_Receitas_CE'
+        , !ALL.D.Versao
+        , !ALL.D.Assembleia
+        , ATTRS( 'ALL.D.Periodo_Projecao_2', !ALL.D.Periodo_Projecao_2, 'Período Anterior' )
+        , !ALL.D.Canal
+        , !ALL.D.Especie
+        , !ALL.D.Plano
+        , !ALL.D.Tabela
+        , !ALL.D.Revenda
+        , !REC.D.Situacao_Contemplacao
+        , 'Saldo Final Cotas Não Contempladas' )
+  );
+
+    
+
+# --------------------------------------------------------------------------------------------
+# Name: Contemplações por Sorteio
+# Desc: Saldo Inicial Cotas Não Contempladas * % Contemplação por Sorteio (do REC.220.Premissas_Assembleia_CE)
+# Date: 30/09/2026
+# Author: Willian Maeda
+# --------------------------------------------------------------------------------------------
+['REC.M.230.Estoque_Receitas_CE':'REC.M.230.Estoque_Receitas_CE':'Contemplações por Sorteio'] = N:
+  ['REC.M.230.Estoque_Receitas_CE':'REC.M.230.Estoque_Receitas_CE':'Saldo Inicial Cotas Não Contempladas']
+  *
+  DB( 'REC.220.Premissas_Assembleia_CE'
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Periodo_Projecao_2
+      , '% Contemplação por Sorteio' )
+;

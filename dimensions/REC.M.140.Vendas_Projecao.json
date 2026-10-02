@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.140.Vendas_Projecao",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.140.Vendas_Projecao.hierarchies/REC.M.140.Vendas_Projecao.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.140.Vendas_Projecao')/Hierarchies('REC.M.140.Vendas_Projecao')"
+	}
+}

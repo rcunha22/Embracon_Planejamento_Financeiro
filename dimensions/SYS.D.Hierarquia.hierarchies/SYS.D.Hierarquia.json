@@ -1,0 +1,52 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.D.Hierarquia",
+	"Elements":
+	[
+		{
+			"Name":"Controle",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 2",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 3",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 4",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 5",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 6",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 7",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 8",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 9",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Hierarquia 10",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

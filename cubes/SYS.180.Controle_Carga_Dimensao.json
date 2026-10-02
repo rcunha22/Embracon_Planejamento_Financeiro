@@ -1,0 +1,21 @@
+{
+	"@type":"Cube",
+	"Name":"SYS.180.Controle_Carga_Dimensao",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('}Dimensions')"
+		},
+		{
+			"@id":"Dimensions('SYS.D.Hierarquia')"
+		},
+		{
+			"@id":"Dimensions('SYS.M.180.Controle_Carga_Dimensao')"
+		}
+	],
+	"Rules@Code.link":"SYS.180.Controle_Carga_Dimensao.rules",
+	"Views@Code.links":
+	[
+		"SYS.180.Controle_Carga_Dimensao.views/Default.json"
+	]
+}

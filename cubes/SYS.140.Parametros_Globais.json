@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"SYS.140.Parametros_Globais",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('SYS.D.Parametros_Globais')"
+		},
+		{
+			"@id":"Dimensions('SYS.M.140.Parametros_Globais')"
+		}
+	],
+	"Views@Code.links":[]
+}

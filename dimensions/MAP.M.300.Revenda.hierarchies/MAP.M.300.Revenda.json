@@ -1,0 +1,64 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.M.300.Revenda",
+	"Elements":
+	[
+		{
+			"Name":"Descrição Revenda",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Tipo Revenda",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Tipo Revenda",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Filial",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Filial",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Regional",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Regional",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Diretoria",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Diretoria",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Canal",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Canal",
+			"Type":"String"
+		},
+		{
+			"Name":"Classificação Canal",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Empresa",
+			"Type":"String"
+		},
+		{
+			"Name":"Data de Atualização",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Conta_DRE",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Conta_DRE.hierarchies/ALL.D.Conta_DRE.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Conta_DRE')/Hierarchies('ALL.D.Conta_DRE')"
+	}
+}

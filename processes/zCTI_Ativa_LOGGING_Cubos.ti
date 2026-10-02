@@ -1,0 +1,38 @@
+#region Prolog
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+# Variáveis de controle do processo
+# ========================================
+cCuboPropriedade			= '}CubeProperties';
+#endregion
+#region Metadata
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+# Habilita o Log e salva dados no cubo
+# =================================================================================
+CellPutS ( 'YES', cCuboPropriedade, vCubo, 'LOGGING' );
+
+if( SUBST(vCubo, 1, 1) @= '}' );
+    CellPutS ( 'NO', cCuboPropriedade, vCubo, 'LOGGING' );
+endif;
+
+CellPutS ( 'NO', cCuboPropriedade, 'DFS.0900.Consolidacao', 'LOGGING' );
+CellPutS ( 'NO', cCuboPropriedade, 'SYS.150.Controle_Cargas', 'LOGGING' );
+CellPutS ( 'NO', cCuboPropriedade, 'SYS.915.Registro_Copia_Versao', 'LOGGING' );
+CellPutS ( 'NO', cCuboPropriedade, 'SYS.255.Logs', 'LOGGING' );
+CellPutS ( 'NO', cCuboPropriedade, 'SYS.250.Rejeitados_Cargas', 'LOGGING' );
+CellPutS ( 'NO', cCuboPropriedade, 'SYS.201.Acompanhamento_Copia_Versao', 'LOGGING' );
+CellPutS ( 'NO', cCuboPropriedade, 'zCopyTempCube', 'LOGGING' );
+CellPutS ( 'NO', cCuboPropriedade, 'zCopyTempCube_Imp', 'LOGGING' );
+#endregion
+#region Epilog
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

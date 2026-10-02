@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"MAP.M.420.Plano",
+	"Hierarchies@Code.links":
+	[
+		"MAP.M.420.Plano.hierarchies/MAP.M.420.Plano.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('MAP.M.420.Plano')/Hierarchies('MAP.M.420.Plano')"
+	}
+}

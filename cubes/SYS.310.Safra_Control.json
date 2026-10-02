@@ -1,0 +1,27 @@
+{
+	"@type":"Cube",
+	"Name":"SYS.310.Safra_Control",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('ALL.D.Versao')"
+		},
+		{
+			"@id":"Dimensions('REC.D.Safra_CN')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Prazo')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Periodo_Projecao_2')"
+		},
+		{
+			"@id":"Dimensions('SYS.M.Safra_Control')"
+		}
+	],
+	"Rules@Code.link":"SYS.310.Safra_Control.rules",
+	"Views@Code.links":
+	[
+		"SYS.310.Safra_Control.views/Default.json"
+	]
+}

@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.D.Cota",
+	"Elements":
+	[
+		{
+			"Name":"Total Cotas",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Cota 001",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Total Cotas",
+			"ComponentName":"Cota 001",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

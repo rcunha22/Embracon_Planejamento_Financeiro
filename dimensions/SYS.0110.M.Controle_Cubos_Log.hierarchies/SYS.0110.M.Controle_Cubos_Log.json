@@ -1,0 +1,12 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.0110.M.Controle_Cubos_Log",
+	"Elements":
+	[
+		{
+			"Name":"Gravar Log",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

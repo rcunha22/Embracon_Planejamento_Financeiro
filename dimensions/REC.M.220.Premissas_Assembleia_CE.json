@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.220.Premissas_Assembleia_CE",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.220.Premissas_Assembleia_CE.hierarchies/REC.M.220.Premissas_Assembleia_CE.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.220.Premissas_Assembleia_CE')/Hierarchies('REC.M.220.Premissas_Assembleia_CE')"
+	}
+}

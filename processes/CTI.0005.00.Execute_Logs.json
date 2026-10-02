@@ -1,0 +1,21 @@
+{
+	"@type":"Process",
+	"Name":"CTI.0005.00.Execute_Logs",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"CTI.0005.00.Execute_Logs.ti",
+	"UIData":"_ParameterConstraints=e30=\f",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pNomeLog",
+			"Prompt":"Log:",
+			"Value":"tm1s20250714150010.log",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

@@ -1,0 +1,197 @@
+{
+	"@type":"Hierarchy",
+	"Name":"ALL.D.Filial",
+	"ElementsSortType":"ByHierarchy",
+	"ComponentsSortType":"ByName",
+	"Elements":
+	[
+		{
+			"Name":"Total Filial",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"FIL001",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL002",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL003",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL004",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL005",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL006",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL007",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL008",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL009",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL010",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL011",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL012",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL013",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL014",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL015",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL016",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL017",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL018",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL019",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"FIL020",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL001",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL002",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL003",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL004",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL005",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL006",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL007",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL008",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL009",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL010",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL011",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL012",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL013",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL014",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL015",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL016",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL017",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL018",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL019",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Filial",
+			"ComponentName":"FIL020",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

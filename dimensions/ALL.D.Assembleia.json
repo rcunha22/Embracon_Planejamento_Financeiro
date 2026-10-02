@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Assembleia",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Assembleia.hierarchies/ALL.D.Assembleia.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Assembleia')/Hierarchies('ALL.D.Assembleia')"
+	}
+}

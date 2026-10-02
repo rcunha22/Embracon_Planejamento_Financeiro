@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"MAP.M.210.Conta_Gerencial",
+	"Hierarchies@Code.links":
+	[
+		"MAP.M.210.Conta_Gerencial.hierarchies/MAP.M.210.Conta_Gerencial.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('MAP.M.210.Conta_Gerencial')/Hierarchies('MAP.M.210.Conta_Gerencial')"
+	}
+}

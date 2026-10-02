@@ -1,0 +1,20 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.300.Revenda",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('ALL.D.Versao')"
+		},
+		{
+			"@id":"Dimensions('MAP.D.Revenda')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.300.Revenda')"
+		}
+	],
+	"Views@Code.links":
+	[
+		"MAP.300.Revenda.views/Default.json"
+	]
+}

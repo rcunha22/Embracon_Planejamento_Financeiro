@@ -1,0 +1,6 @@
+{
+	"@type":"Subset",
+	"Name":"Padrão",
+	"Alias":"MEMBER_NAME",
+	"Expression":"{EXCEPT(DRILLDOWNMEMBER({[ALL.D.Mes].[ALL.D.Mes].[Total Meses]} , {[ALL.D.Mes].[ALL.D.Mes].[Total Meses]} , RECURSIVE) , {[ALL.D.Mes].[ALL.D.Mes].[Total Meses]})}"
+}

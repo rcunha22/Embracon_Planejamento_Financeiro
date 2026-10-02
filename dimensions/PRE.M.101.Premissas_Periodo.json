@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"PRE.M.101.Premissas_Periodo",
+	"Hierarchies@Code.links":
+	[
+		"PRE.M.101.Premissas_Periodo.hierarchies/PRE.M.101.Premissas_Periodo.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('PRE.M.101.Premissas_Periodo')/Hierarchies('PRE.M.101.Premissas_Periodo')"
+	}
+}

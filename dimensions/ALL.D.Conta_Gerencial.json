@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Conta_Gerencial",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Conta_Gerencial.hierarchies/ALL.D.Conta_Gerencial.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Conta_Gerencial')/Hierarchies('ALL.D.Conta_Gerencial')"
+	}
+}

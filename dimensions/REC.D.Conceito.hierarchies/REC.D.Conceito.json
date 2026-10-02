@@ -1,0 +1,16 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.D.Conceito",
+	"Elements":
+	[
+		{
+			"Name":"Mês",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"ATA",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

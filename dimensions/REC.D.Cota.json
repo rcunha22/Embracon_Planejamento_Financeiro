@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.D.Cota",
+	"Hierarchies@Code.links":
+	[
+		"REC.D.Cota.hierarchies/REC.D.Cota.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.D.Cota')/Hierarchies('REC.D.Cota')"
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.400.CPC47_CN",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.400.CPC47_CN.hierarchies/REC.M.400.CPC47_CN.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.400.CPC47_CN')/Hierarchies('REC.M.400.CPC47_CN')"
+	}
+}

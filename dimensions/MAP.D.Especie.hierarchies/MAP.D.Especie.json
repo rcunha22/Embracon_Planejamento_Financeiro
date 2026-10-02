@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.D.Especie",
+	"Elements":
+	[
+		{
+			"Name":"014",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"021",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"000",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"015",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

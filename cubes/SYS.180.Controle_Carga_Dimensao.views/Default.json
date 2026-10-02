@@ -1,0 +1,24 @@
+{
+	"@type":"MDXView",
+	"Name":"Default",
+	"MDX@Code.link":"Default.mdx",
+	"Meta" : 
+	{
+		"Aliases" : {},
+		"ContextSets" : 
+		{
+			"[}Dimensions].[}Dimensions]" : 
+			{
+				"Expression" : "{[}Dimensions].[}Dimensions].MEMBERS}"
+			}
+		},
+		"ExpandAboves" : 
+		{
+			"[SYS.D.Hierarquia].[SYS.D.Hierarquia]" : false,
+			"[SYS.M.180.Controle_Carga_Dimensao].[SYS.M.180.Controle_Carga_Dimensao]" : false,
+			"[}Dimensions].[}Dimensions]" : false
+		}
+	},
+	"ViewExtractSkipConsolidatedValues" : true,
+	"ViewExtractSkipZeroes" : true
+}

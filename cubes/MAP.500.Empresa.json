@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.500.Empresa",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('MAP.D.Empresa')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.500.Empresa')"
+		}
+	],
+	"Views@Code.links":[]
+}

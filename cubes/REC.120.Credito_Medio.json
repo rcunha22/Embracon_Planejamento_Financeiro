@@ -1,0 +1,36 @@
+{
+	"@type":"Cube",
+	"Name":"REC.120.Credito_Medio",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('ALL.D.Ano')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Mes')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Versao')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Canal')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Especie')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Tabela')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Plano')"
+		},
+		{
+			"@id":"Dimensions('REC.M.120.Credito_Medio')"
+		}
+	],
+	"Rules@Code.link":"REC.120.Credito_Medio.rules",
+	"Views@Code.links":
+	[
+		"REC.120.Credito_Medio.views/Default.json"
+	]
+}

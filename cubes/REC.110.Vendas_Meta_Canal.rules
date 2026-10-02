@@ -1,0 +1,13 @@
+FEEDERS;
+
+['REC.M.110.Vendas_Meta_Canal':'REC.M.110.Vendas_Meta_Canal':'Meta de Venda'] =>
+DB( 'REC.140.Vendas_Projecao'
+    , !ALL.D.Ano
+    , !ALL.D.Mes
+    , !ALL.D.Versao
+    , !ALL.D.Canal
+    , 'ALL.D.Especie':'Especies'
+    , 'ALL.D.Tabela':'Tabelas'
+    , 'ALL.D.Plano':'Planos'
+    , 'ALL.D.Regional':'Total Regional'
+    , 'Meta do Canal' );

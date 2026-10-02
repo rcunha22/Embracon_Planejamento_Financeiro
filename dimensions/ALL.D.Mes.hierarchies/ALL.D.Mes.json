@@ -1,0 +1,769 @@
+{
+	"@type":"Hierarchy",
+	"Name":"ALL.D.Mes",
+	"Elements":
+	[
+		{
+			"Name":"Mês",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"1º Semestre",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"1º Trimestre",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"02",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"03",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2º Trimestre",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"04",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"05",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"06",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"2º Semestre",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"3º Trimestre",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"07",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"08",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"09",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"4º Trimestre",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"10",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"11",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"12",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Base",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Total Meses",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"01",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Total YTD",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 01",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 02",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 03",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 04",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 05",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 06",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 07",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 08",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 09",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 10",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 11",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"YTD 12",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Budget 5 Anos",
+			"Type":"Consolidated"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Mês",
+			"ComponentName":"1º Semestre",
+			"Weight":1
+		},
+		{
+			"ParentName":"Mês",
+			"ComponentName":"2º Semestre",
+			"Weight":1
+		},
+		{
+			"ParentName":"1º Semestre",
+			"ComponentName":"1º Trimestre",
+			"Weight":1
+		},
+		{
+			"ParentName":"1º Semestre",
+			"ComponentName":"2º Trimestre",
+			"Weight":1
+		},
+		{
+			"ParentName":"1º Trimestre",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"1º Trimestre",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"1º Trimestre",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"2º Trimestre",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"2º Trimestre",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"2º Trimestre",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"2º Semestre",
+			"ComponentName":"3º Trimestre",
+			"Weight":1
+		},
+		{
+			"ParentName":"2º Semestre",
+			"ComponentName":"4º Trimestre",
+			"Weight":1
+		},
+		{
+			"ParentName":"3º Trimestre",
+			"ComponentName":"07",
+			"Weight":1
+		},
+		{
+			"ParentName":"3º Trimestre",
+			"ComponentName":"08",
+			"Weight":1
+		},
+		{
+			"ParentName":"3º Trimestre",
+			"ComponentName":"09",
+			"Weight":1
+		},
+		{
+			"ParentName":"4º Trimestre",
+			"ComponentName":"10",
+			"Weight":1
+		},
+		{
+			"ParentName":"4º Trimestre",
+			"ComponentName":"11",
+			"Weight":1
+		},
+		{
+			"ParentName":"4º Trimestre",
+			"ComponentName":"12",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"07",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"08",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"09",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"10",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"11",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total Meses",
+			"ComponentName":"12",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 01",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 02",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 03",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 04",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 05",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 06",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 07",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 08",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 09",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 10",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 11",
+			"Weight":1
+		},
+		{
+			"ParentName":"Total YTD",
+			"ComponentName":"YTD 12",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 01",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 02",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 02",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 03",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 03",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 03",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 04",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 04",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 04",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 04",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 05",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 05",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 05",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 05",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 05",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 06",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 06",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 06",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 06",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 06",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 06",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 07",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 07",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 07",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 07",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 07",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 07",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 07",
+			"ComponentName":"07",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 08",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 08",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 08",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 08",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 08",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 08",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 08",
+			"ComponentName":"07",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 08",
+			"ComponentName":"08",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"07",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"08",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 09",
+			"ComponentName":"09",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"07",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"08",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"09",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 10",
+			"ComponentName":"10",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"07",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"08",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"09",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"10",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 11",
+			"ComponentName":"11",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"01",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"02",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"03",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"04",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"05",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"06",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"07",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"08",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"09",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"10",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"11",
+			"Weight":1
+		},
+		{
+			"ParentName":"YTD 12",
+			"ComponentName":"12",
+			"Weight":1
+		},
+		{
+			"ParentName":"Budget 5 Anos",
+			"ComponentName":"Mês",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"ALL.D.Mes.subsets/Padrão.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-04 16h10m40s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-04 16h12m27s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-04 16h13m36s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-05 10h24m43s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-05 10h39m46s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-05 10h40m43s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-05 10h41m34s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-05 10h42m03s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-06 09h34m24s.json",
+		"ALL.D.Mes.subsets/SYS_Drill_Logs_2024-09-06 11h26m22s.json"
+	]
+}

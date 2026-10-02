@@ -1,0 +1,624 @@
+SKIPCHECK;
+
+# --------------------------------------------------------------------------------------------
+# Name: Dynamic Versions
+# Desc: Libera Regras apenas para Versões Dinâmicas
+# Date: 30\09\2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+[] = N:
+  IF( ELISANC( 'ALL.D.Versao', 'Dynamic Versions', !ALL.D.Versao ) <> 0
+  , CONTINUE
+  , STET );
+
+#Region - Auxiliares
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux MOB
+# Desc: MOB calculado no SYS.310
+# Data: 30/09/2026
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Aux MOB'] = N:
+
+DB(
+   'SYS.310.Safra_Control'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Prazo
+   , !ALL.D.Periodo_Projecao_2
+   , 'MOB'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Flag
+# Desc: Flag de ativação da safra
+# Data: 30/09/2026
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Aux Flag'] = N:
+
+DB(
+   'SYS.310.Safra_Control'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Prazo
+   , !ALL.D.Periodo_Projecao_2
+   , 'Flag Aux'
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Faturamento Safra
+# Desc: Faturamento da safra ativo somente durante a vida da safra
+# Data: 30/09/2026
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Aux Faturamento Safra'] = N:
+
+IF(
+   ['REC.M.400.CPC47_CN':'Aux MOB'] >= 1 &
+   ['REC.M.400.CPC47_CN':'Aux MOB'] <= NUMBR(!ALL.D.Prazo),
+
+   DB(
+      'REC.140.Vendas_Projecao'
+      , SUBST(
+           ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !REC.D.Safra_CN
+              , !ALL.D.Versao
+           )
+           , 5
+           , 10
+        )
+      , SUBST(
+           ATTRS(
+              'ALL.D.Periodo_Projecao_2'
+              , !REC.D.Safra_CN
+              , !ALL.D.Versao
+           )
+           , 1
+           , 3
+        )
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , 'ALL.D.Regional':'Total Regional'
+      , 'Faturamento Projetado'
+   ),
+
+   0
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Aux Comissao Total
+# Desc: Comissão total ativa somente durante a vida da safra
+# Data: 30/09/2026
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Aux Comissao Total'] = N:
+
+IF(
+   ['REC.M.400.CPC47_CN':'Aux MOB'] >= 1
+   &
+   ['REC.M.400.CPC47_CN':'Aux MOB'] <= NUMBR(!ALL.D.Prazo),
+
+   ['REC.M.400.CPC47_CN':'Aux Faturamento Safra']
+   *
+   DB(
+      'REC.180.Condicoes_Comerciais'
+      , !ALL.D.Versao
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , 'Comissao'
+   ),
+
+   0
+);
+
+
+#EndRegion - Auxiliares
+
+
+# --------------------------------------------------------------------------------------------
+# Name: Estoque Inicial de Taxa
+# Desc: No nascimento da safra utiliza o Faturamento Projetado multiplicado pela
+#       Taxa de Administração. Nos demais períodos utiliza o estoque final do
+#       período anterior.
+# Date: 28/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Estoque Inicial de Taxa'] = N:
+
+IF(
+
+DB(
+   'SYS.310.Safra_Control'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , !ALL.D.Prazo
+   , !ALL.D.Periodo_Projecao_2
+   , 'Flag Aux'
+) = 1
+
+,
+
+DB(
+   'REC.140.Vendas_Projecao'
+   , SUBST(
+        ATTRS(
+           'ALL.D.Periodo_Projecao_2'
+           , !ALL.D.Periodo_Projecao_2
+           , !ALL.D.Versao
+        )
+      ,5,10)
+   , SUBST(
+        ATTRS(
+           'ALL.D.Periodo_Projecao_2'
+           , !ALL.D.Periodo_Projecao_2
+           , !ALL.D.Versao
+        )
+      ,1,3)
+   , !ALL.D.Versao
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , 'ALL.D.Plano':'Planos'
+   , 'ALL.D.Regional':'Total Regional'
+   , 'Faturamento Projetado'
+)
+
+*
+
+DB(
+   'REC.180.Condicoes_Comerciais'
+   , !ALL.D.Versao
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , 'Taxa de Administracao'
+)
+
+,
+
+DB(
+   'REC.400.CPC47_CN'
+   , !ALL.D.Versao
+   , !REC.D.Safra_CN
+   , ATTRS(
+        'ALL.D.Periodo_Projecao_2'
+        , !ALL.D.Periodo_Projecao_2
+        , 'Período Anterior'
+     )
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Tabela
+   , 'Estoque Final de Taxa'
+)
+
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Taxa Linear Ideal
+# Desc: Calcula o reconhecimento linear da taxa de administração ao longo do
+#       prazo remanescente da safra.
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Taxa Linear Ideal'] = N:
+
+IF(
+   ['REC.M.400.CPC47_CN':'Aux MOB'] > NUMBR(!ALL.D.Prazo)
+,
+   0
+,
+   ['REC.M.400.CPC47_CN':'Estoque Inicial de Taxa']
+   /
+   (
+      NUMBR(!ALL.D.Prazo)
+      - ['REC.M.400.CPC47_CN':'Aux MOB']
+      + 1
+   )
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Baixa por Cancelamento
+# Desc: Calcula o efeito financeiro do cancelamento sobre o estoque de taxa,
+#       utilizando a soma das baixas de cancelamento dos três fluxos de receita.
+# Date: 28/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Cancelamento do Estoque'] = N:
+
+      DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Baixa por Cancelamento Taxa no Prazo'
+      )
+
+    + DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Baixa por Cancelamento Taxa Embutida'
+      )
+
+    + DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Baixa por Cancelamento Taxa Antecipada Acrescida'
+      );
+
+# --------------------------------------------------------------------------------------------
+# Name: Receita de Taxa de Administracao
+# Desc: Reconhecimento da receita de taxa.
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Receita de Taxa de Administracao'] = N:
+
+IF(
+   ['REC.M.400.CPC47_CN':'Aux MOB'] > NUMBR(!ALL.D.Prazo)
+,
+   0
+,
+   (
+      ['REC.M.400.CPC47_CN':'Estoque Inicial de Taxa']
+      + ['REC.M.400.CPC47_CN':'Movimentacao para Adequacao de Lance e Antecipacao']
+      - ['REC.M.400.CPC47_CN':'Cancelamento do Estoque']
+   )
+   /
+   (
+      NUMBR(!ALL.D.Prazo)
+      - ['REC.M.400.CPC47_CN':'Aux MOB']
+      + 1
+   )
+);
+
+
+# --------------------------------------------------------------------------------------------
+# Name: Efeito de Cancelamento, Reajuste e Quitacao
+# Desc: Reconhece o efeito líquido do cancelamento sobre o estoque de taxa.
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Efeito Cancelamento'] = N:
+
+- ['REC.M.400.CPC47_CN':'Cancelamento do Estoque'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Movimentacao para Adequacao de Lance e Antecipacao
+# Desc: Consolida os efeitos de antecipação dos três fluxos de receita para
+#       adequação do reconhecimento contábil da taxa.
+# Date: 28/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Movimentacao para Adequacao de Lance e Antecipacao'] = N:
+
+      DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Reajuste Taxa no Prazo'
+      )
+
+    + DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Reajuste Taxa Embutida'
+      )
+
+    + DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Reajuste Taxa Antecipada Acrescida'
+      );
+
+# --------------------------------------------------------------------------------------------
+# Name: Estoque Final de Taxa
+# Desc: Calcula o saldo remanescente do estoque de taxa após receitas,
+#       cancelamentos, adequações e quitações.
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Estoque Final de Taxa'] = N:
+
+IF(
+   ['REC.M.400.CPC47_CN':'Aux MOB'] > NUMBR(!ALL.D.Prazo)
+,
+   0
+,
+      ['REC.M.400.CPC47_CN':'Estoque Inicial de Taxa']
+    + ['REC.M.400.CPC47_CN':'Movimentacao para Adequacao de Lance e Antecipacao']
+    - ['REC.M.400.CPC47_CN':'Cancelamento do Estoque']
+    - ['REC.M.400.CPC47_CN':'Receita de Taxa de Administracao']
+    - ['REC.M.400.CPC47_CN':'Receita de Taxa Quitada']
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Receita de Caixa
+# Desc: Consolida as receitas de caixa provenientes de arrecadação,
+#       antecipação e lance.
+# Date: 28/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Receita de Caixa'] = N:
+
+      DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Arrecadação do Período'
+      )
+
+    + DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Receita de Antecipação'
+      )
+
+    + DB(
+         'REC.190.Receitas_CN'
+         , !ALL.D.Versao
+         , !REC.D.Safra_CN
+         , !ALL.D.Periodo_Projecao_2
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Receita de Lance'
+      );
+
+# --------------------------------------------------------------------------------------------
+# Name: Comissao Paga
+# Desc: Comissão paga reconhecida no nascimento da safra.
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Comissao Paga'] = N:
+
+IF(
+   ['REC.M.400.CPC47_CN':'Aux Flag'] = 0
+,
+   0
+,
+   -(
+      DB(
+         'REC.140.Vendas_Projecao'
+         , SUBST(
+              ATTRS(
+                 'ALL.D.Periodo_Projecao_2'
+                 , !ALL.D.Periodo_Projecao_2
+                 , !ALL.D.Versao
+              )
+              , 5
+              , 10
+           )
+         , SUBST(
+              ATTRS(
+                 'ALL.D.Periodo_Projecao_2'
+                 , !ALL.D.Periodo_Projecao_2
+                 , !ALL.D.Versao
+              )
+              , 1
+              , 3
+           )
+         , !ALL.D.Versao
+         , !ALL.D.Canal
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , 'ALL.D.Regional':'Total Regional'
+         , 'Faturamento Projetado'
+      )
+      *
+      DB(
+         'REC.180.Condicoes_Comerciais'
+         , !ALL.D.Versao
+         , !ALL.D.Especie
+         , !ALL.D.Tabela
+         , !ALL.D.Plano
+         , !ALL.D.Prazo
+         , 'Comissao'
+      )
+      * 0.6
+   )
+);
+
+
+# --------------------------------------------------------------------------------------------
+# Name: Comissao Linear
+# Desc: Apropriação linear da comissão
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Comissao Linear'] = N:
+
+IF(
+   ['REC.M.400.CPC47_CN':'Aux MOB'] >= 1
+   &
+   ['REC.M.400.CPC47_CN':'Aux MOB'] <= NUMBR(!ALL.D.Prazo)
+,
+   -(
+      ['REC.M.400.CPC47_CN':'Aux Comissao Total']
+      /
+      NUMBR(!ALL.D.Prazo)
+   )
+,
+   0
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Receita de Caixa
+# Desc: Faz o cálculo da receita caixa
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'REC.M.400.CPC47_CN':'Diferimento de Receita'] = N:
+  
+['REC.M.400.CPC47_CN':'REC.M.400.CPC47_CN':'Receita de Taxa de Administracao']
+  -
+  ['REC.M.400.CPC47_CN':'REC.M.400.CPC47_CN':'Receita de Caixa'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Resultado Caixa
+# Desc: Soma da Receita de Caixa com a Comissão Paga.
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Resultado Caixa'] = N:
+
+   ['REC.M.400.CPC47_CN':'Receita de Caixa']
+ +
+   ['REC.M.400.CPC47_CN':'Comissao Paga'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Resultado Competencia
+# Desc: Soma da Receita de Taxa de Administracao com a Comissao Linear.
+# Date: 30/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.400.CPC47_CN':'Resultado Competencia'] = N:
+
+['REC.M.400.CPC47_CN':'Receita de Taxa de Administracao']
++
+['REC.M.400.CPC47_CN':'Comissao Linear'];
+
+FEEDERS;
+
+# # Estoque Inicial alimenta todos os calculos que dele dependem
+# ['REC.M.400.CPC47_CN':'Estoque Inicial de Taxa', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#     ['REC.M.400.CPC47_CN':'Taxa Linear Ideal']
+#   , ['REC.M.400.CPC47_CN':'Receita de Taxa de Administracao']
+#   , ['REC.M.400.CPC47_CN':'Estoque Final de Taxa'];
+
+# # Cancelamento do Estoque alimenta Receita de Taxa e Estoque Final
+# ['REC.M.400.CPC47_CN':'Cancelamento do Estoque', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#     ['REC.M.400.CPC47_CN':'Efeito Cancelamento']
+#   , ['REC.M.400.CPC47_CN':'Receita de Taxa de Administracao']
+#   , ['REC.M.400.CPC47_CN':'Estoque Final de Taxa'];
+
+# # Movimentacao para Adequacao alimenta Receita de Taxa e Estoque Final
+# ['REC.M.400.CPC47_CN':'Movimentacao para Adequacao de Lance e Antecipacao', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#     ['REC.M.400.CPC47_CN':'Receita de Taxa de Administracao']
+#   , ['REC.M.400.CPC47_CN':'Estoque Final de Taxa'];
+
+# # Receita de Taxa de Administracao alimenta Estoque Final e Resultado Competencia
+# ['REC.M.400.CPC47_CN':'Receita de Taxa de Administracao', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#     ['REC.M.400.CPC47_CN':'Estoque Final de Taxa']
+#   , ['REC.M.400.CPC47_CN':'Diferimento de Receita']
+#   , ['REC.M.400.CPC47_CN':'Resultado Competencia'];
+
+# # Receita de Taxa Quitada (entrada externa ou regra nao mostrada) => Estoque Final
+# # Se vier de outro cubo, adicione o feeder de la para ca. Se for regra interna, mantenha aqui.
+# ['REC.M.400.CPC47_CN':'Receita de Taxa Quitada', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#   ['REC.M.400.CPC47_CN':'Estoque Final de Taxa'];
+
+# # Estoque Final propaga para Estoque Inicial do periodo seguinte (cadeia temporal)
+# ['REC.M.400.CPC47_CN':'Estoque Final de Taxa', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#   DB( 'REC.400.CPC47_CN'
+#     , !ALL.D.Versao
+#     , !REC.D.Safra_CN
+#     , ATTRS( 'ALL.D.Periodo_Projecao_2', !ALL.D.Periodo_Projecao_2, 'Período Posterior' )
+#     , !ALL.D.Canal
+#     , !ALL.D.Especie
+#     , !ALL.D.Plano
+#     , !ALL.D.Prazo
+#     , !ALL.D.Tabela
+#     , 'Estoque Inicial de Taxa' );
+
+# # Receita de Caixa alimenta Diferimento e Resultado Caixa
+# ['REC.M.400.CPC47_CN':'Receita de Caixa', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#     ['REC.M.400.CPC47_CN':'Diferimento de Receita']
+#   , ['REC.M.400.CPC47_CN':'Resultado Caixa'];
+
+# # Comissao Paga alimenta Resultado Caixa
+# ['REC.M.400.CPC47_CN':'Comissao Paga', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#   ['REC.M.400.CPC47_CN':'Resultado Caixa'];
+
+# # Comissao Linear alimenta Resultado Competencia
+# ['REC.M.400.CPC47_CN':'Comissao Linear', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#   ['REC.M.400.CPC47_CN':'Resultado Competencia'];

@@ -1,0 +1,6 @@
+{
+	"@type":"Subset",
+	"Name":"Leaf",
+	"Alias":"MEMBER_NAME",
+	"Expression":"{TM1FILTERBYLEVEL(TM1SUBSETALL([ALL.D.Periodo_Projecao].[ALL.D.Periodo_Projecao]) , 0)}"
+}

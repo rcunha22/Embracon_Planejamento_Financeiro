@@ -1,0 +1,53 @@
+{
+	"@type":"NativeView",
+	"Name":"Default",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('MAP.M.300.Revenda')/Hierarchies('MAP.M.300.Revenda')"
+				},
+				"Expression":"{[MAP.M.300.Revenda].[MAP.M.300.Revenda].MEMBERS}"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('MAP.D.Revenda')/Hierarchies('MAP.D.Revenda')"
+				},
+				"Expression":"{[MAP.D.Revenda].[MAP.D.Revenda].MEMBERS}"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('ALL.D.Versao')/Hierarchies('ALL.D.Versao')"
+				},
+				"Expression":"{[ALL.D.Versao].[ALL.D.Versao].MEMBERS}"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('ALL.D.Versao')/Hierarchies('ALL.D.Versao')/Elements('T1')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00",
+	"IsAutocalculate" : true,
+	"IsDeferComputeOnLeafDataEntry" : false,
+	"IsSuppressComputeOnOpen" : false
+}

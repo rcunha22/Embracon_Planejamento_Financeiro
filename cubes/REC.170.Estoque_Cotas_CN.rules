@@ -1,0 +1,781 @@
+SKIPCHECK;
+
+#Region - Outros
+# --------------------------------------------------------------------------------------------
+# Name: Dynamic Versions
+# Desc: Libera Regras apenas para Versões Dinâmicas
+# Date: 22/09/2026
+# Author: Willian Maeda
+# --------------------------------------------------------------------------------------------
+
+[] = N:
+  IF( ELISANC( 'ALL.D.Versao', 'Dynamic Versions', !ALL.D.Versao ) <> 0
+  , CONTINUE
+  , STET );
+
+# --------------------------------------------------------------------------------------------
+# Name:
+# Desc: 
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'Flag Aux'] = N:
+
+IF(!REC.D.Safra_CN @= '001'
+   &
+   DB('PRE.100.Premissas_Gerais'
+      , SUBST(!ALL.D.Periodo_Projecao,5,10)
+      , SUBST(!ALL.D.Periodo_Projecao,1,3)
+      , !ALL.D.Versao
+      , 'Periodo Inicial da Projecao'
+   ) = 1
+
+, 1
+
+, CONTINUE
+  );
+
+['REC.M.170.Estoque_Cotas_CN':'Flag Aux'] = N:
+
+IF(
+DB('REC.170.Estoque_Cotas_CN'
+   , !ALL.D.Versao
+   , ATTRS('REC.D.Safra_CN',!REC.D.Safra_CN,'Safra Anterior')
+   , ATTRS('ALL.D.Periodo_Projecao',!ALL.D.Periodo_Projecao,'Previous Period')
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Regional
+   , 'Flag Aux'
+) = 1
+
+, 1
+
+, CONTINUE
+);
+
+
+# --------------------------------------------------------------------------------------------
+# Name: Cotas Valor
+# Desc: Calcula as cotas vendidas apenas para o período correspondente à safra
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Valor'] = N:
+
+IF(['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag Aux'] = 1
+, DB('REC.140.Vendas_Projecao'
+      , SUBST( !ALL.D.Periodo_Projecao, 5, 10 ) 
+      , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Regional
+      , 'Cotas Vendidas'
+    )
+  
+    *
+  
+    DB('REC.130.Mix_Prazo'
+      , SUBST( !ALL.D.Periodo_Projecao, 5, 10 )
+      , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , 'Distribuicao por Prazo'
+    )
+  , 0
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Flag Inicial
+# Desc: Flag
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag', 'REC.D.Safra_CN':'REC.D.Safra_CN':'001'] = N:
+  IF( DB( 'PRE.100.Premissas_Gerais'
+          , SUBST( !ALL.D.Periodo_Projecao, 5, 10 )
+          , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+          , !ALL.D.Versao,'Periodo Inicial da Projecao' ) = 1 
+      &
+ ['Cotas Vendidas na Safra'] <> 0 
+  # ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Valor'] <> 0 
+  # % 
+  # ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Input'] <> 0
+  , NUMBR( !ALL.D.Prazo ) + 1
+  , CONTINUE );
+
+
+# --------------------------------------------------------------------------------------------
+# Name: Flag
+# Desc: Distribui as safras ao longo dos períodos
+# Date: 18/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag','ALL.D.Prazo':'12','REC.D.Safra_CN':{'001','002','003'}] = N:
+# ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag'] = N:
+IF(
+DB(
+   'REC.170.Estoque_Cotas_CN'
+   , !ALL.D.Versao
+   , ATTRS('REC.D.Safra_CN', !REC.D.Safra_CN, 'Safra Anterior')
+   , ATTRS('ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Previous Period')
+   , !ALL.D.Canal
+   , !ALL.D.Especie
+   , !ALL.D.Tabela
+   , !ALL.D.Plano
+   , !ALL.D.Prazo
+   , !ALL.D.Regional
+   , 'Flag'
+) =  NUMBR( !ALL.D.Prazo ) + 1
+        &
+  ['Cotas Vendidas na Safra'] <> 0
+, NUMBR( !ALL.D.Prazo ) + 1
+, CONTINUE
+);
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag','ALL.D.Prazo':'12','REC.D.Safra_CN':{'001','002','003'}] = N:
+# ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag'] = N:
+If(
+    DB( 'REC.170.Estoque_Cotas_CN'
+        , !ALL.D.Versao
+        , !REC.D.Safra_CN
+        , DB( 'SYS.200.Time_Travel'
+               , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+               , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+               , '-1', 'Mes' ) |'/'| DB( 'SYS.200.Time_Travel'
+                                        , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+                                        , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+                                        , '-1', 'Ano' )
+        , !ALL.D.Canal
+        , !ALL.D.Especie
+        , !ALL.D.Tabela
+        , !ALL.D.Plano
+        , !ALL.D.Prazo
+        , !ALL.D.Regional
+        , !REC.M.170.Estoque_Cotas_CN ) <>0
+  ,    
+  DB( 'REC.170.Estoque_Cotas_CN'
+        , !ALL.D.Versao
+        , !REC.D.Safra_CN
+               , DB( 'SYS.200.Time_Travel'
+               , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+               , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+               , '-1', 'Mes' ) |'/'| DB( 'SYS.200.Time_Travel'
+                                        , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+                                        , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+                                        , '-1', 'Ano' )
+        , !ALL.D.Canal
+        , !ALL.D.Especie
+        , !ALL.D.Tabela
+        , !ALL.D.Plano
+        , !ALL.D.Prazo
+        , !ALL.D.Regional
+        , !REC.M.170.Estoque_Cotas_CN ) -1
+  ,CONTINUE
+   );
+
+# ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag','ALL.D.Prazo':'ALL.D.Prazo':'12','REC.D.Safra_CN':{'001','002','003'}] = N:
+# NUMBR(DB( 'SYS.200.Time_Travel'
+#                , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+#                , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+#                , '-1', 'Mes' )) ;
+
+# ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag','ALL.D.Prazo':'ALL.D.Prazo':'12','REC.D.Safra_CN':{'001','002','003'}] = N:
+# DB('REC.170.Estoque_Cotas_CN'
+#          , !ALL.D.Versao
+#          , !REC.D.Safra_CN
+#          , DB( 'SYS.200.Time_Travel'
+#                , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+#                , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+#                , '-1', 'Mes' ) |' '| DB( 'SYS.200.Time_Travel'
+#                                         , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+#                                         , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+#                                         , '-1', 'Ano' )
+#          , !ALL.D.Canal
+#          , !ALL.D.Especie
+#          , !ALL.D.Tabela
+#          , !ALL.D.Plano
+#          , !ALL.D.Prazo
+#          , !ALL.D.Regional
+#          , !REC.M.170.Estoque_Cotas_CN );
+  
+# ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag'] = N:
+#   IF( DB('REC.170.Estoque_Cotas_CN'
+#          , !ALL.D.Versao
+#          , !REC.D.Safra_CN
+#          , DB( 'SYS.200.Time_Travel'
+#                , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+#                , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+#                , '-1', 'Mes' ) |' '| DB( 'SYS.200.Time_Travel'
+#                                         , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+#                                         , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+#                                         , '-1', 'Ano' )
+#          , !ALL.D.Canal
+#          , !ALL.D.Especie
+#          , !ALL.D.Tabela
+#          , !ALL.D.Plano
+#          , !ALL.D.Prazo
+#          , !ALL.D.Regional
+#          , !REC.M.170.Estoque_Cotas_CN ) <> 0
+#   , DB('REC.170.Estoque_Cotas_CN'
+#          , !ALL.D.Versao
+#          , !REC.D.Safra_CN
+#          , DB( 'SYS.200.Time_Travel'
+#                , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+#                , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+#                , '-1', 'Mes' ) |' '| DB( 'SYS.200.Time_Travel'
+#                                         , SUBST( !ALL.D.Periodo_Projecao, 5, 4 )
+#                                         , SUBST( !ALL.D.Periodo_Projecao, 1, 3 )
+#                                         , '-1', 'Ano' )
+#          , !ALL.D.Canal
+#          , !ALL.D.Especie
+#          , !ALL.D.Tabela
+#          , !ALL.D.Plano
+#          , !ALL.D.Prazo
+#          , !ALL.D.Regional
+#          , !REC.M.170.Estoque_Cotas_CN )
+#     -1
+#   , CONTINUE );
+  
+  
+  
+  
+  
+# ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag'] = N:
+# IF(
+# DB(
+#    'REC.170.Estoque_Cotas_CN'
+#    , !ALL.D.Versao
+#    , !REC.D.Safra_CN
+#    , ATTRS('ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Previous Period')
+#    , !ALL.D.Canal
+#    , !ALL.D.Especie
+#    , !ALL.D.Tabela
+#    , !ALL.D.Plano
+#    , !ALL.D.Prazo
+#    , !ALL.D.Regional
+#    , 'Flag'
+# ) <> 0
+# ,DB(
+#    'REC.170.Estoque_Cotas_CN'
+#    , !ALL.D.Versao
+#    , !REC.D.Safra_CN
+#    , ATTRS('ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Previous Period')
+#    , !ALL.D.Canal
+#    , !ALL.D.Especie
+#    , !ALL.D.Tabela
+#    , !ALL.D.Plano
+#    , !ALL.D.Prazo
+#    , !ALL.D.Regional
+#    , 'Flag') - 1
+#   ,CONTINUE);
+
+
+
+
+
+# ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag'] = N:
+#   IF(DB( 'REC.170.Estoque_Cotas_CN'
+#          , !ALL.D.Versao
+#          , ATTRS( 'REC.D.Safra_CN', !REC.D.Safra_CN, 'Safra Anterior' )
+#          , !ALL.D.Periodo_Projecao
+#          , !ALL.D.Canal
+#          , !ALL.D.Especie
+#          , !ALL.D.Tabela
+#          , !ALL.D.Plano
+#          , !ALL.D.Prazo
+#          , !ALL.D.Regional
+#          , !REC.M.170.Estoque_Cotas_CN ) >= 1
+#   , DB( 'REC.170.Estoque_Cotas_CN'
+#          , !ALL.D.Versao
+#          , ATTRS( 'REC.D.Safra_CN', !REC.D.Safra_CN, 'Safra Anterior' )
+#          , !ALL.D.Periodo_Projecao
+#          , !ALL.D.Canal
+#          , !ALL.D.Especie
+#          , !ALL.D.Tabela
+#          , !ALL.D.Plano
+#          , !ALL.D.Prazo
+#          , !ALL.D.Regional
+#          , !REC.M.170.Estoque_Cotas_CN ) +1
+#   , 0 );
+
+
+#EndRegion - Outros
+
+#Region - Não Contempladas
+
+# --------------------------------------------------------------------------------------------
+# Name: Saldo Inicial Nao Contempladas
+# Desc: Quando inicia a safra utiliza as cotas vendidas. Nos demais períodos utiliza o saldo final do período anterior.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Nao Contempladas'] = N:
+IF(['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag Aux'] = 1
+  
+, ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Vendidas na Safra']
+, IF( ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag'] <> 0
+  ,DB('REC.170.Estoque_Cotas_CN'
+        , !ALL.D.Versao
+        , !REC.D.Safra_CN
+        , ATTRS( 'ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Previous Period' )
+        , !ALL.D.Canal
+        , !ALL.D.Especie
+        , !ALL.D.Tabela
+        , !ALL.D.Plano
+        , !ALL.D.Prazo
+        , !ALL.D.Regional
+        , 'Saldo Final Nao Contempladas'
+     )
+  ,0)
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Contemplacoes por Sorteio
+# Desc: Calcula a quantidade de cotas contempladas por sorteio aplicando o percentual de contemplação por sorteio.
+#        No período de nascimento da safra não há contemplação.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Sorteio'] = N:
+
+IF(['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag Aux'] = 1
+  
+, 0
+
+,   IF( DB( 'REC.170.Estoque_Cotas_CN'
+            , !ALL.D.Versao
+            , !REC.D.Safra_CN
+            , !ALL.D.Periodo_Projecao
+            , !ALL.D.Canal
+            , !ALL.D.Especie
+            , !ALL.D.Tabela
+            , !ALL.D.Plano
+            , !ALL.D.Prazo
+            , !ALL.D.Regional
+            , 'Flag' ) <> 0,
+  
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Nao Contempladas']
+   *
+   DB('REC.160.Premissas_Assembleia_CN'
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , STR(NUMBR(!ALL.D.Prazo) - DB('REC.170.Estoque_Cotas_CN'
+        , !ALL.D.Versao
+        , !REC.D.Safra_CN
+        , !ALL.D.Periodo_Projecao
+        , !ALL.D.Canal
+        , !ALL.D.Especie
+        , !ALL.D.Tabela
+        , !ALL.D.Plano
+        , !ALL.D.Prazo
+        , !ALL.D.Regional
+        , 'Flag') + 2,2,0)
+      , 'Contemplacao por Sorteio')
+  , 0)
+
+);
+
+    
+# --------------------------------------------------------------------------------------------
+# Name: Contemplacoes por Lance
+# Desc: Calcula a quantidade de cotas contempladas por lance.
+#        No período de nascimento da safra não há contemplação.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Lance'] = N:
+
+IF(['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag Aux'] = 1
+  
+, 0
+
+,   IF( DB( 'REC.170.Estoque_Cotas_CN'
+            , !ALL.D.Versao
+            , !REC.D.Safra_CN
+            , !ALL.D.Periodo_Projecao
+            , !ALL.D.Canal
+            , !ALL.D.Especie
+            , !ALL.D.Tabela
+            , !ALL.D.Plano
+            , !ALL.D.Prazo
+            , !ALL.D.Regional
+            , 'Flag' ) <> 0,
+  
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Nao Contempladas']
+   *
+   DB('REC.160.Premissas_Assembleia_CN'
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , STR(NUMBR(!ALL.D.Prazo) - DB('REC.170.Estoque_Cotas_CN'
+        , !ALL.D.Versao
+        , !REC.D.Safra_CN
+        , !ALL.D.Periodo_Projecao
+        , !ALL.D.Canal
+        , !ALL.D.Especie
+        , !ALL.D.Tabela
+        , !ALL.D.Plano
+        , !ALL.D.Prazo
+        , !ALL.D.Regional
+        , 'Flag') + 2,2,0)
+      , 'Contemplacao por Lance')
+  , 0)
+
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Cotas Canceladas
+# Desc: Calcula a quantidade de cotas canceladas.
+#        No período de nascimento da safra não há cancelamento.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Canceladas'] = N:
+
+IF(['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag Aux'] = 1
+
+, 0
+
+,  IF( DB( 'REC.170.Estoque_Cotas_CN'
+            , !ALL.D.Versao
+            , !REC.D.Safra_CN
+            , !ALL.D.Periodo_Projecao
+            , !ALL.D.Canal
+            , !ALL.D.Especie
+            , !ALL.D.Tabela
+            , !ALL.D.Plano
+            , !ALL.D.Prazo
+            , !ALL.D.Regional
+            , 'Flag' ) <> 0
+  
+  , ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Nao Contempladas']
+  
+   *
+  
+   DB('REC.150.Premissas_Cancelamento_CN'
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , STR(NUMBR(!ALL.D.Prazo) - DB('REC.170.Estoque_Cotas_CN'
+        , !ALL.D.Versao
+        , !REC.D.Safra_CN
+        , !ALL.D.Periodo_Projecao
+        , !ALL.D.Canal
+        , !ALL.D.Especie
+        , !ALL.D.Tabela
+        , !ALL.D.Plano
+        , !ALL.D.Prazo
+        , !ALL.D.Regional
+        , 'Flag') + 2,2,0)
+      , 'Cancelamento'
+   )
+   *
+   DB('REC.150.Premissas_Cancelamento_CN'
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , STR(NUMBR(!ALL.D.Prazo) - DB('REC.170.Estoque_Cotas_CN'
+        , !ALL.D.Versao
+        , !REC.D.Safra_CN
+        , !ALL.D.Periodo_Projecao
+        , !ALL.D.Canal
+        , !ALL.D.Especie
+        , !ALL.D.Tabela
+        , !ALL.D.Plano
+        , !ALL.D.Prazo
+        , !ALL.D.Regional
+        , 'Flag') + 2,2,0)
+      , 'Curva de Cancelamento'
+   )
+  , 0)
+
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Saldo Final Nao Contempladas
+# Desc: Calcula o saldo final de cotas não contempladas deduzindo do saldo inicial as saídas ocorridas no período
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Final Nao Contempladas'] = N:
+  
+  IF(NUMBR(!REC.D.Safra_CN ) <= NUMBR(!ALL.D.Prazo), 
+  
+  ['REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Nao Contempladas'] - 
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Sorteio'] - 
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Lance'] -
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Canceladas'] - 
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Quitadas Não Contempladas']
+  , 
+0
+);
+
+#EndRegion - Não Contempladas
+
+#Region - Contempladas
+
+# --------------------------------------------------------------------------------------------
+# Name: Contempladas do Periodo
+# Desc: Calcula a quantidade de cotas contempladas no período somando as contemplações por sorteio e as contemplações por lance.
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Contempladas do Periodo'] = N:
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Sorteio'] + 
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Lance'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Saldo Final Contempladas
+# Desc: Calcula o saldo final de cotas contempladas adicionando ao saldo inicial as contemplações ocorridas no período e subtraindo as cotas quitadas.
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+ ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Final Contempladas'] = N:
+     IF(NUMBR(!REC.D.Safra_CN ) <= NUMBR(!ALL.D.Prazo), 
+   
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Contempladas'] +
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Contempladas do Periodo'] -
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Quitadas Contempladas']
+  ,
+0
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Saldo Inicial Contempladas
+# Desc: Calcula o saldo inicial de cotas contempladas por safra. Para a primeira safra, o saldo inicial é zero. Para as demais safras, considera o saldo final de contempladas da safra anterior.
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Contempladas'] = N:
+IF( ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag Aux'] = 1
+  , 0
+  
+,  IF( ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag'] <> 0
+  ,DB( 'REC.170.Estoque_Cotas_CN'
+      , !ALL.D.Versao
+      , !REC.D.Safra_CN
+      , ATTRS( 'ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Previous Period' )
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , !ALL.D.Regional
+      , 'Saldo Final Contempladas')
+  ,0)
+  );
+
+# --------------------------------------------------------------------------------------------
+# Name: Cotas Quitadas Contempladas
+# Desc: Calcula a quantidade de cotas contempladas quitadas antecipadamente aplicando o percentual de quitação antecipada, definido nas Premissas de Assembleia, sobre o saldo inicial de contempladas.
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Cotas Quitadas Contempladas'] = N:
+  ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Contempladas'] *
+    DB( 'REC.160.Premissas_Assembleia_CN'
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , STR(NUMBR(!ALL.D.Prazo) - DB('REC.170.Estoque_Cotas_CN'
+          , !ALL.D.Versao
+          , !REC.D.Safra_CN
+          , !ALL.D.Periodo_Projecao
+          , !ALL.D.Canal
+          , !ALL.D.Especie
+          , !ALL.D.Tabela
+          , !ALL.D.Plano
+          , !ALL.D.Prazo
+          , !ALL.D.Regional
+          , 'Flag') + 2,2,0)
+      , 'Quitacao Antecipada' );
+
+#EndRegion - Contempladas
+
+FEEDERS;
+
+# # --------------------------------------------------------------------------------------------
+# # Name: Flag Aux
+# # Desc: Alimenta a Flag Aux da Safra e Periodo Posterior.
+# # Date: 21/09/2026
+# # Author: Gregorie Amaral
+# # --------------------------------------------------------------------------------------------
+#   ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag Aux','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#   DB( 'REC.170.Estoque_Cotas_CN'
+#       , !ALL.D.Versao
+#       , ATTRS('REC.D.Safra_CN', !REC.D.Safra_CN, 'Safra Posterior')
+#       , ATTRS( 'ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Next Period' )
+#       , !ALL.D.Canal
+#       , !ALL.D.Especie
+#       , !ALL.D.Tabela
+#       , !ALL.D.Plano
+#       , !ALL.D.Prazo
+#       , !ALL.D.Regional
+#       , 'Flag Aux' )
+# ;
+
+# # --------------------------------------------------------------------------------------------
+# # Name: Flag
+# # Desc: Alimenta a Flag da Safra e Periodo Posterior.
+# # Date: 21/09/2026
+# # Author: Gregorie Amaral
+# # --------------------------------------------------------------------------------------------
+# ['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Flag','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+#   DB(
+#    'REC.170.Estoque_Cotas_CN'
+#    , !ALL.D.Versao
+#    , ATTRS('REC.D.Safra_CN', !REC.D.Safra_CN, 'Safra Posterior')
+#    , ATTRS('ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Next Period')
+#    , !ALL.D.Canal
+#    , !ALL.D.Especie
+#    , !ALL.D.Tabela
+#    , !ALL.D.Plano
+#    , !ALL.D.Prazo
+#    , !ALL.D.Regional
+#    , 'Flag')
+#   ,DB(
+#    'REC.170.Estoque_Cotas_CN'
+#    , !ALL.D.Versao
+#    , !REC.D.Safra_CN
+#    , ATTRS('ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Next Period')
+#    , !ALL.D.Canal
+#    , !ALL.D.Especie
+#    , !ALL.D.Tabela
+#    , !ALL.D.Plano
+#    , !ALL.D.Prazo
+#    , !ALL.D.Regional
+#    , 'Flag')
+# ;
+# --------------------------------------------------------------------------------------------
+# Name: Nascimento da Safra
+# Desc: Alimenta o início da cadeia de cálculo das safras a partir das cotas vendidas.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'Cotas Vendidas na Safra','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+['REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Nao Contempladas'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Nao Contempladas
+# Desc: Alimenta todos os cálculos derivados do saldo inicial de não contempladas.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Nao Contempladas','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+
+ ['REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Sorteio']
+, ['REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Lance']
+, ['REC.M.170.Estoque_Cotas_CN':'Cotas Canceladas']
+, ['REC.M.170.Estoque_Cotas_CN':'Cotas Quitadas Nao Contempladas']
+, ['REC.M.170.Estoque_Cotas_CN':'Saldo Final Nao Contempladas'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Contempladas do Periodo
+# Desc: Alimenta a métrica consolidada de contemplações do período.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Sorteio','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+['REC.M.170.Estoque_Cotas_CN':'Contempladas do Periodo'];
+
+['REC.M.170.Estoque_Cotas_CN':'Contemplacoes por Lance','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+['REC.M.170.Estoque_Cotas_CN':'Contempladas do Periodo'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Saldo Final Contempladas
+# Desc: Alimenta o saldo final de contempladas a partir das movimentações do período.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'Contempladas do Periodo','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+['REC.M.170.Estoque_Cotas_CN':'Saldo Final Contempladas'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Saldo Inicial Contempladas
+# Desc: Alimenta o saldo inicial de contempladas a partir das movimentações do período.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Final Contempladas','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+DB( 'REC.170.Estoque_Cotas_CN'
+      , !ALL.D.Versao
+      , !REC.D.Safra_CN
+      , ATTRS( 'ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Next Period' )
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , !ALL.D.Regional
+      , 'Saldo Inicial Contempladas')
+  ;
+
+# --------------------------------------------------------------------------------------------
+# Name: Saldo Inicial Não Contempladas
+# Desc: Alimenta o saldo inicial de  não contempladas a partir das movimentações do período.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'REC.M.170.Estoque_Cotas_CN':'Saldo Final Nao Contempladas','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+DB( 'REC.170.Estoque_Cotas_CN'
+      , !ALL.D.Versao
+      , !REC.D.Safra_CN
+      , ATTRS( 'ALL.D.Periodo_Projecao', !ALL.D.Periodo_Projecao, 'Next Period' )
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , !ALL.D.Prazo
+      , !ALL.D.Regional
+      , 'Saldo Inicial Nao Contempladas')
+  ;
+
+
+# --------------------------------------------------------------------------------------------
+# Name: Contempladas
+# Desc: Alimenta os cálculos derivados do saldo inicial de contempladas.
+# Date: 21/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.170.Estoque_Cotas_CN':'Saldo Inicial Contempladas','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+
+ ['REC.M.170.Estoque_Cotas_CN':'Cotas Quitadas Contempladas']
+, ['REC.M.170.Estoque_Cotas_CN':'Saldo Final Contempladas'];
+

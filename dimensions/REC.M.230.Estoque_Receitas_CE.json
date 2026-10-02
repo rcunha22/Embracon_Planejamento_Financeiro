@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.230.Estoque_Receitas_CE",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.230.Estoque_Receitas_CE.hierarchies/REC.M.230.Estoque_Receitas_CE.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.230.Estoque_Receitas_CE')/Hierarchies('REC.M.230.Estoque_Receitas_CE')"
+	}
+}

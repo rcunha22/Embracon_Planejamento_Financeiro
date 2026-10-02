@@ -1,0 +1,6 @@
+{
+	"@type":"Subset",
+	"Name":"Padrão",
+	"Alias":"MEMBER_NAME",
+	"Expression":"{[ALL.D.Ano].[ALL.D.Ano].MEMBERS}"
+}

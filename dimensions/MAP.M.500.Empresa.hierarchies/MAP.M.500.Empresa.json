@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.M.500.Empresa",
+	"Elements":
+	[
+		{
+			"Name":"Descrição Empresa",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Coligada RM",
+			"Type":"String"
+		},
+		{
+			"Name":"CNPJ",
+			"Type":"String"
+		},
+		{
+			"Name":"Flag Consolida",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

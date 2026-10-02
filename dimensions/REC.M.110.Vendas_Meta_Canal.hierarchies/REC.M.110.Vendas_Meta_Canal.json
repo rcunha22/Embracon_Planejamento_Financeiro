@@ -1,0 +1,16 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.110.Vendas_Meta_Canal",
+	"Elements":
+	[
+		{
+			"Name":"Meta de Venda",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Sazonalidade",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

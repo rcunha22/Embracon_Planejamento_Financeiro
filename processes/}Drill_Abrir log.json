@@ -1,0 +1,57 @@
+{
+	"@type":"Process",
+	"Name":"}Drill_Abrir log",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"}Drill_Abrir log.ti",
+	"UIData":"_ParameterConstraints=e30=\f",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"cubename",
+			"Prompt":"",
+			"Value":"SYS.0120.Controle_Acesso_Usuario",
+			"Type":"String"
+		},
+		{
+			"Name":"pAno",
+			"Prompt":"",
+			"Value":"2018",
+			"Type":"String"
+		},
+		{
+			"Name":"pMes",
+			"Prompt":"",
+			"Value":"Base",
+			"Type":"String"
+		},
+		{
+			"Name":"pDia",
+			"Prompt":"",
+			"Value":"01",
+			"Type":"String"
+		},
+		{
+			"Name":"pCubo",
+			"Prompt":"",
+			"Value":"-",
+			"Type":"String"
+		},
+		{
+			"Name":"pCliente",
+			"Prompt":"",
+			"Value":"Filtro",
+			"Type":"String"
+		},
+		{
+			"Name":"pMetrica",
+			"Prompt":"",
+			"Value":"Cubo",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

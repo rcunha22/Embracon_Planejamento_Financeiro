@@ -1,0 +1,467 @@
+{
+	"@type":"Hierarchy",
+	"Name":"ALL.D.Conta_Contabil",
+	"ElementsSortType":"ByHierarchy",
+	"ComponentsSortType":"ByName",
+	"Elements":
+	[
+		{
+			"Name":"Contas Contábeis",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N1. 7",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N2. 7.3",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N3. 7.3.9",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N4. 7.3.9.10",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N5. 7.3.9.10.01",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.10.01",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.10.02",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.10.02",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.10.03",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.10.03",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.10.04",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.10.04",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.10.05",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.10.05",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N4. 7.3.9.90",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N5. 7.3.9.90.99",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.90.99.001",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N6. 7.3.9.90.99.002",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N4. 7.3.9.99",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N5. 7.3.9.99.01",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.99.01",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.99.05",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.99.05",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.99.06",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.99.06",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.99.07",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.99.07",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.99.08",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.99.08",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.99.98",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.99.98",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 7.3.9.99.99",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 7.3.9.99.99",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N1. 8",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N2. 8.1",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N3. 8.1.7",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N4. 8.1.7.03",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N5. 8.1.7.03.03",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 8.1.7.03.03",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N4. 8.1.7.12",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N5. 8.1.7.12.05",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 8.1.7.12.05",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N4. 8.1.7.21",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N5. 8.1.7.21.01",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 8.1.7.21.01",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N5. 8.1.7.21.06",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 8.1.7.21.06",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"N4. 8.1.7.99",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N5. 8.1.7.99.27",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"N6. 8.1.7.99.27",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Contas Contábeis",
+			"ComponentName":"N1. 7",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Contábeis",
+			"ComponentName":"N1. 8",
+			"Weight":1
+		},
+		{
+			"ParentName":"N1. 7",
+			"ComponentName":"N2. 7.3",
+			"Weight":1
+		},
+		{
+			"ParentName":"N2. 7.3",
+			"ComponentName":"N3. 7.3.9",
+			"Weight":1
+		},
+		{
+			"ParentName":"N3. 7.3.9",
+			"ComponentName":"N4. 7.3.9.10",
+			"Weight":1
+		},
+		{
+			"ParentName":"N3. 7.3.9",
+			"ComponentName":"N4. 7.3.9.90",
+			"Weight":1
+		},
+		{
+			"ParentName":"N3. 7.3.9",
+			"ComponentName":"N4. 7.3.9.99",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.10",
+			"ComponentName":"N5. 7.3.9.10.01",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.10",
+			"ComponentName":"N5. 7.3.9.10.02",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.10",
+			"ComponentName":"N5. 7.3.9.10.03",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.10",
+			"ComponentName":"N5. 7.3.9.10.04",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.10",
+			"ComponentName":"N5. 7.3.9.10.05",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.10.01",
+			"ComponentName":"N6. 7.3.9.10.01",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.10.02",
+			"ComponentName":"N6. 7.3.9.10.02",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.10.03",
+			"ComponentName":"N6. 7.3.9.10.03",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.10.04",
+			"ComponentName":"N6. 7.3.9.10.04",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.10.05",
+			"ComponentName":"N6. 7.3.9.10.05",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.90",
+			"ComponentName":"N5. 7.3.9.90.99",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.90.99",
+			"ComponentName":"N6. 7.3.9.90.99.001",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.90.99",
+			"ComponentName":"N6. 7.3.9.90.99.002",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.99",
+			"ComponentName":"N5. 7.3.9.99.01",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.99",
+			"ComponentName":"N5. 7.3.9.99.05",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.99",
+			"ComponentName":"N5. 7.3.9.99.06",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.99",
+			"ComponentName":"N5. 7.3.9.99.07",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.99",
+			"ComponentName":"N5. 7.3.9.99.08",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.99",
+			"ComponentName":"N5. 7.3.9.99.98",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 7.3.9.99",
+			"ComponentName":"N5. 7.3.9.99.99",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.99.01",
+			"ComponentName":"N6. 7.3.9.99.01",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.99.05",
+			"ComponentName":"N6. 7.3.9.99.05",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.99.06",
+			"ComponentName":"N6. 7.3.9.99.06",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.99.07",
+			"ComponentName":"N6. 7.3.9.99.07",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.99.08",
+			"ComponentName":"N6. 7.3.9.99.08",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.99.98",
+			"ComponentName":"N6. 7.3.9.99.98",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 7.3.9.99.99",
+			"ComponentName":"N6. 7.3.9.99.99",
+			"Weight":1
+		},
+		{
+			"ParentName":"N1. 8",
+			"ComponentName":"N2. 8.1",
+			"Weight":1
+		},
+		{
+			"ParentName":"N2. 8.1",
+			"ComponentName":"N3. 8.1.7",
+			"Weight":1
+		},
+		{
+			"ParentName":"N3. 8.1.7",
+			"ComponentName":"N4. 8.1.7.03",
+			"Weight":1
+		},
+		{
+			"ParentName":"N3. 8.1.7",
+			"ComponentName":"N4. 8.1.7.12",
+			"Weight":1
+		},
+		{
+			"ParentName":"N3. 8.1.7",
+			"ComponentName":"N4. 8.1.7.21",
+			"Weight":1
+		},
+		{
+			"ParentName":"N3. 8.1.7",
+			"ComponentName":"N4. 8.1.7.99",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 8.1.7.03",
+			"ComponentName":"N5. 8.1.7.03.03",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 8.1.7.03.03",
+			"ComponentName":"N6. 8.1.7.03.03",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 8.1.7.12",
+			"ComponentName":"N5. 8.1.7.12.05",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 8.1.7.12.05",
+			"ComponentName":"N6. 8.1.7.12.05",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 8.1.7.21",
+			"ComponentName":"N5. 8.1.7.21.01",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 8.1.7.21",
+			"ComponentName":"N5. 8.1.7.21.06",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 8.1.7.21.01",
+			"ComponentName":"N6. 8.1.7.21.01",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 8.1.7.21.06",
+			"ComponentName":"N6. 8.1.7.21.06",
+			"Weight":1
+		},
+		{
+			"ParentName":"N4. 8.1.7.99",
+			"ComponentName":"N5. 8.1.7.99.27",
+			"Weight":1
+		},
+		{
+			"ParentName":"N5. 8.1.7.99.27",
+			"ComponentName":"N6. 8.1.7.99.27",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

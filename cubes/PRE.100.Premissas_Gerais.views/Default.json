@@ -1,0 +1,64 @@
+{
+	"@type":"NativeView",
+	"Name":"Default",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"@id":"Dimensions('ALL.D.Mes')/Hierarchies('ALL.D.Mes')/Subsets('Padrão')"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('PRE.M.100.Premissas_Gerais')/Hierarchies('PRE.M.100.Premissas_Gerais')"
+				},
+				"Alias":"Descrição",
+				"Expression":"{[PRE.M.100.Premissas_Gerais].[PRE.M.100.Premissas_Gerais].MEMBERS}"
+			}
+		}
+	],
+	"Titles":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('ALL.D.Ano')/Hierarchies('ALL.D.Ano')"
+				},
+				"Expression":"{[ALL.D.Ano].[ALL.D.Ano].MEMBERS}"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('ALL.D.Ano')/Hierarchies('ALL.D.Ano')/Elements('2027')"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('ALL.D.Versao')/Hierarchies('ALL.D.Versao')"
+				},
+				"Expression":"{[ALL.D.Versao].[ALL.D.Versao].MEMBERS}"
+			},
+			"Selected":
+			{
+				"@id":"Dimensions('ALL.D.Versao')/Hierarchies('ALL.D.Versao')/Elements('T1')"
+			}
+		}
+	],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00",
+	"IsAutocalculate" : true,
+	"IsDeferComputeOnLeafDataEntry" : false,
+	"IsSuppressComputeOnOpen" : false
+}

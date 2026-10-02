@@ -1,0 +1,18 @@
+{
+	"@type":"MDXView",
+	"Name":"Default",
+	"MDX@Code.link":"Default.mdx",
+	"IsAutocalculate" : true,
+	"IsDeferComputeOnLeafDataEntry" : false,
+	"IsSuppressComputeOnOpen" : false,
+	"Meta" : 
+	{
+		"Aliases" : {},
+		"ContextSets" : {},
+		"ExpandAboves" : 
+		{
+			"[MAP.D.Conta_Contabil].[MAP.D.Conta_Contabil]" : false,
+			"[MAP.M.200.Conta_Contabil].[MAP.M.200.Conta_Contabil]" : false
+		}
+	}
+}

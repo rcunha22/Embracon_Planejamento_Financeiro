@@ -1,0 +1,29 @@
+{
+	"@type":"Process",
+	"Name":"DIM.0430.Atualiza_ALL.D.Prazo_MAP.430.Prazo",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"DIM.0430.Atualiza_ALL.D.Prazo_MAP.430.Prazo.ti",
+	"UIData":"CubeAction=1511\fDataAction=1503\fCubeLogChanges=0\f_ParameterConstraints=e30=\f",
+	"VariablesUIData":
+	[
+		"VarType=32\fColType=827\f"
+	],
+	"DataSource":
+	{
+		"Type":"TM1DimensionSubset",
+		"dataSourceNameForClient":"MAP.D.Prazo:MAP.D.Prazo",
+		"dataSourceNameForServer":"MAP.D.Prazo:MAP.D.Prazo",
+		"subset":"All"
+	},
+	"Parameters":[],
+	"Variables":
+	[
+		{
+			"Name":"vElement",
+			"Type":"String",
+			"Position":1,
+			"StartByte":0,
+			"EndByte":0
+		}
+	]
+}

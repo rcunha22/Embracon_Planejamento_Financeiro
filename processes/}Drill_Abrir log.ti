@@ -1,0 +1,160 @@
+#region Prolog
+# Definição View de Leitura do Cubo de Origem
+#
+# =================================================================================
+cCuboOrigem = 'SYS.0130.Controle_Transações_Usuario' ; 
+cSuprimirConsolidado	= 'S';
+cSuprimirZero		= 'S'; 
+cSuprimirCamposCalculados	= 'S';
+cViewTemporaria	 	= 'N';
+nViewTemporaria		= If( cViewTemporaria @= 'S', 1, 0);
+sHora = TimSt( Now, '\Y-\m-\d \hh\im\ss' );
+cProcesso			= GetProcessName();
+cHorarioInicio			= Now();
+cViewOrigem	= 'SYS_Drill_Logs_' | sHora ;
+
+IF( ViewExists( cCuboOrigem , cViewOrigem ) =1 ) ;
+  ViewDestroy( cCuboOrigem , cViewOrigem ) ;
+EndIF;
+
+
+# Define nome da view e subset de origem
+# ======================================================
+
+cSubsetOrigem	= cViewOrigem;
+
+
+
+# Cria a view que será utilizada para a leitura
+# ======================================================
+ViewCreate( cCuboOrigem , cViewOrigem , nViewTemporaria );
+
+
+# Filtros de Contexto
+# ======================================================
+
+cDimensao	= 'ALL.D.Ano';
+cElemento	= pAno;
+IF( SubsetExists( cDimensao, cSubsetOrigem ) =1 ) ;
+  SubsetDestroy( cDimensao, cSubsetOrigem ) ;
+EndIF;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetOrigem, nViewTemporaria );  
+  ViewSubsetAssign( cCuboOrigem , cViewOrigem, cDimensao , cSubsetOrigem );
+  ViewTitleDimensionSet( cCuboOrigem , cViewOrigem, cDimensao ) ;
+  SubsetElementInsert( cDimensao, cSubsetOrigem, cElemento	, 1 );
+EndIf;
+
+cDimensao	= 'ALL.D.Mes';
+cElemento	= pMes;
+IF( SubsetExists( cDimensao, cSubsetOrigem ) =1 ) ;
+  SubsetDestroy( cDimensao, cSubsetOrigem ) ;
+EndIF;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetOrigem, nViewTemporaria );  
+  ViewSubsetAssign( cCuboOrigem , cViewOrigem, cDimensao , cSubsetOrigem );
+  ViewTitleDimensionSet( cCuboOrigem , cViewOrigem, cDimensao ) ;
+  SubsetElementInsert( cDimensao, cSubsetOrigem, cElemento	, 1 );
+EndIf;
+
+cDimensao	= 'ALL.D.Dia';
+cElemento	= pDia;
+IF( SubsetExists( cDimensao, cSubsetOrigem ) =1 ) ;
+  SubsetDestroy( cDimensao, cSubsetOrigem ) ;
+EndIF;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetOrigem, nViewTemporaria );  
+  ViewSubsetAssign( cCuboOrigem , cViewOrigem, cDimensao , cSubsetOrigem );
+  ViewTitleDimensionSet( cCuboOrigem , cViewOrigem, cDimensao ) ;
+  SubsetElementInsert( cDimensao, cSubsetOrigem, cElemento	, 1 );
+EndIf;
+
+cDimensao	= 'ALL.D.Cubes';
+cElemento	= pCubo;
+IF( SubsetExists( cDimensao, cSubsetOrigem ) =1 ) ;
+  SubsetDestroy( cDimensao, cSubsetOrigem ) ;
+EndIF;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetOrigem, nViewTemporaria );  
+  ViewSubsetAssign( cCuboOrigem , cViewOrigem, cDimensao , cSubsetOrigem );
+  ViewTitleDimensionSet( cCuboOrigem , cViewOrigem, cDimensao ) ;
+  SubsetElementInsert( cDimensao, cSubsetOrigem, cElemento	, 1 );
+EndIf;
+
+cDimensao	= 'ALL.D.Clients';
+cElemento	= pCliente;
+IF( SubsetExists( cDimensao, cSubsetOrigem ) =1 ) ;
+  SubsetDestroy( cDimensao, cSubsetOrigem ) ;
+EndIF;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetOrigem, nViewTemporaria );  
+  ViewSubsetAssign( cCuboOrigem , cViewOrigem, cDimensao , cSubsetOrigem );
+  ViewTitleDimensionSet( cCuboOrigem , cViewOrigem, cDimensao ) ;
+  SubsetElementInsert( cDimensao, cSubsetOrigem, cElemento	, 1 );
+EndIf;
+
+
+# Filtros das Linhas
+# ======================================================
+cDimensao    = 'ALL.D.Linhas';
+cMDX        = '{TM1FILTERBYLEVEL( {TM1SUBSETALL( [ '| cDimensao | '] )}, 0)}';
+
+IF( SubsetExists( cDimensao, cSubsetOrigem ) =1 ) ;
+  SubsetDestroy( cDimensao, cSubsetOrigem ) ;
+EndIF;
+If( cDimensao @<> '');
+  SubsetCreatebyMDX(cSubsetOrigem, cMDX, nViewTemporaria);
+  SubsetMDXSet(cDimensao, cSubsetOrigem, '');
+  ViewSubsetAssign( cCuboOrigem , cViewOrigem, cDimensao , cSubsetOrigem );  
+  ViewRowDimensionSet( cCuboOrigem , cViewOrigem, cDimensao , 1);
+EndIf;
+
+# Filtros das Colunas
+# ======================================================
+cDimensao       = 'SYS.0130.M.Controle_Transações_Usuario' ;
+
+IF( SubsetExists( cDimensao, cSubsetOrigem ) =1 ) ;
+  SubsetDestroy( cDimensao, cSubsetOrigem ) ;
+EndIF;
+If( cDimensao @<> '');
+  SubsetCreate( cDimensao, cSubsetOrigem, nViewTemporaria );  
+  ViewSubsetAssign( cCuboOrigem , cViewOrigem, cDimensao , cSubsetOrigem );  
+  ViewColumnDimensionSet( cCuboOrigem , cViewOrigem, cDimensao , 1 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'DataAcesso'    , 1 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'OldValue'    , 2 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'NewValue'    , 3 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim1'    , 4 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim2'    , 5 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim3'    , 6 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim4'    , 7 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim5'    , 8 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim6'    , 9 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim7'    , 10 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim8'    , 11 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim9'    , 12 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim10'    , 13 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim11'    , 14 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim12'    , 15 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim13'    , 16 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim14'    , 17 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim15'    , 18 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim16'    , 19 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim17'    , 20 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim18'    , 21 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim19'    , 22 );
+  SubsetElementInsert( cDimensao, cSubsetOrigem, 'Dim20'    , 23 );
+EndIf;
+ 
+
+# Configuração da View de Leitura
+# ======================================================
+ViewExtractSkipCalcsSet( cCuboOrigem, cViewOrigem, If( cSuprimirConsolidado @= 'S', 1, 0) );
+ViewExtractSkipZeroesSet( cCuboOrigem, cViewOrigem, If( cSuprimirZero @= 'S', 1, 0)  );
+ViewExtractSkipRuleValuesSet( cCuboOrigem, cViewOrigem, If( cSuprimirCamposCalculados @= 'S', 1, 0) );
+
+ViewExtractSkipZeroesSet ( cCuboOrigem , cViewOrigem, 1);
+ViewRowSuppressZeroesSet( cCuboOrigem , cViewOrigem, 1);
+#endregion
+#region Epilog
+RETURNVIEWHANDLE ( cCuboOrigem , cViewOrigem );
+#endregion

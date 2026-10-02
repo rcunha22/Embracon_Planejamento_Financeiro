@@ -1,0 +1,152 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.M.100.Centro_De_Custo",
+	"Elements":
+	[
+		{
+			"Name":"Descrição Centro de Custo",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Classificação Origem",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Classificação Origem",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Classificação Ajuste",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Classificação Ajuste",
+			"Type":"String"
+		},
+		{
+			"Name":"Classificação Utilizada",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Revenda",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Filial Origem",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Filial Ajuste",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Filial Utilizado",
+			"Type":"String"
+		},
+		{
+			"Name":"Canal",
+			"Type":"String"
+		},
+		{
+			"Name":"Classificação Canal",
+			"Type":"String"
+		},
+		{
+			"Name":"Classificação Rateio",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 01",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 01",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 02",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 02",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 03",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 03",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 04",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 04",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 05",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 05",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 06",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 06",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 07",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 07",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 08",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 08",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 09",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 09",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 10",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 10",
+			"Type":"String"
+		},
+		{
+			"Name":"Flag Gestão Ativa",
+			"Type":"String"
+		},
+		{
+			"Name":"Flag Ativo",
+			"Type":"String"
+		},
+		{
+			"Name":"Data de Atualização",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

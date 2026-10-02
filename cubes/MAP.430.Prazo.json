@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.430.Prazo",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('MAP.D.Prazo')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.430.Prazo')"
+		}
+	],
+	"Views@Code.links":[]
+}

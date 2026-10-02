@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"SYS.D.Log",
+	"Hierarchies@Code.links":
+	[
+		"SYS.D.Log.hierarchies/SYS.D.Log.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('SYS.D.Log')/Hierarchies('SYS.D.Log')"
+	}
+}

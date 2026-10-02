@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.200.Carteira_Conciliacao",
+	"Elements":
+	[
+		{
+			"Name":"Estoque Inicial de Taxa do Período 1",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Quantidade Inicial de Cotas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Inicial de Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Inicial de Fundo Comum",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

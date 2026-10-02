@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Periodo_Projecao_2",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Periodo_Projecao_2.hierarchies/ALL.D.Periodo_Projecao_2.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Periodo_Projecao_2')/Hierarchies('ALL.D.Periodo_Projecao_2')"
+	}
+}

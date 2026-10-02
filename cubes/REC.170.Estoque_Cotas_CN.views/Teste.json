@@ -1,0 +1,60 @@
+{
+	"@type":"MDXView",
+	"Name":"Teste",
+	"MDX@Code.link":"Teste.mdx",
+	"IsAutocalculate" : true,
+	"IsDeferComputeOnLeafDataEntry" : false,
+	"IsSuppressComputeOnOpen" : false,
+	"Meta" : 
+	{
+		"Aliases" : {},
+		"ContextSets" : 
+		{
+			"[ALL.D.Canal].[ALL.D.Canal]" : 
+			{
+				"Expression" : "{[ALL.D.Canal].[ALL.D.Canal].MEMBERS}"
+			},
+			"[ALL.D.Especie].[ALL.D.Especie]" : 
+			{
+				"Expression" : "{[ALL.D.Especie].[ALL.D.Especie].MEMBERS}"
+			},
+			"[ALL.D.Plano].[ALL.D.Plano]" : 
+			{
+				"Expression" : "{[ALL.D.Plano].[ALL.D.Plano].MEMBERS}"
+			},
+			"[ALL.D.Prazo].[ALL.D.Prazo]" : 
+			{
+				"Expression" : "{[ALL.D.Prazo].[ALL.D.Prazo].MEMBERS}"
+			},
+			"[ALL.D.Regional].[ALL.D.Regional]" : 
+			{
+				"Expression" : "{[ALL.D.Regional].[ALL.D.Regional].MEMBERS}"
+			},
+			"[ALL.D.Tabela].[ALL.D.Tabela]" : 
+			{
+				"Expression" : "{[ALL.D.Tabela].[ALL.D.Tabela].MEMBERS}"
+			},
+			"[ALL.D.Versao].[ALL.D.Versao]" : 
+			{
+				"Expression" : "{[ALL.D.Versao].[ALL.D.Versao].MEMBERS}"
+			},
+			"[REC.D.Safra_CN].[REC.D.Safra_CN]" : 
+			{
+				"Expression" : "{[REC.D.Safra_CN].[REC.D.Safra_CN].MEMBERS}"
+			}
+		},
+		"ExpandAboves" : 
+		{
+			"[ALL.D.Canal].[ALL.D.Canal]" : false,
+			"[ALL.D.Especie].[ALL.D.Especie]" : false,
+			"[ALL.D.Periodo_Projecao].[ALL.D.Periodo_Projecao]" : false,
+			"[ALL.D.Plano].[ALL.D.Plano]" : false,
+			"[ALL.D.Prazo].[ALL.D.Prazo]" : false,
+			"[ALL.D.Regional].[ALL.D.Regional]" : false,
+			"[ALL.D.Tabela].[ALL.D.Tabela]" : false,
+			"[ALL.D.Versao].[ALL.D.Versao]" : false,
+			"[REC.D.Safra_CN].[REC.D.Safra_CN]" : false,
+			"[REC.M.170.Estoque_Cotas_CN].[REC.M.170.Estoque_Cotas_CN]" : false
+		}
+	}
+}

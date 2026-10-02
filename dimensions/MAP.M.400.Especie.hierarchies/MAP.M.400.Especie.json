@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.M.400.Especie",
+	"Elements":
+	[
+		{
+			"Name":"Descrição Espécie",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Agrupador",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Agrupador",
+			"Type":"String"
+		},
+		{
+			"Name":"Flag Ativo",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

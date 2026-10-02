@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"MAP.M.410.Tabela",
+	"Hierarchies@Code.links":
+	[
+		"MAP.M.410.Tabela.hierarchies/MAP.M.410.Tabela.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('MAP.M.410.Tabela')/Hierarchies('MAP.M.410.Tabela')"
+	}
+}

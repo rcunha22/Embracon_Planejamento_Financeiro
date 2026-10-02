@@ -1,0 +1,44 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.D.Canal",
+	"Elements":
+	[
+		{
+			"Name":"Equipe Interna",
+			"Type":"String"
+		},
+		{
+			"Name":"Inside Sales",
+			"Type":"String"
+		},
+		{
+			"Name":"Parceiros Estratégicos",
+			"Type":"String"
+		},
+		{
+			"Name":"Cooperativas",
+			"Type":"String"
+		},
+		{
+			"Name":"Bancos",
+			"Type":"String"
+		},
+		{
+			"Name":"Franquias",
+			"Type":"String"
+		},
+		{
+			"Name":"Stellantis",
+			"Type":"String"
+		},
+		{
+			"Name":"Stara",
+			"Type":"String"
+		},
+		{
+			"Name":"Outros",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

@@ -1,0 +1,57 @@
+{
+	"@type":"NativeView",
+	"Name":"Default",
+	"Columns":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('SYS.M.200.Time_Travel')/Hierarchies('SYS.M.200.Time_Travel')"
+				},
+				"Expression":"{[SYS.M.200.Time_Travel].[SYS.M.200.Time_Travel].MEMBERS}"
+			}
+		}
+	],
+	"Rows":
+	[
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('SYS.D.Ano')/Hierarchies('SYS.D.Ano')"
+				},
+				"Expression":"{[SYS.D.Ano].[SYS.D.Ano].[2025],[SYS.D.Ano].[SYS.D.Ano].[2026],[SYS.D.Ano].[SYS.D.Ano].[2027],[SYS.D.Ano].[SYS.D.Ano].[2028],[SYS.D.Ano].[SYS.D.Ano].[2029],[SYS.D.Ano].[SYS.D.Ano].[2030],[SYS.D.Ano].[SYS.D.Ano].[2031],[SYS.D.Ano].[SYS.D.Ano].[2032],[SYS.D.Ano].[SYS.D.Ano].[2033],[SYS.D.Ano].[SYS.D.Ano].[2034],[SYS.D.Ano].[SYS.D.Ano].[2035],[SYS.D.Ano].[SYS.D.Ano].[2036],[SYS.D.Ano].[SYS.D.Ano].[2037],[SYS.D.Ano].[SYS.D.Ano].[2038],[SYS.D.Ano].[SYS.D.Ano].[2039],[SYS.D.Ano].[SYS.D.Ano].[2040]}"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('SYS.D.Mes')/Hierarchies('SYS.D.Mes')"
+				},
+				"Expression":"{[SYS.D.Mes].[SYS.D.Mes].MEMBERS}"
+			}
+		},
+		{
+			"Subset":
+			{
+				"Hierarchy":
+				{
+					"@id":"Dimensions('SYS.D.Parametro_Mes')/Hierarchies('SYS.D.Parametro_Mes')"
+				},
+				"Expression":"{[SYS.D.Parametro_Mes].[SYS.D.Parametro_Mes].MEMBERS}"
+			}
+		}
+	],
+	"Titles":[],
+	"SuppressEmptyColumns":false,
+	"SuppressEmptyRows":false,
+	"FormatString":"0.00",
+	"IsAutocalculate" : true,
+	"IsDeferComputeOnLeafDataEntry" : false,
+	"IsSuppressComputeOnOpen" : false
+}

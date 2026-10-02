@@ -1,0 +1,44 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.180.Condicoes_Comerciais",
+	"Elements":
+	[
+		{
+			"Name":"Taxa de Administracao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Prazo Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Prazo Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Comissao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa no Prazo",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

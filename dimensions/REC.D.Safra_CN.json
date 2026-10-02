@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.D.Safra_CN",
+	"Hierarchies@Code.links":
+	[
+		"REC.D.Safra_CN.hierarchies/REC.D.Safra_CN.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.D.Safra_CN')/Hierarchies('REC.D.Safra_CN')"
+	}
+}

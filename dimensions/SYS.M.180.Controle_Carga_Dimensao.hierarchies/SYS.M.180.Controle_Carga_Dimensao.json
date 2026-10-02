@@ -1,0 +1,112 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.M.180.Controle_Carga_Dimensao",
+	"Elements":
+	[
+		{
+			"Name":"Cubo de Atualização",
+			"Type":"String"
+		},
+		{
+			"Name":"Dimensão base",
+			"Type":"String"
+		},
+		{
+			"Name":"Subset de Atualização",
+			"Type":"String"
+		},
+		{
+			"Name":"Totalizador",
+			"Type":"String"
+		},
+		{
+			"Name":"Limpar Consolidador",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 1",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 2",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 3",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 4",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 5",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 6",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 7",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 8",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 9",
+			"Type":"String"
+		},
+		{
+			"Name":"Nivel 10",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Element",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 1",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 2",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 3",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 4",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 5",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 6",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 7",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 8",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 9",
+			"Type":"String"
+		},
+		{
+			"Name":"Desc Nivel 10",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

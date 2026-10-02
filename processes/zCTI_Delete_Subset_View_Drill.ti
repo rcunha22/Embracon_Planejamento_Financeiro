@@ -1,0 +1,276 @@
+#region Prolog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+
+
+#Processo criado para excluir as views criadas no processo de DRILL
+
+sSub = 'processo.DRILL_01*' ;
+sSub2 = 'DFS_Drill_Correlacao_Fechamento*';
+sSub3 = 'DFS_Drill_Pré_Fechamento*';
+
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Ano'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Mes'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Versao'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Ledger'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Numero_Documento'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DES.D.Conta_Contabil'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DES.W.Centro_Custo'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Moeda'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'STG.0500.M.Transacoes_Custos'
+  , 'pSubsets'                      , sSub
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+#SUbset Drill DFS
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Periodo'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Versao'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.D.Item_Planejamento'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Empresa_Societaria'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Moeda'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.0800.M.Pre_Fechamento'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.0850.M.Fechamento'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Empresa_Parceira'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.D.Item_Planejamento_Origem'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.0815.M.Correlacao_Detalhe'
+  , 'pSubsets'                      , sSub2
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Periodo'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Versao'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.D.Item_Planejamento'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Empresa_Societaria'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Moeda'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.0800.M.Pre_Fechamento'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.0850.M.Fechamento'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'ALL.D.Empresa_Parceira'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.D.Item_Planejamento_Origem'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+
+ExecuteProcess
+  ( 'zCTI_Bedrock.Dim.Sub.Delete'
+  , 'pDimensions'                 , 'DFS.0815.M.Correlacao_Detalhe'
+  , 'pSubsets'                      , sSub3
+  , 'pDelimiter'                     ,    '&'
+  , 'pDebug'                        , 0
+  );
+#endregion
+#region Metadata
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Data
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion
+#region Epilog
+
+#****Begin: Generated Statements***
+#****End: Generated Statements****
+#endregion

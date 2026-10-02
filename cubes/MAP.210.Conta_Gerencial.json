@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.210.Conta_Gerencial",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('MAP.D.Conta_Gerencial')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.210.Conta_Gerencial')"
+		}
+	],
+	"Views@Code.links":[]
+}

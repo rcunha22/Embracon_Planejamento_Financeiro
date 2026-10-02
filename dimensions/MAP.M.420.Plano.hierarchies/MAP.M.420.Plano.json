@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.M.420.Plano",
+	"Elements":
+	[
+		{
+			"Name":"Descrição Tipo Cota",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Empresa",
+			"Type":"String"
+		},
+		{
+			"Name":"Percentual Parcela Pré Contemplação",
+			"Type":"String"
+		},
+		{
+			"Name":"Flag Recálculo Pós Contemplação",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

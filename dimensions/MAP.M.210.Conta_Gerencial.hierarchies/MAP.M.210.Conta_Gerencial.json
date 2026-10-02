@@ -1,0 +1,92 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.M.210.Conta_Gerencial",
+	"Elements":
+	[
+		{
+			"Name":"Descrição Conta Gerencial",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 01",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 01",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 02",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 02",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 03",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 03",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 04",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 04",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 05",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 05",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 06",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 06",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 07",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 07",
+			"Type":"String"
+		},
+		{
+			"Name":"Código Nível 08",
+			"Type":"String"
+		},
+		{
+			"Name":"Descrição Nível 08",
+			"Type":"String"
+		},
+		{
+			"Name":"Classificação Módulo",
+			"Type":"String"
+		},
+		{
+			"Name":"Destino Demonstrativo",
+			"Type":"String"
+		},
+		{
+			"Name":"Natureza Agrupador",
+			"Type":"String"
+		},
+		{
+			"Name":"Data de Atualização",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

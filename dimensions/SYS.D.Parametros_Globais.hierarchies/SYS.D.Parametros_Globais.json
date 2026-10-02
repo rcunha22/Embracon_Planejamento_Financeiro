@@ -1,0 +1,12 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.D.Parametros_Globais",
+	"Elements":
+	[
+		{
+			"Name":"Parâmetros Globais",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

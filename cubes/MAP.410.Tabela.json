@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.410.Tabela",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('MAP.D.Tabela')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.410.Tabela')"
+		}
+	],
+	"Views@Code.links":[]
+}

@@ -1,0 +1,28 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.220.Premissas_Assembleia_CE",
+	"Elements":
+	[
+		{
+			"Name":"% Contemplação por Sorteio",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% Contemplação por Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% Valor do Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% Quitação do Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% Antecipação",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

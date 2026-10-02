@@ -1,0 +1,36 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.D.Situacao_Contemplacao",
+	"Elements":
+	[
+		{
+			"Name":"Não Contemplado",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Sorteio",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Não se Aplica",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Não Informado",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Não Encontrado",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Outros",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

@@ -1,0 +1,167 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.170.Estoque_Cotas_CN",
+	"Elements":
+	[
+		{
+			"Name":"Cotas Vendidas na Safra",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Saldo Inicial Nao Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Contemplacoes por Sorteio",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Contemplacoes por Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Canceladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Quitadas Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Saldo Final Nao Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Saldo Final Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Saldo Inicial de Cotas",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Saldo Final de Cotas",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Cotas Nao Contempladas",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Cotas Contempladas",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Saldo Inicial Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Contempladas do Periodo",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Quitadas Nao Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Flag",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Input",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Valor",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Flag Aux",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Cotas Vendidas na Safra",
+			"ComponentName":"Cotas Input",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Vendidas na Safra",
+			"ComponentName":"Cotas Valor",
+			"Weight":1
+		},
+		{
+			"ParentName":"Saldo Inicial de Cotas",
+			"ComponentName":"Saldo Inicial Nao Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Saldo Inicial de Cotas",
+			"ComponentName":"Saldo Inicial Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Saldo Final de Cotas",
+			"ComponentName":"Saldo Final Nao Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Saldo Final de Cotas",
+			"ComponentName":"Saldo Final Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Nao Contempladas",
+			"ComponentName":"Saldo Inicial Nao Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Nao Contempladas",
+			"ComponentName":"Contemplacoes por Sorteio",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Nao Contempladas",
+			"ComponentName":"Contemplacoes por Lance",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Nao Contempladas",
+			"ComponentName":"Cotas Canceladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Nao Contempladas",
+			"ComponentName":"Cotas Quitadas Nao Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Nao Contempladas",
+			"ComponentName":"Saldo Final Nao Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Contempladas",
+			"ComponentName":"Saldo Inicial Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Contempladas",
+			"ComponentName":"Contempladas do Periodo",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Contempladas",
+			"ComponentName":"Cotas Quitadas Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Cotas Contempladas",
+			"ComponentName":"Saldo Final Contempladas",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

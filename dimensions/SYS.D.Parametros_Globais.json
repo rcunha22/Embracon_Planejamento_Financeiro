@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"SYS.D.Parametros_Globais",
+	"Hierarchies@Code.links":
+	[
+		"SYS.D.Parametros_Globais.hierarchies/SYS.D.Parametros_Globais.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('SYS.D.Parametros_Globais')/Hierarchies('SYS.D.Parametros_Globais')"
+	}
+}

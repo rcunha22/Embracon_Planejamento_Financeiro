@@ -1,0 +1,20 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.M.Safra_Control",
+	"Elements":
+	[
+		{
+			"Name":"Flag",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Flag Aux",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"MOB",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

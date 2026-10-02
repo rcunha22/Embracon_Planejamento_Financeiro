@@ -1,0 +1,12 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.130.Mix_Prazo",
+	"Elements":
+	[
+		{
+			"Name":"Distribuicao por Prazo",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"SYS.0120.M.Controle_Acesso_Usuario",
+	"Hierarchies@Code.links":
+	[
+		"SYS.0120.M.Controle_Acesso_Usuario.hierarchies/SYS.0120.M.Controle_Acesso_Usuario.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('SYS.0120.M.Controle_Acesso_Usuario')/Hierarchies('SYS.0120.M.Controle_Acesso_Usuario')"
+	}
+}

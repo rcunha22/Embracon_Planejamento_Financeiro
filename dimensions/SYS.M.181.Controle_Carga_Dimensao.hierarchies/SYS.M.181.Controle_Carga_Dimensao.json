@@ -1,0 +1,16 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.M.181.Controle_Carga_Dimensao",
+	"Elements":
+	[
+		{
+			"Name":"Totalizador",
+			"Type":"String"
+		},
+		{
+			"Name":"Limpar Consolidador",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

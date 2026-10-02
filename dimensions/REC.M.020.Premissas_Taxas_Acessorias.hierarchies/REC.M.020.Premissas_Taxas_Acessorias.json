@@ -1,0 +1,32 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.020.Premissas_Taxas_Acessorias",
+	"Elements":
+	[
+		{
+			"Name":"Taxa de Cadastro",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa de Vistoria por Cota Contemplada",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa de Transferência",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% Cotas Transferidas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Multas e Juros",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"% Receita de Reativação",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

@@ -1,0 +1,16 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.0120.M.Controle_Acesso_Usuario",
+	"Elements":
+	[
+		{
+			"Name":"Cubo",
+			"Type":"String"
+		},
+		{
+			"Name":"DataAcesso",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

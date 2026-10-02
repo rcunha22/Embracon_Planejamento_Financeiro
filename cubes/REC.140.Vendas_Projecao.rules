@@ -1,0 +1,117 @@
+SKIPCHECK;
+
+# --------------------------------------------------------------------------------------------
+# Name: Meta do Canal
+# Desc: Busca a meta de venda definida para o canal no cubo de metas e a disponibiliza para os cálculos de projeção de vendas.
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Meta do Canal'] = N:
+  DB( 'REC.110.Vendas_Meta_Canal'
+      , !ALL.D.Ano
+      , !ALL.D.Mes
+      , !ALL.D.Versao
+      , !ALL.D.Canal
+      , 'Meta de Venda' );
+
+# --------------------------------------------------------------------------------------------
+# Name: Faturamento Difundido
+# Desc: Calcula o faturamento distribuído para cada combinação de produto, aplicando o percentual de participação sobre a meta de venda do canal.
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Difundido'] = N:
+  ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Meta do Canal'] *
+  ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'% Participação'];
+
+# --------------------------------------------------------------------------------------------
+# Name: Faturamento Projetado
+# Desc: Define o faturamento projetado a ser utilizado na projeção de vendas. 
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Projetado'] = N:
+IF(['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Ajustado'] <> 0
+  , ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Ajustado']
+  , ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Difundido'] );
+
+# --------------------------------------------------------------------------------------------
+# Name: Cotas Vendidas
+# Desc: Calcula a quantidade de cotas vendidas dividindo o faturamento projetado pelo Crédito Médio Inflacionado. 
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Cotas Vendidas'] = N:
+
+  IF(
+DB( 'REC.120.Credito_Medio'
+    , !ALL.D.Ano
+    , !ALL.D.Mes
+    , !ALL.D.Versao
+    , !ALL.D.Canal
+    , !ALL.D.Especie
+    , !ALL.D.Tabela
+    , !ALL.D.Plano
+    , 'Credito Medio Inflacionado' ) = 0
+
+  , 0
+
+  , ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Projetado'] 
+  / 
+  DB( 'REC.120.Credito_Medio'
+    , !ALL.D.Ano
+    , !ALL.D.Mes
+    , !ALL.D.Versao
+    , !ALL.D.Canal
+    , !ALL.D.Especie
+    , !ALL.D.Tabela
+    , !ALL.D.Plano
+    , 'Credito Medio Inflacionado' )
+
+);
+
+# --------------------------------------------------------------------------------------------
+# Name: Check
+# Desc: Faz a diferença entre a meta e projetado.
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+
+['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Check'] = N:
+['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Projetado'] - 
+  ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Meta do Canal'];
+
+FEEDERS;
+
+['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Meta do Canal'] =>
+  ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Difundido']
+, ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Faturamento Projetado']
+, ['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Check'];
+
+
+  
+# --------------------------------------------------------------------------------------------
+# Name: Feeder Cotas Vendidas na Safra
+# Desc: Alimenta as Cotas Vendidas na Safra a partir das Cotas Vendidas projetadas para suportar os cálculos de estoque de cotas.
+# Date: 15/09/2026
+# Author: Gregorie Amaral
+# --------------------------------------------------------------------------------------------
+  
+['REC.M.140.Vendas_Projecao':'REC.M.140.Vendas_Projecao':'Cotas Vendidas','ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+  DB( 'REC.170.Estoque_Cotas_CN_v2'
+      , !ALL.D.Versao
+      , 'REC.D.Safra_CN':'Total Safra'
+      ,  ATTRS( 'ALL.D.Mes',  !ALL.D.Mes, 'Mês Abreviado' ) | ' ' | !ALL.D.Ano | '_' | !ALL.D.Versao
+      , !ALL.D.Canal
+      , !ALL.D.Especie
+      , !ALL.D.Tabela
+      , !ALL.D.Plano
+      , 'ALL.D.Prazo':'Prazos'
+      , !ALL.D.Regional
+      , 'Cotas Valor' );
+
+#======================================================
+  

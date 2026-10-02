@@ -1,0 +1,28 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.160.Premissas_Assembleia_CN",
+	"Elements":
+	[
+		{
+			"Name":"Contemplacao por Sorteio",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Contemplacao por Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Valor do Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Quitacao Antecipada",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Antecipacao",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.200.Carteira_Conciliacao",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.200.Carteira_Conciliacao.hierarchies/REC.M.200.Carteira_Conciliacao.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.200.Carteira_Conciliacao')/Hierarchies('REC.M.200.Carteira_Conciliacao')"
+	}
+}

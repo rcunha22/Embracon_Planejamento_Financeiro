@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"SYS.0130.M.Controle_Transações_Usuario",
+	"Hierarchies@Code.links":
+	[
+		"SYS.0130.M.Controle_Transações_Usuario.hierarchies/SYS.0130.M.Controle_Transações_Usuario.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('SYS.0130.M.Controle_Transações_Usuario')/Hierarchies('SYS.0130.M.Controle_Transações_Usuario')"
+	}
+}

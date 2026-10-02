@@ -1,0 +1,917 @@
+{
+	"@type":"Hierarchy",
+	"Name":"ALL.D.Conta_Gerencial",
+	"ElementsSortType":"ByHierarchy",
+	"ComponentsSortType":"ByName",
+	"Elements":
+	[
+		{
+			"Name":"Contas Gerenciais",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"CG00001",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00002",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00003",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00004",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00005",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00006",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00007",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00008",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00009",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00010",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00011",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00012",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00013",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00014",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00015",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00016",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00017",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00018",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00019",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00020",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00021",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00022",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00023",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00024",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00025",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00026",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00027",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00028",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00029",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00030",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00031",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00032",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00033",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00034",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00035",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00036",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00037",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00038",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00039",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00040",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00041",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00042",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00043",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00044",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00045",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00046",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00047",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00048",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00049",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00050",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00051",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00052",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00053",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00054",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00055",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00056",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00057",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00058",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00059",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00060",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00061",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00062",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00063",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00064",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00065",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00066",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00067",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00068",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00069",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00070",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00071",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00072",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00073",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00074",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00075",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00076",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00077",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00078",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00079",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00080",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00081",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00082",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00083",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00084",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00085",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00086",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00087",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00088",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00089",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00090",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00091",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00092",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00093",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00094",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00095",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00096",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00097",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00098",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00099",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"CG00100",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00001",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00002",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00003",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00004",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00005",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00006",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00007",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00008",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00009",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00010",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00011",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00012",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00013",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00014",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00015",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00016",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00017",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00018",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00019",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00020",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00021",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00022",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00023",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00024",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00025",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00026",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00027",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00028",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00029",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00030",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00031",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00032",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00033",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00034",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00035",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00036",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00037",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00038",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00039",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00040",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00041",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00042",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00043",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00044",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00045",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00046",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00047",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00048",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00049",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00050",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00051",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00052",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00053",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00054",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00055",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00056",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00057",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00058",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00059",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00060",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00061",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00062",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00063",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00064",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00065",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00066",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00067",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00068",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00069",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00070",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00071",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00072",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00073",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00074",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00075",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00076",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00077",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00078",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00079",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00080",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00081",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00082",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00083",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00084",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00085",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00086",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00087",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00088",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00089",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00090",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00091",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00092",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00093",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00094",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00095",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00096",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00097",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00098",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00099",
+			"Weight":1
+		},
+		{
+			"ParentName":"Contas Gerenciais",
+			"ComponentName":"CG00100",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

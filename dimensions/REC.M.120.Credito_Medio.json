@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.120.Credito_Medio",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.120.Credito_Medio.hierarchies/REC.M.120.Credito_Medio.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.120.Credito_Medio')/Hierarchies('REC.M.120.Credito_Medio')"
+	}
+}

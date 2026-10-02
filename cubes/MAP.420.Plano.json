@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.420.Plano",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('MAP.D.Plano')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.420.Plano')"
+		}
+	],
+	"Views@Code.links":[]
+}

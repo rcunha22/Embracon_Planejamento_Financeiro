@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.310.Canal",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('MAP.D.Canal')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.310.Canal')"
+		}
+	],
+	"Views@Code.links":[]
+}

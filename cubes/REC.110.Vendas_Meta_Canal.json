@@ -1,0 +1,27 @@
+{
+	"@type":"Cube",
+	"Name":"REC.110.Vendas_Meta_Canal",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('ALL.D.Ano')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Mes')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Versao')"
+		},
+		{
+			"@id":"Dimensions('ALL.D.Canal')"
+		},
+		{
+			"@id":"Dimensions('REC.M.110.Vendas_Meta_Canal')"
+		}
+	],
+	"Rules@Code.link":"REC.110.Vendas_Meta_Canal.rules",
+	"Views@Code.links":
+	[
+		"REC.110.Vendas_Meta_Canal.views/Default.json"
+	]
+}

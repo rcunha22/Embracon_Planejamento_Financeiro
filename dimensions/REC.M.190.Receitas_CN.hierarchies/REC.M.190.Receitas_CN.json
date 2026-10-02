@@ -1,0 +1,391 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.190.Receitas_CN",
+	"Elements":
+	[
+		{
+			"Name":"Estoque de Taxa no Prazo",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Estoque Taxa Embutida",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Estoque Inicial Taxa no Prazo",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Reajuste Taxa no Prazo",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Baixa por Cancelamento Taxa no Prazo",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Antecipação Cliente Taxa no Prazo",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa no Lance Taxa no Prazo",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Arrecadação Taxa no Prazo",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Final Taxa no Prazo",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Inicial Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Reajuste Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Baixa por Cancelamento Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Antecipação Cliente Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa no Lance Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Arrecadação Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Final Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque de Taxa Antecipada Acrescida",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Estoque Inicial Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Reajuste Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Baixa por Cancelamento Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Antecipação Cliente Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxa no Lance Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Arrecadação Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Final Taxa Antecipada Acrescida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receitas do  Período",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Arrecadação do Período",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Antecipação",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxas Acessórias",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Total de Receitas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Métricas Auxiliares",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Aux MOB",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Nascimento",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Prazo TE",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Prazo TAA",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Ativo TP",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Ativo TE",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Ativo TAA",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Faturamento Safra",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Inflacao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Perc Antecipacao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Fator Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Cancelamento",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Aux Saldo Final Cotas",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Estoque de Taxa no Prazo",
+			"ComponentName":"Estoque Inicial Taxa no Prazo",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa no Prazo",
+			"ComponentName":"Reajuste Taxa no Prazo",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa no Prazo",
+			"ComponentName":"Baixa por Cancelamento Taxa no Prazo",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa no Prazo",
+			"ComponentName":"Antecipação Cliente Taxa no Prazo",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa no Prazo",
+			"ComponentName":"Taxa no Lance Taxa no Prazo",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa no Prazo",
+			"ComponentName":"Arrecadação Taxa no Prazo",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa no Prazo",
+			"ComponentName":"Estoque Final Taxa no Prazo",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque Taxa Embutida",
+			"ComponentName":"Estoque Inicial Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque Taxa Embutida",
+			"ComponentName":"Reajuste Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque Taxa Embutida",
+			"ComponentName":"Baixa por Cancelamento Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque Taxa Embutida",
+			"ComponentName":"Antecipação Cliente Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque Taxa Embutida",
+			"ComponentName":"Taxa no Lance Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque Taxa Embutida",
+			"ComponentName":"Arrecadação Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque Taxa Embutida",
+			"ComponentName":"Estoque Final Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Antecipada Acrescida",
+			"ComponentName":"Estoque Inicial Taxa Antecipada Acrescida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Antecipada Acrescida",
+			"ComponentName":"Reajuste Taxa Antecipada Acrescida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Antecipada Acrescida",
+			"ComponentName":"Baixa por Cancelamento Taxa Antecipada Acrescida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Antecipada Acrescida",
+			"ComponentName":"Antecipação Cliente Taxa Antecipada Acrescida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Antecipada Acrescida",
+			"ComponentName":"Taxa no Lance Taxa Antecipada Acrescida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Antecipada Acrescida",
+			"ComponentName":"Arrecadação Taxa Antecipada Acrescida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Antecipada Acrescida",
+			"ComponentName":"Estoque Final Taxa Antecipada Acrescida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do  Período",
+			"ComponentName":"Arrecadação do Período",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do  Período",
+			"ComponentName":"Receita de Antecipação",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do  Período",
+			"ComponentName":"Receita de Lance",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do  Período",
+			"ComponentName":"Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do  Período",
+			"ComponentName":"Taxas Acessórias",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do  Período",
+			"ComponentName":"Total de Receitas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux MOB",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Nascimento",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Prazo TE",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Prazo TAA",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Ativo TP",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Ativo TE",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Ativo TAA",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Faturamento Safra",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Inflacao",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Perc Antecipacao",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Fator Lance",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Cancelamento",
+			"Weight":1
+		},
+		{
+			"ParentName":"Métricas Auxiliares",
+			"ComponentName":"Aux Saldo Final Cotas",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

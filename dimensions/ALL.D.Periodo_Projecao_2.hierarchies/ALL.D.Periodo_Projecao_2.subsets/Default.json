@@ -1,0 +1,6 @@
+{
+	"@type":"Subset",
+	"Name":"Default",
+	"Alias":"MEMBER_NAME",
+	"Expression":"{TM1FILTERBYLEVEL(TM1SUBSETALL([ALL.D.Periodo_Projecao_2].[ALL.D.Periodo_Projecao_2]) , 0)}"
+}

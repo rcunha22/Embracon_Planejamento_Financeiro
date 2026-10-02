@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.D.MOB",
+	"Hierarchies@Code.links":
+	[
+		"REC.D.MOB.hierarchies/REC.D.MOB.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.D.MOB')/Hierarchies('REC.D.MOB')"
+	}
+}

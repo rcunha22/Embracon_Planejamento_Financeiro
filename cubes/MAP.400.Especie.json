@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.400.Especie",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('MAP.D.Especie')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.400.Especie')"
+		}
+	],
+	"Views@Code.links":[]
+}

@@ -1,0 +1,28 @@
+SKIPCHECK;
+
+['REC.M.180.Condicoes_Comerciais':'REC.M.180.Condicoes_Comerciais':'Taxa no Prazo'] = N:
+
+['REC.M.180.Condicoes_Comerciais':'REC.M.180.Condicoes_Comerciais':'Taxa de Administracao'] -
+  ['REC.M.180.Condicoes_Comerciais':'REC.M.180.Condicoes_Comerciais':'Taxa Embutida'] - 
+  ['REC.M.180.Condicoes_Comerciais':'REC.M.180.Condicoes_Comerciais':'Taxa Antecipada Acrescida'];
+
+FEEDERS;
+
+['REC.M.180.Condicoes_Comerciais':'REC.M.180.Condicoes_Comerciais':{'Taxa de Administracao', 'Taxa Embutida', 'Taxa Antecipada Acrescida'}, 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions']  =>
+  ['REC.M.180.Condicoes_Comerciais':'REC.M.180.Condicoes_Comerciais':'Taxa no Prazo']
+  ;
+
+['REC.M.180.Condicoes_Comerciais':'REC.M.180.Condicoes_Comerciais':'Taxa no Prazo', 'ALL.D.Versao':'ALL.D.Versao':'Dynamic Versions'] =>
+DB( 
+  'REC.190.Receitas_CN'
+  , !ALL.D.Versao
+  , 'REC.D.Safra_CN':'Total Safra'
+  , 'ALL.D.Periodo_Projecao_2':'Períodos'
+  , 'ALL.D.Canal':'Canais'
+  , !ALL.D.Especie
+  , !ALL.D.Tabela
+  , !ALL.D.Plano
+  , !ALL.D.Prazo
+  , 'ALL.D.Regional':'Total Regional'
+  , 'Estoque Inicial Taxa no Prazo')
+  ;

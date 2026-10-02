@@ -1,0 +1,7 @@
+[SYS.M.180.Controle_Carga_Dimensao:{'Cubo de Atualização', 'Subset de Atualização', 'Dimensão base'}]=S: IF( !SYS.D.Hierarquia @= 'Controle'
+, CONTINUE
+, '' );
+
+['Controle']=S: IF( !SYS.M.180.Controle_Carga_Dimensao @= 'Cubo de Atualização' % !SYS.M.180.Controle_Carga_Dimensao @= 'Dimensão base' % !SYS.M.180.Controle_Carga_Dimensao @= 'Subset de Atualização'
+, CONTINUE
+, '' );

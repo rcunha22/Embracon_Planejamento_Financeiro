@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"MAP.M.300.Revenda",
+	"Hierarchies@Code.links":
+	[
+		"MAP.M.300.Revenda.hierarchies/MAP.M.300.Revenda.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('MAP.M.300.Revenda')/Hierarchies('MAP.M.300.Revenda')"
+	}
+}

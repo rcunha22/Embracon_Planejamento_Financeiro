@@ -1,0 +1,489 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.230.Estoque_Receitas_CE",
+	"Elements":
+	[
+		{
+			"Name":"Prazo Médio de Vincendas Ponderado",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque de Cotas",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Saldo Inicial Cotas Não Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Contemplações por Sorteio",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Contemplações por Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Canceladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Cotas Quitadas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Saldo Final Cotas Não Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Contempladas do Período",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Saldo Final Cotas Contempladas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Saldo Final de Cotas",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Saldo Inicial Total",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque de Taxa de Administração",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Estoque Inicial Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Reajuste Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Taxa Ideal Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Baixa por Cancelamento Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Quitação Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Antecipação Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Lance Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Arrecadação Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Final Taxa de Administração",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque de Taxa Embutida",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Estoque Inicial Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Reajuste Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Taxa Ideal Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Baixa por Cancelamento Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Quitação Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Antecipação Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Lance Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Arrecadação Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Final Taxa Embutida",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Fundo de Reserva",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Estoque Inicial Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Reajuste Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Baixa por Cancelamento Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Quitação Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Antecipação Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Lance Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Arrecadação Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Final Fundo de Reserva",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Fundo Comum",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Estoque Inicial Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Reajuste Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Baixa por Cancelamento Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Quitação Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Antecipação Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Lance Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Arrecadação Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Estoque Final Fundo Comum",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receitas do Período",
+			"Type":"Consolidated"
+		},
+		{
+			"Name":"Arrecadação",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Quitação",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Antecipação",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Receita de Lance",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Taxas Acessórias",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Total de Receitas",
+			"Type":"Numeric"
+		}
+	],
+	"Edges":
+	[
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Saldo Inicial Cotas Não Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Contemplações por Sorteio",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Contemplações por Lance",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Cotas Canceladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Cotas Quitadas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Saldo Final Cotas Não Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Contempladas do Período",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Saldo Final Cotas Contempladas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Saldo Final de Cotas",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Cotas",
+			"ComponentName":"Saldo Inicial Total",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Estoque Inicial Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Reajuste Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Receita de Taxa Ideal Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Baixa por Cancelamento Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Quitação Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Antecipação Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Lance Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Arrecadação Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa de Administração",
+			"ComponentName":"Estoque Final Taxa de Administração",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Estoque Inicial Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Reajuste Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Receita de Taxa Ideal Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Baixa por Cancelamento Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Quitação Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Antecipação Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Lance Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Arrecadação Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Estoque de Taxa Embutida",
+			"ComponentName":"Estoque Final Taxa Embutida",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo de Reserva",
+			"ComponentName":"Estoque Inicial Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo de Reserva",
+			"ComponentName":"Reajuste Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo de Reserva",
+			"ComponentName":"Baixa por Cancelamento Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo de Reserva",
+			"ComponentName":"Quitação Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo de Reserva",
+			"ComponentName":"Antecipação Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo de Reserva",
+			"ComponentName":"Lance Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo de Reserva",
+			"ComponentName":"Arrecadação Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo de Reserva",
+			"ComponentName":"Estoque Final Fundo de Reserva",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo Comum",
+			"ComponentName":"Estoque Inicial Fundo Comum",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo Comum",
+			"ComponentName":"Reajuste Fundo Comum",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo Comum",
+			"ComponentName":"Baixa por Cancelamento Fundo Comum",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo Comum",
+			"ComponentName":"Quitação Fundo Comum",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo Comum",
+			"ComponentName":"Antecipação Fundo Comum",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo Comum",
+			"ComponentName":"Lance Fundo Comum",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo Comum",
+			"ComponentName":"Arrecadação Fundo Comum",
+			"Weight":1
+		},
+		{
+			"ParentName":"Fundo Comum",
+			"ComponentName":"Estoque Final Fundo Comum",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do Período",
+			"ComponentName":"Arrecadação",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do Período",
+			"ComponentName":"Receita de Quitação",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do Período",
+			"ComponentName":"Receita de Antecipação",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do Período",
+			"ComponentName":"Receita de Lance",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do Período",
+			"ComponentName":"Taxas Acessórias",
+			"Weight":1
+		},
+		{
+			"ParentName":"Receitas do Período",
+			"ComponentName":"Total de Receitas",
+			"Weight":1
+		}
+	],
+	"Subsets@Code.links":[]
+}

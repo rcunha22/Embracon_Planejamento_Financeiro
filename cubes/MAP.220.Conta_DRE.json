@@ -1,0 +1,14 @@
+{
+	"@type":"Cube",
+	"Name":"MAP.220.Conta_DRE",
+	"Dimensions":
+	[
+		{
+			"@id":"Dimensions('MAP.D.Conta_DRE')"
+		},
+		{
+			"@id":"Dimensions('MAP.M.220.Conta_DRE')"
+		}
+	],
+	"Views@Code.links":[]
+}

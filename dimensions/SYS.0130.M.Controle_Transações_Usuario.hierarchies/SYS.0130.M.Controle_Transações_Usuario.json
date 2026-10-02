@@ -1,0 +1,112 @@
+{
+	"@type":"Hierarchy",
+	"Name":"SYS.0130.M.Controle_Transações_Usuario",
+	"Elements":
+	[
+		{
+			"Name":"DataAcesso",
+			"Type":"String"
+		},
+		{
+			"Name":"OldValue",
+			"Type":"String"
+		},
+		{
+			"Name":"NewValue",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim1",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim2",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim3",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim4",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim5",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim6",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim7",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim8",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim9",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim10",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim11",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim12",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim13",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim14",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim15",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim16",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim17",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim18",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim19",
+			"Type":"String"
+		},
+		{
+			"Name":"Dim20",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":
+	[
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-04 16h10m40s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-04 16h12m27s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-04 16h13m36s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-05 10h24m43s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-05 10h39m46s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-05 10h40m43s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-05 10h41m34s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-05 10h42m03s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-06 09h34m24s.json",
+		"SYS.0130.M.Controle_Transações_Usuario.subsets/SYS_Drill_Logs_2024-09-06 11h26m22s.json"
+	]
+}

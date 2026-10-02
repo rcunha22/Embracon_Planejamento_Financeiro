@@ -1,0 +1,20 @@
+{
+	"@type":"Hierarchy",
+	"Name":"MAP.M.430.Prazo",
+	"Elements":
+	[
+		{
+			"Name":"Descrição Prazo",
+			"Type":"String"
+		},
+		{
+			"Name":"Agrupador Faixa",
+			"Type":"String"
+		},
+		{
+			"Name":"Flag Ativo",
+			"Type":"String"
+		}
+	],
+	"Subsets@Code.links":[]
+}

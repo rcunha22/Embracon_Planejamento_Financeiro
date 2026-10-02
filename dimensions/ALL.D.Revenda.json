@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Revenda",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Revenda.hierarchies/ALL.D.Revenda.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Revenda')/Hierarchies('ALL.D.Revenda')"
+	}
+}

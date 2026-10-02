@@ -1,0 +1,24 @@
+{
+	"@type":"Hierarchy",
+	"Name":"PRE.M.100.Premissas_Gerais",
+	"Elements":
+	[
+		{
+			"Name":"Inflacao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Flag Realizado x Projecao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Periodo Inicial da Projecao",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Versao Ativa",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

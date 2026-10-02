@@ -1,0 +1,78 @@
+#region Prolog
+# ===============================================================================================================
+#GENERALCOMMENT             Descrição:           		Roda os processos de Integração do IFS para o actual
+#GENERALCOMMENT             Responsável:      		Sara Souza
+#GENERALCOMMENT             Data Criação:      		11/09/2019
+#LASTCHANGE                        Alterações:
+#LASTCHANGE                        Responsavel Alterações:
+# ===============================================================================================================
+
+# =================================================================================
+# Descobre qual usuário executou o processo
+# =================================================================================
+pUser = IF( DimIx( '}Clients' , TM1User() ) = 0, 'Executed by Chore' , ATTRS('}Clients', TM1User(), '}TM1_DefaultDisplayValue') );
+
+
+# =================================================================================
+# Variáveis
+# =================================================================================
+cCubParam	= 'SYS.150.Controle_Cargas';
+cCubLog		= '}CubeProperties';
+
+cTimeStamp	= TimSt( Now, '\Y-\m-\d \hh\im\ss' );
+cProcesso 	= GetProcessName();
+
+sMensagemP 	= '';
+nCount 		= 0;
+
+
+
+
+
+# =================================================================================
+# Define o Log inicial da carga como falha
+# Registra esse log logo no inicio para garantir que tenha algum log de falha registrado
+# Caso o processo não consiga chegar no próximo registro de log por alguma falha inesperada
+# =================================================================================
+sMensagemP = 'Processo com falha, contate o administrador para verificar os logs de erro do sistema' ;
+
+s01 = cTimeStamp ;
+s02 = pUser ;
+s03 = sMensagemP ;
+
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraInicio' );
+CellPutS( s01 , cCubParam, cProcesso, 'DataHoraFim' );
+CellPutS( s02 , cCubParam, cProcesso, 'Usuário' );
+CellPutS( s03 , cCubParam, cProcesso, 'Mensagem' );
+
+ 
+
+# ===================================================================================
+# Percorre a pasta Source buscando os arquivos que deveriam ser carregados.
+# Rejeitar se o nome da área estiver incorreta no arquivo
+# ===================================================================================
+
+#vPrefixoArquivo = 'tm1s' | subst(cTimeStamp, 1,4) | subst(cTimeStamp, 6,2)  | subst(cTimeStamp, 9,2)| '*.log';
+
+vPrefixoArquivo = 'tm1s'|pAno|pMes|pDia|'*.log';
+
+sSourceFolder = CellGetS(  cCubParam, cProcesso, 'Caminho do Arquivo Fonte' );
+sSourceFolderFile =sSourceFolder|vPrefixoArquivo;
+
+
+vFileName = WildcardFileSearch( sSourceFolderFile , '' ) ;
+
+# ===================================================================================
+# Busca na pasta todos arquivos com nome antigo
+# ===================================================================================
+
+While ( vFileName @<>''  );
+
+  ExecuteProcess('CTI.0005.00.Execute_Logs', 'pNomeLog', vFileName);
+  vFileName = WildcardFileSearch( sSourceFolderFile , vFileName );
+
+End;
+#endregion
+#region Epilog
+
+#endregion

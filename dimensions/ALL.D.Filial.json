@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Filial",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Filial.hierarchies/ALL.D.Filial.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Filial')/Hierarchies('ALL.D.Filial')"
+	}
+}

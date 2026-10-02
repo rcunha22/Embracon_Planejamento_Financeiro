@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"REC.M.190.Receitas_CN",
+	"Hierarchies@Code.links":
+	[
+		"REC.M.190.Receitas_CN.hierarchies/REC.M.190.Receitas_CN.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('REC.M.190.Receitas_CN')/Hierarchies('REC.M.190.Receitas_CN')"
+	}
+}

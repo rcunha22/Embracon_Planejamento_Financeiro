@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Empresa",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Empresa.hierarchies/ALL.D.Empresa.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Empresa')/Hierarchies('ALL.D.Empresa')"
+	}
+}

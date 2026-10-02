@@ -1,0 +1,27 @@
+{
+	"@type":"Process",
+	"Name":"z.Limpa_View_Cubo_rejeitado",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"z.Limpa_View_Cubo_rejeitado.ti",
+	"UIData":"_ParameterConstraints=e30=\f",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pProcesso",
+			"Prompt":"",
+			"Value":"0",
+			"Type":"String"
+		},
+		{
+			"Name":"pUsuario",
+			"Prompt":"",
+			"Value":"0",
+			"Type":"String"
+		}
+	],
+	"Variables":[]
+}

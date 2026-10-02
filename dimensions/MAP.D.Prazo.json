@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"MAP.D.Prazo",
+	"Hierarchies@Code.links":
+	[
+		"MAP.D.Prazo.hierarchies/MAP.D.Prazo.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('MAP.D.Prazo')/Hierarchies('MAP.D.Prazo')"
+	}
+}

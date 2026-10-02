@@ -1,0 +1,20 @@
+{
+	"@type":"Hierarchy",
+	"Name":"REC.M.010.Premissas_Inadimplencia",
+	"Elements":
+	[
+		{
+			"Name":"% Inadimplência",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Base de Cálculo Carregada",
+			"Type":"Numeric"
+		},
+		{
+			"Name":"Métricas Auxiliares de Apuração",
+			"Type":"Numeric"
+		}
+	],
+	"Subsets@Code.links":[]
+}

@@ -1,0 +1,39 @@
+{
+	"@type":"Process",
+	"Name":"zCTI_Bedrock.Dim.Sub.Delete",
+	"HasSecurityAccess":false,
+	"Code@Code.link":"zCTI_Bedrock.Dim.Sub.Delete.ti",
+	"UIData":"CubeAction=1511\fDataAction=1503\fCubeLogChanges=0\f",
+	"DataSource":
+	{
+		"Type":"None"
+	},
+	"Parameters":
+	[
+		{
+			"Name":"pDimensions",
+			"Prompt":"List of Dimensions Seperated by Delimiter (Blank = All Dimensions)",
+			"Value":"",
+			"Type":"String"
+		},
+		{
+			"Name":"pSubsets",
+			"Prompt":"List of Subsets Seperated by Delimiter. Wildcards Permitted on Subset Names.",
+			"Value":"}Bedrock",
+			"Type":"String"
+		},
+		{
+			"Name":"pDelimiter",
+			"Prompt":"Delimiter Character",
+			"Value":"&",
+			"Type":"String"
+		},
+		{
+			"Name":"pDebug",
+			"Prompt":"Debug Mode",
+			"Value":0,
+			"Type":"Numeric"
+		}
+	],
+	"Variables":[]
+}

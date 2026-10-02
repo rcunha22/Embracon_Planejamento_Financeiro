@@ -1,0 +1,12 @@
+{
+	"@type":"Dimension",
+	"Name":"ALL.D.Especie",
+	"Hierarchies@Code.links":
+	[
+		"ALL.D.Especie.hierarchies/ALL.D.Especie.json"
+	],
+	"DefaultHierarchy":
+	{
+		"@id":"Dimensions('ALL.D.Especie')/Hierarchies('ALL.D.Especie')"
+	}
+}
